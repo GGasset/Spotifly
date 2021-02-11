@@ -227,7 +227,6 @@
     <None Include="Resources\SpotiflyIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
     <Content Include="Resources\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
