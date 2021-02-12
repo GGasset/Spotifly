@@ -138,7 +138,7 @@ namespace Spotifly
                     GetFilteredFilesAndFolders(folderPath, out string[] files, out string[] folders);
                     SetListViewItems(files, folders);
                 }
-                else if (e.ItemIndex - foldersMemory.Length > 0)
+                else if (e.ItemIndex - foldersMemory.Length >= 0)
                 {
                     if (shuffle)
                         PlayFileInUnshuffled(e.ItemIndex - foldersMemory.Length);
