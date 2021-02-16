@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using YoutubeExplode.Videos;
-using System.Threading.Tasks;
+using System;
 using CefSharp;
 
 namespace Spotifly
@@ -12,18 +9,14 @@ namespace Spotifly
         {
             try
             {
-                if (e.Address.Contains(initialBrowserUrl) && e.Address != initialBrowserUrl && e.Address.Contains("/watch"))
-                {
-                    GetVideo(e.Address);
+                if (e.Address.Contains(initialBrowserUrl) && e.Address != initialBrowserUrl && e.Address.Contains("/watch"))//address is a video
                     Invoke(new Action(() => SetDownloadGroupBox(true)));
-                }
                 else
                     Invoke(new Action(() => SetDownloadGroupBox(false)));
             }
             catch (Exception)
-            {
-
-            }
+            {  }
+            
             void SetDownloadGroupBox(bool value)
             {
                 if (value && !downloading)
@@ -35,12 +28,12 @@ namespace Spotifly
 
         private void WebVideoDwnldBtnn_Click(object sender, EventArgs e)
         {
-            DownloadVideo(currentLink);
+            DownloadVideo(WebBrowser.Address);
         }
 
         private void WebAudioDwnldBttn_Click(object sender, EventArgs e)
         {
-            DownloadVideo(currentLink, true);
+            DownloadVideo(WebBrowser.Address, true);
         }
     }
 }
