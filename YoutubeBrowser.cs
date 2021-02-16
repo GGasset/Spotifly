@@ -10,7 +10,11 @@ namespace Spotifly
             try
             {
                 if (e.Address.Contains(initialBrowserUrl) && e.Address != initialBrowserUrl && e.Address.Contains("/watch"))//address is a video
+                {
+                    GetVideo(e.Address);
+                    System.Threading.Thread.Sleep(2000);
                     Invoke(new Action(() => SetDownloadGroupBox(true)));
+                }
                 else
                     Invoke(new Action(() => SetDownloadGroupBox(false)));
             }
