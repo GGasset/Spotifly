@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Spotifly
 {
     public partial class Form1
     {
+        private Queue<int> priorityQueue;
+
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
             //Media Ended
@@ -49,12 +52,17 @@ namespace Spotifly
 
         private void PlayFile(int positionsToAdvance, bool startPlaying)
         {
-            if (playlistIndex != -1)
-                Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)], startPlaying));
+            if (priorityQueue.Count > 0 && positionsToAdvance == 1)
+                Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue()));
             else
-                Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0], startPlaying));
-            if (!loading)
-                CurrentMediaTxtBox.Text = GetCurrentMediaName();
+            {
+                if (playlistIndex != -1)
+                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)], startPlaying));
+                else
+                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = positionsToAdvance], startPlaying));
+                if (!loading)
+                    CurrentMediaTxtBox.Text = GetCurrentMediaName();
+            }
         }
 
         private void PlayFileInUnshuffled(int index)
@@ -82,7 +90,7 @@ namespace Spotifly
                 CurrentMediaTxtBox.Text = GetCurrentMediaName();
         }
 
-        private async void SetURL(string URL, bool startPlaying)
+        private void SetURL(string URL, bool startPlaying)
         {
             try
             {

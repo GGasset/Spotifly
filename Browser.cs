@@ -57,7 +57,7 @@ namespace Spotifly
 
             #region setPageInfo
 
-            ThumbnailPicture.Load(video.Thumbnails.HighResUrl);
+            //ThumbnailPicture.Load(video.Thumbnails);
             Point point = new Point(0, 45);
             Size usefullThumnailSize = new Size(480, 270);
             Bitmap source = new Bitmap(ThumbnailPicture.Image);
@@ -126,9 +126,9 @@ namespace Spotifly
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(link).ConfigureAwait(true);
                 IStreamInfo streamInfo;
                 if (onlyAudio)
-                    streamInfo = streamManifest.GetAudioOnly().WithHighestBitrate();
+                    streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
                 else
-                    streamInfo = streamManifest.GetMuxed().WithHighestVideoQuality();
+                    streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
                 string videoName = video.Title.Replace("\"", " ").Replace("<", " ").Replace(">", " ").Replace("|", " ").Replace("...", " ").Replace("*", " ").Replace("/", " ")
                     .Replace("?", "").Replace("¿", "");
                 for (int i = 0; true; i++)

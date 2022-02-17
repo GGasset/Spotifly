@@ -8,6 +8,8 @@ namespace Spotifly
 {
     public partial class Form1
     {
+        private bool addToQueue = false;
+
         private void MediaListView_DrawMedia(bool unshuffleNeed = false)
         {
             string[] filesUrls, folders;
@@ -140,21 +142,42 @@ namespace Spotifly
                 }
                 else if (e.ItemIndex - foldersMemory.Length >= 0)
                 {
-                    if (shuffle)
-                        PlayFileInUnshuffled(e.ItemIndex - foldersMemory.Length);
-                    else
-                        PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
-
-                    if (ResizeForMediaCheckBox.Checked)
+                    if (!addToQueue)
                     {
-                        SetFormSizeForCurrentMedia();
-                        FormBorderStyle = FormBorderStyle.FixedSingle;
+                        if (shuffle)
+                            PlayFileInUnshuffled(e.ItemIndex - foldersMemory.Length);
+                        else
+                            PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
+
+                        if (ResizeForMediaCheckBox.Checked)
+                        {
+                            SetFormSizeForCurrentMedia();
+                            FormBorderStyle = FormBorderStyle.FixedSingle;
+                        }
+                        SetActivePanel(0);
+                        Focus();
+                        GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
+                        PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
                     }
-                    SetActivePanel(0);
-                    Focus();
-                    GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
-                    PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
+                    else
+                    {
+                        priorityQueue.Enqueue(e.ItemIndex - foldersMemory.Length);
+                    }
                 }
+        }
+
+        private void EnqueueBttn_Click(object sender, EventArgs e)
+        {
+            if (addToQueue)
+            {
+                EnqueueBttn.Text = "Add to Queue";
+            }
+            else
+            {
+                EnqueueBttn.Text = "Add to Queue t";
+            }
+            addToQueue = !addToQueue;
+
         }
 
         private void BackBttn_Click(object sender, EventArgs e)

@@ -45,6 +45,7 @@
             this.ResizeForMediaCheckBox = new System.Windows.Forms.CheckBox();
             this.AboutBttn = new System.Windows.Forms.Button();
             this.DownloadedMediaPanel = new System.Windows.Forms.Panel();
+            this.EnqueueBttn = new System.Windows.Forms.Button();
             this.SongCountLabel = new System.Windows.Forms.Label();
             this.OpenCurrentFldrBttn = new System.Windows.Forms.Button();
             this.BackBttn = new System.Windows.Forms.Button();
@@ -310,6 +311,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DownloadedMediaPanel.BackColor = System.Drawing.Color.Transparent;
+            this.DownloadedMediaPanel.Controls.Add(this.EnqueueBttn);
             this.DownloadedMediaPanel.Controls.Add(this.SongCountLabel);
             this.DownloadedMediaPanel.Controls.Add(this.OpenCurrentFldrBttn);
             this.DownloadedMediaPanel.Controls.Add(this.BackBttn);
@@ -322,6 +324,25 @@
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
             this.DownloadedMediaPanel.Resize += new System.EventHandler(this.DownloadedMediaPanel_Resize);
+            // 
+            // EnqueueBttn
+            // 
+            this.EnqueueBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.EnqueueBttn.BackColor = System.Drawing.Color.Transparent;
+            this.EnqueueBttn.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.EnqueueBttn.FlatAppearance.BorderSize = 0;
+            this.EnqueueBttn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.EnqueueBttn.Location = new System.Drawing.Point(517, 3);
+            this.EnqueueBttn.Name = "EnqueueBttn";
+            this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
+            this.EnqueueBttn.TabIndex = 8;
+            this.EnqueueBttn.Text = "Add to Queue";
+            this.EnqueueBttn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.EnqueueBttn.UseVisualStyleBackColor = false;
+            this.EnqueueBttn.Click += new System.EventHandler(this.EnqueueBttn_Click);
             // 
             // SongCountLabel
             // 
@@ -365,7 +386,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(517, 3);
+            this.BackBttn.Location = new System.Drawing.Point(418, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -851,6 +872,7 @@
         private System.Windows.Forms.Label WebDwnldSttsLabel;
         private System.Windows.Forms.Button OpenCurrentFldrBttn;
         private System.Windows.Forms.Label SongCountLabel;
+        private System.Windows.Forms.Button EnqueueBttn;
     }
 }
 

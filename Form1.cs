@@ -33,6 +33,7 @@ namespace Spotifly
         public Form1()
         {
             InitializeComponent();
+            Directory.CreateDirectory(initialFolderPath);
 
             normalMinWidth = MinimumSize.Width;
             initialMediaLengthLabelDistanceToFormEnd = Width - (MediaLengthLabel.Location.X + MediaLengthLabel.Width);
@@ -52,7 +53,6 @@ namespace Spotifly
         private async void Form1_Load(object sender, EventArgs e)
         {
             //Settings.Default.Reset();
-            Directory.CreateDirectory(initialFolderPath);
             panels = new Panel[5];
             panels[0] = MediaPlayerPanel;
             panels[1] = DownloadedMediaPanel;
@@ -143,6 +143,7 @@ namespace Spotifly
             axWindowsMediaPlayer.stretchToFit = true;
             CurrentMediaTxtBox.Size = new Size(PrevMediaBttn.Location.X - CurrentMediaTxtBox.Location.X, 20);
             ThemeSelectionComboBox.Items.AddRange(GetThemes());
+            priorityQueue = new System.Collections.Generic.Queue<int>();
 
             watch.Stop();
             Settings.Default.AverageLoadingTime = Convert.ToInt32((watch.Elapsed.Milliseconds + Settings.Default.AverageLoadingTime) / 2);
