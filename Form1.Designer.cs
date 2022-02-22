@@ -319,7 +319,7 @@
             this.DownloadedMediaPanel.Controls.Add(this.folderLabel);
             this.DownloadedMediaPanel.Location = new System.Drawing.Point(141, 12);
             this.DownloadedMediaPanel.Name = "DownloadedMediaPanel";
-            this.DownloadedMediaPanel.Size = new System.Drawing.Size(740, 418);
+            this.DownloadedMediaPanel.Size = new System.Drawing.Size(87, 47);
             this.DownloadedMediaPanel.TabIndex = 3;
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
@@ -335,7 +335,7 @@
             this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EnqueueBttn.Location = new System.Drawing.Point(517, 3);
+            this.EnqueueBttn.Location = new System.Drawing.Point(-136, 3);
             this.EnqueueBttn.Name = "EnqueueBttn";
             this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
             this.EnqueueBttn.TabIndex = 8;
@@ -363,7 +363,7 @@
             this.OpenCurrentFldrBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.OpenCurrentFldrBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCurrentFldrBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(616, 3);
+            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(-37, 3);
             this.OpenCurrentFldrBttn.Name = "OpenCurrentFldrBttn";
             this.OpenCurrentFldrBttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.OpenCurrentFldrBttn.Size = new System.Drawing.Size(110, 20);
@@ -386,7 +386,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(418, 3);
+            this.BackBttn.Location = new System.Drawing.Point(-235, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -407,7 +407,7 @@
             this.MediaListView.HideSelection = false;
             this.MediaListView.Location = new System.Drawing.Point(0, 34);
             this.MediaListView.Name = "MediaListView";
-            this.MediaListView.Size = new System.Drawing.Size(740, 384);
+            this.MediaListView.Size = new System.Drawing.Size(87, 384);
             this.MediaListView.TabIndex = 1;
             this.MediaListView.UseCompatibleStateImageBehavior = false;
             this.MediaListView.View = System.Windows.Forms.View.List;
@@ -727,9 +727,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.YoutubeBrowserPanel.Controls.Add(this.DownloadGroupBox);
-            this.YoutubeBrowserPanel.Location = new System.Drawing.Point(29, 352);
+            this.YoutubeBrowserPanel.Location = new System.Drawing.Point(135, 65);
             this.YoutubeBrowserPanel.Name = "YoutubeBrowserPanel";
-            this.YoutubeBrowserPanel.Size = new System.Drawing.Size(62, 90);
+            this.YoutubeBrowserPanel.Size = new System.Drawing.Size(762, 366);
             this.YoutubeBrowserPanel.TabIndex = 4;
             this.YoutubeBrowserPanel.Visible = false;
             // 
@@ -740,9 +740,9 @@
             this.DownloadGroupBox.Controls.Add(this.WebDwnldSttsLabel);
             this.DownloadGroupBox.Controls.Add(this.WebAudioDwnldBttn);
             this.DownloadGroupBox.Controls.Add(this.WebVideoDwnldBtnn);
-            this.DownloadGroupBox.Location = new System.Drawing.Point(-146, 13);
+            this.DownloadGroupBox.Location = new System.Drawing.Point(344, 293);
             this.DownloadGroupBox.Name = "DownloadGroupBox";
-            this.DownloadGroupBox.Size = new System.Drawing.Size(210, 65);
+            this.DownloadGroupBox.Size = new System.Drawing.Size(195, 65);
             this.DownloadGroupBox.TabIndex = 0;
             this.DownloadGroupBox.TabStop = false;
             this.DownloadGroupBox.Text = "Download";
