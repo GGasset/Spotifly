@@ -740,9 +740,9 @@
             this.DownloadGroupBox.Controls.Add(this.WebDwnldSttsLabel);
             this.DownloadGroupBox.Controls.Add(this.WebAudioDwnldBttn);
             this.DownloadGroupBox.Controls.Add(this.WebVideoDwnldBtnn);
-            this.DownloadGroupBox.Location = new System.Drawing.Point(344, 293);
+            this.DownloadGroupBox.Location = new System.Drawing.Point(572, 3);
             this.DownloadGroupBox.Name = "DownloadGroupBox";
-            this.DownloadGroupBox.Size = new System.Drawing.Size(195, 65);
+            this.DownloadGroupBox.Size = new System.Drawing.Size(187, 65);
             this.DownloadGroupBox.TabIndex = 0;
             this.DownloadGroupBox.TabStop = false;
             this.DownloadGroupBox.Text = "Download";
@@ -759,7 +759,7 @@
             // 
             // WebAudioDwnldBttn
             // 
-            this.WebAudioDwnldBttn.Location = new System.Drawing.Point(115, 36);
+            this.WebAudioDwnldBttn.Location = new System.Drawing.Point(97, 36);
             this.WebAudioDwnldBttn.Name = "WebAudioDwnldBttn";
             this.WebAudioDwnldBttn.Size = new System.Drawing.Size(75, 23);
             this.WebAudioDwnldBttn.TabIndex = 1;
