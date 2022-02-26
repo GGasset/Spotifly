@@ -53,7 +53,9 @@ namespace Spotifly
         private void PlayFile(int positionsToAdvance, bool startPlaying)
         {
             if (priorityQueue.Count > 0 && positionsToAdvance == 1)
+            {
                 Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue()));
+            }
             else
             {
                 if (playlistIndex != -1)

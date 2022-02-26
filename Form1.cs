@@ -65,7 +65,7 @@ namespace Spotifly
             table.Add("wait", "Please wait until the download finishes to download another video");
             table.Add("preparing", "Download Status: Preparing...");
             table.Add("download", "Download Status: Downloading...");
-            table.Add("finished", "Download Status: Finished");
+            table.Add("finished", "Download Status: Prepared");
             table.Add("getEr", "There has been a problem getting the video.");
             table.Add("path", "Couldn't reach the download path. Please restart the app");
             table.Add("internet", "There has been an internet error. Please check your internet conection.");
@@ -291,6 +291,11 @@ namespace Spotifly
                 MediaListView_DrawMedia();
                 SetActivePanel(1);
             }
+        }
+
+        private void WebAudioDwnldBttn_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void BrowseBttn_Click(object sender, EventArgs e)

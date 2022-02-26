@@ -162,6 +162,8 @@ namespace Spotifly
                     else
                     {
                         priorityQueue.Enqueue(e.ItemIndex - foldersMemory.Length);
+                        addToQueue = false;
+                        EnqueueBttn.Text = EnqueueBttn.Text.Replace(" t", "");
                     }
                 }
         }

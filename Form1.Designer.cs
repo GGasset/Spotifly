@@ -740,9 +740,9 @@
             this.DownloadGroupBox.Controls.Add(this.WebDwnldSttsLabel);
             this.DownloadGroupBox.Controls.Add(this.WebAudioDwnldBttn);
             this.DownloadGroupBox.Controls.Add(this.WebVideoDwnldBtnn);
-            this.DownloadGroupBox.Location = new System.Drawing.Point(572, 3);
+            this.DownloadGroupBox.Location = new System.Drawing.Point(586, 3);
             this.DownloadGroupBox.Name = "DownloadGroupBox";
-            this.DownloadGroupBox.Size = new System.Drawing.Size(187, 65);
+            this.DownloadGroupBox.Size = new System.Drawing.Size(173, 92);
             this.DownloadGroupBox.TabIndex = 0;
             this.DownloadGroupBox.TabStop = false;
             this.DownloadGroupBox.Text = "Download";
@@ -751,17 +751,18 @@
             // WebDwnldSttsLabel
             // 
             this.WebDwnldSttsLabel.AutoSize = true;
-            this.WebDwnldSttsLabel.Location = new System.Drawing.Point(13, 16);
+            this.WebDwnldSttsLabel.Location = new System.Drawing.Point(6, 16);
             this.WebDwnldSttsLabel.Name = "WebDwnldSttsLabel";
-            this.WebDwnldSttsLabel.Size = new System.Drawing.Size(86, 13);
+            this.WebDwnldSttsLabel.Size = new System.Drawing.Size(135, 13);
             this.WebDwnldSttsLabel.TabIndex = 2;
-            this.WebDwnldSttsLabel.Text = "Download status";
+            this.WebDwnldSttsLabel.Text = "Download status: Prepared";
             // 
             // WebAudioDwnldBttn
             // 
-            this.WebAudioDwnldBttn.Location = new System.Drawing.Point(97, 36);
+            this.WebAudioDwnldBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WebAudioDwnldBttn.Location = new System.Drawing.Point(121, 63);
             this.WebAudioDwnldBttn.Name = "WebAudioDwnldBttn";
-            this.WebAudioDwnldBttn.Size = new System.Drawing.Size(75, 23);
+            this.WebAudioDwnldBttn.Size = new System.Drawing.Size(43, 23);
             this.WebAudioDwnldBttn.TabIndex = 1;
             this.WebAudioDwnldBttn.Text = "Audio";
             this.WebAudioDwnldBttn.UseVisualStyleBackColor = true;
@@ -769,9 +770,10 @@
             // 
             // WebVideoDwnldBtnn
             // 
-            this.WebVideoDwnldBtnn.Location = new System.Drawing.Point(16, 36);
+            this.WebVideoDwnldBtnn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WebVideoDwnldBtnn.Location = new System.Drawing.Point(121, 34);
             this.WebVideoDwnldBtnn.Name = "WebVideoDwnldBtnn";
-            this.WebVideoDwnldBtnn.Size = new System.Drawing.Size(75, 23);
+            this.WebVideoDwnldBtnn.Size = new System.Drawing.Size(43, 23);
             this.WebVideoDwnldBtnn.TabIndex = 0;
             this.WebVideoDwnldBtnn.Text = "Video";
             this.WebVideoDwnldBtnn.UseVisualStyleBackColor = true;
