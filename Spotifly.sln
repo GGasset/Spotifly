@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotifly", "Spotifly.csproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ConfSecurityCopy|Any CPU = ConfSecurityCopy|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BA362FD-FE97-43D5-ABBB-95AFFA9CC1E1}.ConfSecurityCopy|Any CPU.ActiveCfg = ConfSecurityCopy|Any CPU
+		{3BA362FD-FE97-43D5-ABBB-95AFFA9CC1E1}.ConfSecurityCopy|Any CPU.Build.0 = ConfSecurityCopy|Any CPU
 		{3BA362FD-FE97-43D5-ABBB-95AFFA9CC1E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3BA362FD-FE97-43D5-ABBB-95AFFA9CC1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BA362FD-FE97-43D5-ABBB-95AFFA9CC1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU

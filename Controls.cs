@@ -111,7 +111,7 @@ namespace Spotifly
                 return;
             try
             {
-                if (!axWindowsMediaPlayer.fullScreen && axWindowsMediaPlayer.playState == WMPPlayState.wmppsPlaying)
+                if (!axWindowsMediaPlayer.fullScreen)
                 {
                     axWindowsMediaPlayer.uiMode = "mini";
                     axWindowsMediaPlayer.fullScreen = true;

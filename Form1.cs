@@ -293,11 +293,6 @@ namespace Spotifly
             }
         }
 
-        private void WebAudioDwnldBttn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BrowseBttn_Click(object sender, EventArgs e)
         {
             if (!loading)

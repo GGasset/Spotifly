@@ -32,17 +32,19 @@ namespace Spotifly
         private int AdvanceIndexesOnPlaylists(int currentIndex, int PositionsToAdvance, int PlaylistLength)
         {
             int output = currentIndex + PositionsToAdvance;
+
+            //Check if output is inside the playlist
             if (output < PlaylistLength && output > 0)
                 return output;
 
-            output += PlaylistLength * -output * Convert.ToByte(output < 0);
-            output -= PlaylistLength * output / PlaylistLength * Convert.ToByte(output >= PlaylistLength);
-
-            ////while (output > PlaylistLength - 1)
-            ////    output -= PlaylistLength;
-            //while (output < 0)
-            //    output += PlaylistLength;
-            return output;
+            if (output >= PlaylistLength)
+            {
+                return 0;
+            }
+            else
+            {
+                return PlaylistLength - 1;
+            }
         }
 
         private void PlayFile(int positionsToAdvance)

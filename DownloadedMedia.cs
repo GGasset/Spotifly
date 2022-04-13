@@ -15,10 +15,10 @@ namespace Spotifly
             string[] filesUrls, folders;
             GetFilteredFilesAndFolders(folderPath, out filesUrls, out folders);
 
-            if (!ArrayElementsEqual(MergeArrays(folders, filesUrls), MergeArrays(foldersMemory, filteredFilesMemory)))
+            if (!ArrayElementsEqual(AppendArrays(folders, filesUrls), AppendArrays(foldersMemory, filteredFilesMemory)))
             {
                 SetListViewItems(filesUrls, folders);
-                SaveInMemory(folders, filesUrls);
+                BackupInMemory(folders, filesUrls);
             }
 
             if (unshuffleNeed)//Unshuffle Playlist
@@ -39,7 +39,12 @@ namespace Spotifly
             folder = Directory.GetDirectories(path);
         }
 
-        private void SaveInMemory(string[] folders, string[] filteredFiles)
+        /// <summary>
+        /// This is used to see if a reload media list view items is needed
+        /// </summary>
+        /// <param name="folders"></param>
+        /// <param name="filteredFiles"></param>
+        private void BackupInMemory(string[] folders, string[] filteredFiles)
         {
             foldersMemory = folders;
             filteredFilesMemory = filteredFiles;
@@ -69,7 +74,7 @@ namespace Spotifly
             return filteredFiles;
         }
 
-        private string[] MergeArrays(string[] ar1, string[] ar2)
+        private string[] AppendArrays(string[] ar1, string[] ar2)
         {
             string[] output = new string[ar1.Length + ar2.Length];
             for (int i = 0; i < ar1.Length; i++)
@@ -179,7 +184,6 @@ namespace Spotifly
                 EnqueueBttn.Text = "Add to Queue t";
             }
             addToQueue = !addToQueue;
-
         }
 
         private void BackBttn_Click(object sender, EventArgs e)
