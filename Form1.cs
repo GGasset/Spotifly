@@ -19,11 +19,8 @@ namespace Spotifly
         private readonly Size panelSize = new Size(740, 418), mediaPanelSize;
         private readonly Point panelLocation = new Point(141, 12), mediaPanelLocation;
         private Panel[] panels;
-        private YoutubeExplode.Videos.Video video;
-        private string currentLink, folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}", currentUrlFolder;
-        private readonly string initialBrowserUrl = "https://www.youtube.com/";
-        private readonly string initialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
-        private bool downloading = false, isPlaying = false, shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed;
+        private string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}", currentUrlFolder;
+        private bool shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed;
         private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
         private int playlistIndex = 0, activePanelIndex, verticalModeMinWidth = 710, normalMinWidth, verticalModeStart = 750;
         private readonly int initialMediaLengthLabelDistanceToFormEnd;

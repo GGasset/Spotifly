@@ -9,6 +9,7 @@ namespace Spotifly
     public partial class Form1
     {
         private bool addToQueue = false;
+        private readonly string initialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
 
         private void MediaListView_DrawMedia(bool unshuffleNeed = false)
         {
@@ -20,6 +21,13 @@ namespace Spotifly
                 SetListViewItems(filesUrls, folders);
                 BackupInMemory(folders, filesUrls);
             }
+
+
+            if (currentUrlFolder == folderPath)
+                urlPlaylist = filesUrls;
+            if (shuffle)
+                ShufflePlaylist();
+
 
             if (unshuffleNeed)//Unshuffle Playlist
                 UnshufflePlaylist(filesUrls);
@@ -125,10 +133,6 @@ namespace Spotifly
                     .Remove(files[i].LastIndexOf(".", StringComparison.InvariantCulture))
                     .Remove(0, files[i].LastIndexOf('\\') + 1), 1);
 
-            if (currentUrlFolder == folderPath)
-                urlPlaylist = files;
-            if (shuffle)
-                ShufflePlaylist();
             folderLabel.Text = folderPath;
             SongCountLabel.Text = $"Media Files Count: {files.Length}";
 

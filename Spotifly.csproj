@@ -145,7 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Browser.cs">
+    <Compile Include="Downloader.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls.cs">

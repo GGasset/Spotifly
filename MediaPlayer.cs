@@ -7,6 +7,7 @@ namespace Spotifly
     public partial class Form1
     {
         private Queue<int> priorityQueue;
+        private bool isPlaying = false;
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
@@ -83,11 +84,19 @@ namespace Spotifly
             }
         }
 
-        private void PlayFile(string URL)
+        private void PlayFile(string URL, bool isName = false)
         {
+            if (isName)
+            {
+                for (int i = 0; i < urlPlaylist.Length; i++)
+                {
+                    if (urlPlaylist[i].Contains(URL))
+                        URL = urlPlaylist[i];
+                }
+            }
             Task.Run(() => SetURL(URL, isPlaying));
             for (int i = 0; i < urlPlaylist.Length; i++)
-                if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
+                 if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
                     playlistIndex = i;
 
             if (!loading)

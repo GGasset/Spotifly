@@ -5,6 +5,9 @@ namespace Spotifly
 {
     public partial class Form1
     {
+        private readonly string initialBrowserUrl = "https://www.youtube.com/";
+        private string currentLink;
+
         private void WebBrowser_AddressChanged(object sender, AddressChangedEventArgs e)
         {
             try
