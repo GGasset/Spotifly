@@ -83,7 +83,7 @@ namespace Spotifly
             if (value)
                 ShufflePlaylist();
             else
-                MediaListView_DrawMedia(true);
+                MediaListView_DrawMedia(null, true);
         }
 
         private void ShufflePlaylist()

@@ -11,22 +11,29 @@ namespace Spotifly
         private bool addToQueue = false;
         private readonly string initialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
         private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
+        private string fileFilterMemory = "";
 
 
-        private void MediaListView_DrawMedia(bool unshuffleNeed = false)
+        private void MediaListView_DrawMedia(string fileFilter = null, bool unshuffleNeed = false)
         {
             string[] filesUrls, folders;
             GetFilteredFilesAndFolders(folderPath, out filesUrls, out folders);
 
-            if (!ArrayElementsEqual(AppendArrays(folders, filesUrls), AppendArrays(foldersMemory, filteredFilesMemory)))
+            if (fileFilter == null)
             {
-                SetListViewItems(filesUrls, folders);
+                fileFilter = fileFilterMemory;
+            }
+
+            if (!ArrayElementsEqual(AppendArrays(folders, filesUrls), AppendArrays(foldersMemory, filteredFilesMemory)) || fileFilter != fileFilterMemory)
+            {
+                SetListViewItems(filesUrls, folders, fileFilter);
                 if (currentUrlFolder == folderPath)
                     urlPlaylist = filesUrls;
                 if (shuffle)
                     ShufflePlaylist();
 
                 BackupInMemory(folders, filesUrls);
+                fileFilterMemory = fileFilter;
             }
 
 
@@ -122,7 +129,7 @@ namespace Spotifly
             return !modifyNeed;
         }
 
-        private void SetListViewItems(string[] files, string[] folders)
+        private void SetListViewItems(string[] files, string[] folders, string fileFilter = "")
         {
             ImageList icons = new ImageList();
             MediaListView.Clear();
@@ -132,14 +139,29 @@ namespace Spotifly
             if (files.Length > 0)
                 icons.Images.Add(Icon.ExtractAssociatedIcon(files[0]));
             for (int i = 0; i < files.Length; i++)
-                MediaListView.Items.Add(files[i]
-                    .Remove(files[i].LastIndexOf(".", StringComparison.InvariantCulture))
-                    .Remove(0, files[i].LastIndexOf('\\') + 1), 1);
+            {
+                if (files[i].ToLowerInvariant().Contains(fileFilter.ToLowerInvariant()))
+                {
+                    MediaListView.Items.Add(files[i]
+                        .Remove(files[i].LastIndexOf(".", StringComparison.InvariantCulture))
+                        .Remove(0, files[i].LastIndexOf('\\') + 1), 1);
+                }
+            }
 
             folderLabel.Text = folderPath;
             SongCountLabel.Text = $"Media Files Count: {files.Length}";
 
+            if (fileFilter != string.Empty)
+            {
+                SongCountLabel.Text += $" and {MediaListView.Items.Count - folders.Length} filtered files";
+            }
+
             MediaListView.SmallImageList = icons;
+        }
+
+        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            MediaListView_DrawMedia(SearchTxtBox.Text);
         }
 
         private void MediaListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

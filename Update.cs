@@ -111,7 +111,7 @@ namespace Spotifly
 
         private void SlowUpdate()
         {
-            MediaListView_DrawMedia();
+            MediaListView_DrawMedia(fileFilterMemory);
         }
     }
 }

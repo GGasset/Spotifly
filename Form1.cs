@@ -114,7 +114,7 @@ namespace Spotifly
                 FormBorderStyle = FormBorderStyle.Sizable;
             axWindowsMediaPlayer.stretchToFit = ResizeForMediaCheckBox.Checked;
 
-            MediaListView_DrawMedia();
+            MediaListView_DrawMedia("");
 
             SetShuffleBttn(Settings.Default.Shuffle);
             if (!string.IsNullOrEmpty(Settings.Default.lastSessionMediaURL))
@@ -284,7 +284,7 @@ namespace Spotifly
                 if (FormBorderStyle == FormBorderStyle.FixedSingle)
                     ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
                 BackBttn.Visible = folderPath != initialFolderPath;
-                MediaListView_DrawMedia();
+                MediaListView_DrawMedia(null);
                 SetActivePanel(1);
             }
         }

@@ -144,7 +144,7 @@ namespace Spotifly
                     DwnldSttsLabel.Text = (string)table["download"];
                     WebDwnldSttsLabel.Text = (string)table["download"];
                     await client.Videos.Streams.DownloadAsync(streamInfo, $@"{folderPath}\{videoName}.{streamInfo.Container}").ConfigureAwait(true);
-                    MediaListView_DrawMedia(true);
+                    MediaListView_DrawMedia(null, true);
                     SetShuffleBttn(shuffle);
                 }
                 else
