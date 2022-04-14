@@ -10,6 +10,8 @@ namespace Spotifly
     {
         private bool addToQueue = false;
         private readonly string initialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
+        private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
+
 
         private void MediaListView_DrawMedia(bool unshuffleNeed = false)
         {
@@ -19,14 +21,15 @@ namespace Spotifly
             if (!ArrayElementsEqual(AppendArrays(folders, filesUrls), AppendArrays(foldersMemory, filteredFilesMemory)))
             {
                 SetListViewItems(filesUrls, folders);
+                if (currentUrlFolder == folderPath)
+                    urlPlaylist = filesUrls;
+                if (shuffle)
+                    ShufflePlaylist();
+
                 BackupInMemory(folders, filesUrls);
             }
 
 
-            if (currentUrlFolder == folderPath)
-                urlPlaylist = filesUrls;
-            if (shuffle)
-                ShufflePlaylist();
 
 
             if (unshuffleNeed)//Unshuffle Playlist
@@ -154,9 +157,10 @@ namespace Spotifly
                     if (!addToQueue)
                     {
                         if (shuffle)
-                            PlayFileInUnshuffled(e.ItemIndex - foldersMemory.Length);
+                            PlayFileInUnshuffled(e.Item.Text);
                         else
-                            PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
+                            //PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
+                            PlayFile(e.Item.Text, true);
 
                         if (ResizeForMediaCheckBox.Checked)
                         {

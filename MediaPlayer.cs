@@ -70,6 +70,34 @@ namespace Spotifly
             }
         }
 
+        private void PlayFileInUnshuffled(string name)
+        {
+            try
+            {
+                string[] unshuffled;
+                GetFilteredFilesAndFolders(folderPath, out unshuffled, out _);
+                int index = -1;
+
+                for (int i = 0; i < unshuffled.Length; i++)
+                {
+                    if (unshuffled[i].Contains(name))
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index != -1)
+                {
+                    PlayFileInUnshuffled(index);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
         private void PlayFileInUnshuffled(int index)
         {
             try
