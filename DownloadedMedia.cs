@@ -234,14 +234,19 @@ namespace Spotifly
             Process.Start(startInfo);
         }
 
+        private void ClearFilterBttn_Click(object sender, EventArgs e)
+        {
+            SearchTxtBox.Text = string.Empty;
+        }
+
         private void DownloadedMediaPanel_VisibleChanged(object sender, EventArgs e)
         {
-            MediaListView.Size = new Size(DownloadedMediaPanel.Width, DownloadedMediaPanel.Height - 25);
+            //MediaListView.Size = new Size(DownloadedMediaPanel.Width, DownloadedMediaPanel.Height - 25);
         }
 
         private void DownloadedMediaPanel_Resize(object sender, EventArgs e)
         {
-            MediaListView.Size = new Size(DownloadedMediaPanel.Width, DownloadedMediaPanel.Height - 25);
+            //MediaListView.Size = new Size(DownloadedMediaPanel.Width, DownloadedMediaPanel.Height - 25);
         }
     }
 }

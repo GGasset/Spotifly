@@ -45,6 +45,9 @@
             this.ResizeForMediaCheckBox = new System.Windows.Forms.CheckBox();
             this.AboutBttn = new System.Windows.Forms.Button();
             this.DownloadedMediaPanel = new System.Windows.Forms.Panel();
+            this.ClearFilterBttn = new System.Windows.Forms.Button();
+            this.SearchTxtBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.EnqueueBttn = new System.Windows.Forms.Button();
             this.SongCountLabel = new System.Windows.Forms.Label();
             this.OpenCurrentFldrBttn = new System.Windows.Forms.Button();
@@ -77,8 +80,6 @@
             this.WebDwnldSttsLabel = new System.Windows.Forms.Label();
             this.WebAudioDwnldBttn = new System.Windows.Forms.Button();
             this.WebVideoDwnldBtnn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.SearchTxtBox = new System.Windows.Forms.TextBox();
             this.ControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ElapsedTimeBarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
@@ -313,6 +314,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DownloadedMediaPanel.BackColor = System.Drawing.Color.Transparent;
+            this.DownloadedMediaPanel.Controls.Add(this.ClearFilterBttn);
             this.DownloadedMediaPanel.Controls.Add(this.SearchTxtBox);
             this.DownloadedMediaPanel.Controls.Add(this.label2);
             this.DownloadedMediaPanel.Controls.Add(this.EnqueueBttn);
@@ -321,13 +323,42 @@
             this.DownloadedMediaPanel.Controls.Add(this.BackBttn);
             this.DownloadedMediaPanel.Controls.Add(this.MediaListView);
             this.DownloadedMediaPanel.Controls.Add(this.folderLabel);
-            this.DownloadedMediaPanel.Location = new System.Drawing.Point(134, 1);
+            this.DownloadedMediaPanel.Location = new System.Drawing.Point(9, 370);
             this.DownloadedMediaPanel.Name = "DownloadedMediaPanel";
-            this.DownloadedMediaPanel.Size = new System.Drawing.Size(772, 441);
+            this.DownloadedMediaPanel.Size = new System.Drawing.Size(116, 72);
             this.DownloadedMediaPanel.TabIndex = 3;
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
             this.DownloadedMediaPanel.Resize += new System.EventHandler(this.DownloadedMediaPanel_Resize);
+            // 
+            // ClearFilterBttn
+            // 
+            this.ClearFilterBttn.Location = new System.Drawing.Point(705, 31);
+            this.ClearFilterBttn.Name = "ClearFilterBttn";
+            this.ClearFilterBttn.Size = new System.Drawing.Size(58, 23);
+            this.ClearFilterBttn.TabIndex = 11;
+            this.ClearFilterBttn.Text = "Clear";
+            this.ClearFilterBttn.UseVisualStyleBackColor = true;
+            this.ClearFilterBttn.Click += new System.EventHandler(this.ClearFilterBttn_Click);
+            // 
+            // SearchTxtBox
+            // 
+            this.SearchTxtBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchTxtBox.Location = new System.Drawing.Point(46, 33);
+            this.SearchTxtBox.Name = "SearchTxtBox";
+            this.SearchTxtBox.Size = new System.Drawing.Size(0, 20);
+            this.SearchTxtBox.TabIndex = 10;
+            this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Search:";
             // 
             // EnqueueBttn
             // 
@@ -339,7 +370,7 @@
             this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EnqueueBttn.Location = new System.Drawing.Point(549, 3);
+            this.EnqueueBttn.Location = new System.Drawing.Point(-107, 3);
             this.EnqueueBttn.Name = "EnqueueBttn";
             this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
             this.EnqueueBttn.TabIndex = 8;
@@ -367,7 +398,7 @@
             this.OpenCurrentFldrBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.OpenCurrentFldrBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCurrentFldrBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(648, 3);
+            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(-8, 3);
             this.OpenCurrentFldrBttn.Name = "OpenCurrentFldrBttn";
             this.OpenCurrentFldrBttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.OpenCurrentFldrBttn.Size = new System.Drawing.Size(110, 20);
@@ -390,7 +421,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(450, 3);
+            this.BackBttn.Location = new System.Drawing.Point(-206, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -403,15 +434,16 @@
             // 
             // MediaListView
             // 
-            this.MediaListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MediaListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MediaListView.BackColor = System.Drawing.SystemColors.Control;
             this.MediaListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MediaListView.GridLines = true;
             this.MediaListView.HideSelection = false;
-            this.MediaListView.Location = new System.Drawing.Point(0, 52);
+            this.MediaListView.Location = new System.Drawing.Point(0, 59);
             this.MediaListView.Name = "MediaListView";
-            this.MediaListView.Size = new System.Drawing.Size(772, 389);
+            this.MediaListView.Size = new System.Drawing.Size(116, 13);
             this.MediaListView.TabIndex = 1;
             this.MediaListView.UseCompatibleStateImageBehavior = false;
             this.MediaListView.View = System.Windows.Forms.View.List;
@@ -432,9 +464,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MediaPlayerPanel.Controls.Add(this.axWindowsMediaPlayer);
-            this.MediaPlayerPanel.Location = new System.Drawing.Point(4, 269);
+            this.MediaPlayerPanel.Location = new System.Drawing.Point(149, 12);
             this.MediaPlayerPanel.Name = "MediaPlayerPanel";
-            this.MediaPlayerPanel.Size = new System.Drawing.Size(45, 35);
+            this.MediaPlayerPanel.Size = new System.Drawing.Size(714, 422);
             this.MediaPlayerPanel.TabIndex = 3;
             this.MediaPlayerPanel.Visible = false;
             // 
@@ -445,7 +477,7 @@
             this.axWindowsMediaPlayer.Location = new System.Drawing.Point(0, 0);
             this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(45, 35);
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(714, 422);
             this.axWindowsMediaPlayer.TabIndex = 1;
             this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.WindowsMediaPlayer_PlayStateChange);
             this.axWindowsMediaPlayer.MediaChange += new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(this.WindowsMediaPlayer_MediaChange);
@@ -783,25 +815,6 @@
             this.WebVideoDwnldBtnn.UseVisualStyleBackColor = true;
             this.WebVideoDwnldBtnn.Click += new System.EventHandler(this.WebVideoDwnldBtnn_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(0, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Search:";
-            // 
-            // SearchTxtBox
-            // 
-            this.SearchTxtBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTxtBox.Location = new System.Drawing.Point(46, 33);
-            this.SearchTxtBox.Name = "SearchTxtBox";
-            this.SearchTxtBox.Size = new System.Drawing.Size(698, 20);
-            this.SearchTxtBox.TabIndex = 10;
-            this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -900,6 +913,7 @@
         private System.Windows.Forms.Button EnqueueBttn;
         private System.Windows.Forms.TextBox SearchTxtBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ClearFilterBttn;
     }
 }
 
