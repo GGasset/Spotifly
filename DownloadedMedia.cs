@@ -196,7 +196,27 @@ namespace Spotifly
                     }
                     else
                     {
-                        priorityQueue.Enqueue(e.ItemIndex - foldersMemory.Length);
+                        if (SearchTxtBox.Text == string.Empty)
+                            priorityQueue.Enqueue(e.ItemIndex - foldersMemory.Length);
+                        else
+                        {
+                            //search for song index in urlPlaylist
+                            string name = e.Item.Text;
+                            int songIndex = -1;
+                            string[] unshuffledSongs;
+                            GetFilteredFilesAndFolders(folderPath, out unshuffledSongs, out _);
+                            for (int i = 0; i < unshuffledSongs.Length; i++)
+                            {
+                                if (unshuffledSongs[i].Contains(name))
+                                {
+                                    songIndex = i;
+                                    break;
+                                }
+                            }
+
+                            if (songIndex != -1)
+                                priorityQueue.Enqueue(songIndex);
+                        }
                         addToQueue = false;
                         EnqueueBttn.Text = EnqueueBttn.Text.Replace(" t", "");
                     }
@@ -205,7 +225,9 @@ namespace Spotifly
 
         private void EnqueueBttn_Click(object sender, EventArgs e)
         {
-            if (addToQueue)
+            addToQueue = !addToQueue;
+
+            if (!addToQueue)
             {
                 EnqueueBttn.Text = "Add to Queue";
             }
@@ -213,7 +235,6 @@ namespace Spotifly
             {
                 EnqueueBttn.Text = "Add to Queue t";
             }
-            addToQueue = !addToQueue;
         }
 
         private void BackBttn_Click(object sender, EventArgs e)
