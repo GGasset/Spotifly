@@ -139,7 +139,7 @@ namespace Spotifly
             axWindowsMediaPlayer.stretchToFit = true;
             CurrentMediaTxtBox.Size = new Size(PrevMediaBttn.Location.X - CurrentMediaTxtBox.Location.X, 20);
             ThemeSelectionComboBox.Items.AddRange(GetThemes());
-            priorityQueue = new System.Collections.Generic.Queue<int>();
+            priorityQueue = new System.Collections.Generic.Queue<string>();
 
             watch.Stop();
             Settings.Default.AverageLoadingTime = Convert.ToInt32((watch.Elapsed.Milliseconds + Settings.Default.AverageLoadingTime) / 2);

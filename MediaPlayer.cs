@@ -6,7 +6,7 @@ namespace Spotifly
 {
     public partial class Form1
     {
-        private Queue<int> priorityQueue;
+        private Queue<string> priorityQueue;
         private bool isPlaying = false;
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)

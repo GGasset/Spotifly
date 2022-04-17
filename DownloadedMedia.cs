@@ -196,27 +196,7 @@ namespace Spotifly
                     }
                     else
                     {
-                        if (SearchTxtBox.Text == string.Empty)
-                            priorityQueue.Enqueue(e.ItemIndex - foldersMemory.Length);
-                        else
-                        {
-                            //search for song index in urlPlaylist
-                            string name = e.Item.Text;
-                            int songIndex = -1;
-                            string[] unshuffledSongs;
-                            GetFilteredFilesAndFolders(folderPath, out unshuffledSongs, out _);
-                            for (int i = 0; i < unshuffledSongs.Length; i++)
-                            {
-                                if (unshuffledSongs[i].Contains(name))
-                                {
-                                    songIndex = i;
-                                    break;
-                                }
-                            }
-
-                            if (songIndex != -1)
-                                priorityQueue.Enqueue(songIndex);
-                        }
+                        priorityQueue.Enqueue(e.Item.Text);
                         addToQueue = false;
                         EnqueueBttn.Text = EnqueueBttn.Text.Replace(" t", "");
                     }
