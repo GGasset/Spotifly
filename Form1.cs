@@ -24,7 +24,8 @@ namespace Spotifly
         private int playlistIndex = 0, activePanelIndex, verticalModeMinWidth = 710, normalMinWidth, verticalModeStart = 750;
         private readonly int initialMediaLengthLabelDistanceToFormEnd;
         private readonly Hashtable table = new Hashtable();
-        private readonly Random random = new Random();
+        private readonly Random random = new Random(DateTime.Now.Millisecond);
+
 
         public Form1()
         {
@@ -96,6 +97,7 @@ namespace Spotifly
             DescriptionTextBox.Text = "";
             DwnldSttsLabel.Text = "";
             WebDwnldSttsLabel.Text = "";
+
 
             if (Settings.Default.LastSessionFolder.Length != 0 && Directory.Exists(Settings.Default.LastSessionFolder))
                 folderPath = Settings.Default.LastSessionFolder;
