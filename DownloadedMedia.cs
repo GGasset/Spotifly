@@ -34,6 +34,7 @@ namespace Spotifly
 
                 BackupInMemory(folders, filesUrls);
                 fileFilterMemory = fileFilter;
+                CheckPlaylistIndex();
             }
 
 

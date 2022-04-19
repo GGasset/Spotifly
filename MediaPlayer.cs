@@ -182,13 +182,20 @@ namespace Spotifly
 
         private int CheckPlaylistIndex()
         {
-            for (int i = 0; i < urlPlaylist.Length; i++)
-                if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
-                {
-                    playlistIndex = i;
-                    return i;
-                }
-            return playlistIndex;
+            try
+            {
+                for (int i = 0; i < urlPlaylist.Length; i++)
+                    if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
+                    {
+                        playlistIndex = i;
+                        return i;
+                    }
+                return playlistIndex;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         private void AxWindowsMediaPlayer_DoubleClickEvent(object sender, AxWMPLib._WMPOCXEvents_DoubleClickEvent e)
