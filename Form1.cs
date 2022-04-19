@@ -189,10 +189,6 @@ namespace Spotifly
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer.Dispose();
-            progressBarBrush.Dispose();
-            WebBrowser.LoadUrl("www.google.com");
-            WebBrowser.Dispose();
             if (!loading && e.CloseReason != CloseReason.TaskManagerClosing && e.CloseReason != CloseReason.None)
             {
                 Settings.Default.lastSessionMediaURL = urlPlaylist[playlistIndex];
@@ -208,6 +204,11 @@ namespace Spotifly
                 //Settings.Default.Reload();
                 //Settings.Default.Upgrade();
             }
+
+            timer.Dispose();
+            progressBarBrush.Dispose();
+            WebBrowser.LoadUrl("www.google.com");
+            WebBrowser.Dispose();
         }
 
         #region panelControl
