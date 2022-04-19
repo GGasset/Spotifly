@@ -140,8 +140,8 @@ namespace Spotifly
                     currentUrlFolder = URL.Remove(URL.LastIndexOf('\\'));
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
-                    axWindowsMediaPlayer.Ctlcontrols.play();
-                    if (startPlaying)
+                    //axWindowsMediaPlayer.Ctlcontrols.play();
+                    /*if (startPlaying)
                         try
                         {
                             while (axWindowsMediaPlayer.playState != WMPLib.WMPPlayState.wmppsPlaying)
@@ -160,7 +160,7 @@ namespace Spotifly
                             System.Threading.Thread.Sleep(500);
                             axWindowsMediaPlayer.Ctlcontrols.pause();
                         }
-                    }
+                    }*/
                 }
             }
             catch { }

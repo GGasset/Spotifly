@@ -192,7 +192,7 @@ namespace Spotifly
                         SetActivePanel(0);
                         Focus();
                         GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
-                        PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
+                        //PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
                     }
                     else
                     {

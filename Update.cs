@@ -57,6 +57,18 @@ namespace Spotifly
                 SetProgressBarValueForCurrentMediaPos();
                 string elapsedTime = showRemainingTimeInElapsed ? GetRemainingTimeString() : axWindowsMediaPlayer.Ctlcontrols.currentPositionString;
                 ElapsedTimeLabel.Text = string.IsNullOrWhiteSpace(elapsedTime) || string.IsNullOrWhiteSpace(axWindowsMediaPlayer.URL) ? "00:00" : elapsedTime;
+
+                GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
+                if (isPlaying)
+                {
+                    axWindowsMediaPlayer.Ctlcontrols.play();
+                    PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, ButtonColor);
+                }
+                else
+                {
+                    axWindowsMediaPlayer.Ctlcontrols.pause();
+                    PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);
+                }
             }
             catch
             { }
@@ -64,10 +76,6 @@ namespace Spotifly
 
         private void MidUpdate()
         {
-            if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsPlaying)
-                isPlaying = true;
-            else
-                isPlaying = false;
 
             if (axWindowsMediaPlayer.uiMode != "none" && !axWindowsMediaPlayer.fullScreen)
                 axWindowsMediaPlayer.uiMode = "none";
@@ -88,11 +96,11 @@ namespace Spotifly
                     CurrentMediaTxtBox.Text = currentName;
 
                 GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
-                if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsReady || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsStopped ||
+                /*if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsReady || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsStopped ||
                     axWindowsMediaPlayer.playState == WMPPlayState.wmppsUndefined)
                     PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);
                 else if (axWindowsMediaPlayer.playState != WMPPlayState.wmppsScanForward && axWindowsMediaPlayer.playState != WMPPlayState.wmppsScanReverse)
-                    PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, ButtonColor);
+                    PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, ButtonColor);*/
 
                 MediaLengthLabel.Text = axWindowsMediaPlayer.currentMedia.durationString;
 

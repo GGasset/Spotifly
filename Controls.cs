@@ -12,24 +12,34 @@ namespace Spotifly
             if (loading)
                 return;
             GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
-            if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsReady || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsStopped ||
-                axWindowsMediaPlayer.playState == WMPPlayState.wmppsUndefined)
+
+            isPlaying = !isPlaying;
+
+            if (isPlaying)
             {
                 PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, ButtonColor);
-                axWindowsMediaPlayer.Ctlcontrols.play();
             }
-            else if (axWindowsMediaPlayer.playState != WMPPlayState.wmppsScanForward && axWindowsMediaPlayer.playState != WMPPlayState.wmppsScanReverse)
+            else
             {
                 PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);
-                axWindowsMediaPlayer.Ctlcontrols.pause();
             }
+
+            //if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsReady || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsStopped ||
+            //    axWindowsMediaPlayer.playState == WMPPlayState.wmppsUndefined)
+            //{
+            //    axWindowsMediaPlayer.Ctlcontrols.play();
+            //}
+            //else if (axWindowsMediaPlayer.playState != WMPPlayState.wmppsScanForward && axWindowsMediaPlayer.playState != WMPPlayState.wmppsScanReverse)
+            //{
+            //    axWindowsMediaPlayer.Ctlcontrols.pause();
+            //}
         }
 
         private void ProgressBar_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && !loading)
             {
-                double percentage = Convert.ToInt32((e.X + 0.0) / ElapsedTimeBarPictureBox.Width * 100);
+                double percentage = (double)(e.X) / ElapsedTimeBarPictureBox.Width * 100;
                 axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.currentMedia.duration / 100 * percentage;
                 SetProgressBarValueForCurrentMediaPos();
             }
@@ -39,6 +49,8 @@ namespace Spotifly
         {
             if (loading)
                 return;
+
+            //if the current position is less than 5 seconds
             if (axWindowsMediaPlayer.Ctlcontrols.currentPosition <= 5)
             {
                 PlayFile(-1);
@@ -128,8 +140,6 @@ namespace Spotifly
 
         private void VolumeTrackBar_Scroll(object sender, EventArgs e)
         {
-            if (loading)
-                return;
             axWindowsMediaPlayer.settings.volume = VolumeTrackBar.Value;
         }
 

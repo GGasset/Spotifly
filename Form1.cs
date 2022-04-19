@@ -191,6 +191,7 @@ namespace Spotifly
         {
             timer.Dispose();
             progressBarBrush.Dispose();
+            WebBrowser.LoadUrl("www.google.com");
             WebBrowser.Dispose();
             if (!loading && e.CloseReason != CloseReason.TaskManagerClosing && e.CloseReason != CloseReason.None)
             {
