@@ -61,12 +61,14 @@ namespace Spotifly
                 GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
                 if (isPlaying)
                 {
-                    axWindowsMediaPlayer.Ctlcontrols.play();
+                    if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused)
+                        axWindowsMediaPlayer.Ctlcontrols.play();
                     PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, ButtonColor);
                 }
                 else
                 {
-                    axWindowsMediaPlayer.Ctlcontrols.pause();
+                    if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsPlaying)
+                        axWindowsMediaPlayer.Ctlcontrols.pause();
                     PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);
                 }
             }
