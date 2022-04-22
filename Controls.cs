@@ -17,10 +17,12 @@ namespace Spotifly
 
             if (isPlaying)
             {
+                axWindowsMediaPlayer.Ctlcontrols.play();
                 PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, ButtonColor);
             }
             else
             {
+                axWindowsMediaPlayer.Ctlcontrols.pause();
                 PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);
             }
 
