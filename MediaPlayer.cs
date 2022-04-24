@@ -80,7 +80,7 @@ namespace Spotifly
 
                 for (int i = 0; i < unshuffled.Length; i++)
                 {
-                    if (unshuffled[i].Contains(name))
+                    if (UrlToName(unshuffled[i]) == name)
                     {
                         index = i;
                         break;
@@ -114,18 +114,18 @@ namespace Spotifly
 
         private void PlayFile(string URL, bool isName = false)
         {
+            //if is a name parse url to be a url
             if (isName)
             {
                 for (int i = 0; i < urlPlaylist.Length; i++)
                 {
-                    if (urlPlaylist[i].Contains(URL))
+                    if (UrlToName(urlPlaylist[i]) == URL)
                         URL = urlPlaylist[i];
                 }
             }
+
             Task.Run(() => SetURL(URL, isPlaying));
-            for (int i = 0; i < urlPlaylist.Length; i++)
-                 if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
-                    playlistIndex = i;
+            CheckPlaylistIndex();
 
             if (!loading)
                 CurrentMediaTxtBox.Text = GetCurrentMediaName();
