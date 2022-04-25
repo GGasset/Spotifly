@@ -16,7 +16,7 @@ namespace Spotifly
         private static string AppName { get => "Spotifly"; }
 
         private readonly ChromiumWebBrowser WebBrowser;
-        private readonly Size panelSize = new Size(740, 418), mediaPanelSize;
+        private readonly Size panelSize = new Size(750, 418), mediaPanelSize;
         private readonly Point panelLocation = new Point(141, 12), mediaPanelLocation;
         private Panel[] panels;
         private string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}", currentUrlFolder;

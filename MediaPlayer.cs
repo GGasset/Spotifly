@@ -140,7 +140,7 @@ namespace Spotifly
                     currentUrlFolder = URL.Remove(URL.LastIndexOf('\\'));
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
-                    //axWindowsMediaPlayer.Ctlcontrols.play();
+                    axWindowsMediaPlayer.Ctlcontrols.play();
                     /*if (startPlaying)
                         try
                         {
