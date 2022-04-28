@@ -134,18 +134,20 @@ namespace Spotifly
         {
             ImageList icons = new ImageList();
             MediaListView.Clear();
+
             icons.Images.Add(Properties.Resources.FolderImage);
             for (int i = 0; i < folders.Length; i++)
+            {
                 MediaListView.Items.Add(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0);
+            }
+
             if (files.Length > 0)
                 icons.Images.Add(Icon.ExtractAssociatedIcon(files[0]));
             for (int i = 0; i < files.Length; i++)
             {
                 if (files[i].ToLowerInvariant().Contains(fileFilter.ToLowerInvariant()))
                 {
-                    MediaListView.Items.Add(files[i]
-                        .Remove(files[i].LastIndexOf(".", StringComparison.InvariantCulture))
-                        .Remove(0, files[i].LastIndexOf('\\') + 1), 1);
+                    MediaListView.Items.Add(UrlToName(files[i]));
                 }
             }
 

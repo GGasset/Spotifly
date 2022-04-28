@@ -247,6 +247,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="Resources\Icon.ico" />
+    <None Include="Resources\video-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
