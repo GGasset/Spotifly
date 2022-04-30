@@ -116,6 +116,9 @@ namespace Spotifly
                 FormBorderStyle = FormBorderStyle.Sizable;
             axWindowsMediaPlayer.stretchToFit = ResizeForMediaCheckBox.Checked;
 
+            ChangePanelWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ChangePanelWhenMediaIsSelected;
+            ClearFilterWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ClearFilterWhenMediaIsSelected;
+
             MediaListView_DrawMedia("");
 
             SetShuffleBttn(Settings.Default.Shuffle);
@@ -199,6 +202,8 @@ namespace Spotifly
                 Settings.Default.ResizeForMedia = ResizeForMediaCheckBox.Checked;
                 Settings.Default.ShowRemainingTimeInElapsed = showRemainingTimeInElapsed;
                 Settings.Default.LastSessionTheme = currentTheme;
+                Settings.Default.ChangePanelWhenMediaIsSelected = ChangePanelWhenMediaIsSelectedCheckBox.Checked;
+                Settings.Default.ClearFilterWhenMediaIsSelected = ClearFilterWhenMediaIsSelectedCheckBox.Checked;
                 //Settings.Default.Reset();
                 Settings.Default.Save();
                 //Settings.Default.Reload();

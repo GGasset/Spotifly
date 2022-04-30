@@ -41,6 +41,8 @@
             this.ElapsedTimeLabel = new System.Windows.Forms.Label();
             this.PlayBttn = new System.Windows.Forms.Button();
             this.SettingsPanel = new System.Windows.Forms.Panel();
+            this.ClearFilterWhenMediaIsSelectedCheckBox = new System.Windows.Forms.CheckBox();
+            this.ChangePanelWhenMediaIsSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.ThemeSelectionComboBox = new System.Windows.Forms.ComboBox();
             this.ResizeForMediaCheckBox = new System.Windows.Forms.CheckBox();
             this.AboutBttn = new System.Windows.Forms.Button();
@@ -267,20 +269,42 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.SettingsPanel.Controls.Add(this.ClearFilterWhenMediaIsSelectedCheckBox);
+            this.SettingsPanel.Controls.Add(this.ChangePanelWhenMediaIsSelectedCheckBox);
             this.SettingsPanel.Controls.Add(this.ThemeSelectionComboBox);
             this.SettingsPanel.Controls.Add(this.ResizeForMediaCheckBox);
             this.SettingsPanel.Controls.Add(this.AboutBttn);
-            this.SettingsPanel.Location = new System.Drawing.Point(12, 168);
+            this.SettingsPanel.Location = new System.Drawing.Point(134, 12);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.Size = new System.Drawing.Size(105, 100);
+            this.SettingsPanel.Size = new System.Drawing.Size(766, 430);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
+            // 
+            // ClearFilterWhenMediaIsSelectedCheckBox
+            // 
+            this.ClearFilterWhenMediaIsSelectedCheckBox.AutoSize = true;
+            this.ClearFilterWhenMediaIsSelectedCheckBox.Location = new System.Drawing.Point(7, 54);
+            this.ClearFilterWhenMediaIsSelectedCheckBox.Name = "ClearFilterWhenMediaIsSelectedCheckBox";
+            this.ClearFilterWhenMediaIsSelectedCheckBox.Size = new System.Drawing.Size(223, 17);
+            this.ClearFilterWhenMediaIsSelectedCheckBox.TabIndex = 4;
+            this.ClearFilterWhenMediaIsSelectedCheckBox.Text = "Clear search filter when media is selected.";
+            this.ClearFilterWhenMediaIsSelectedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ChangePanelWhenMediaIsSelectedCheckBox
+            // 
+            this.ChangePanelWhenMediaIsSelectedCheckBox.AutoSize = true;
+            this.ChangePanelWhenMediaIsSelectedCheckBox.Location = new System.Drawing.Point(7, 30);
+            this.ChangePanelWhenMediaIsSelectedCheckBox.Name = "ChangePanelWhenMediaIsSelectedCheckBox";
+            this.ChangePanelWhenMediaIsSelectedCheckBox.Size = new System.Drawing.Size(223, 17);
+            this.ChangePanelWhenMediaIsSelectedCheckBox.TabIndex = 3;
+            this.ChangePanelWhenMediaIsSelectedCheckBox.Text = "Go to song panel when media is selected.";
+            this.ChangePanelWhenMediaIsSelectedCheckBox.UseVisualStyleBackColor = true;
             // 
             // ThemeSelectionComboBox
             // 
             this.ThemeSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ThemeSelectionComboBox.FormattingEnabled = true;
-            this.ThemeSelectionComboBox.Location = new System.Drawing.Point(0, 30);
+            this.ThemeSelectionComboBox.Location = new System.Drawing.Point(7, 77);
             this.ThemeSelectionComboBox.Name = "ThemeSelectionComboBox";
             this.ThemeSelectionComboBox.Size = new System.Drawing.Size(121, 21);
             this.ThemeSelectionComboBox.TabIndex = 2;
@@ -290,17 +314,17 @@
             // 
             this.ResizeForMediaCheckBox.AutoSize = true;
             this.ResizeForMediaCheckBox.BackColor = System.Drawing.Color.Transparent;
-            this.ResizeForMediaCheckBox.Location = new System.Drawing.Point(0, 5);
+            this.ResizeForMediaCheckBox.Location = new System.Drawing.Point(7, 5);
             this.ResizeForMediaCheckBox.Name = "ResizeForMediaCheckBox";
-            this.ResizeForMediaCheckBox.Size = new System.Drawing.Size(268, 17);
+            this.ResizeForMediaCheckBox.Size = new System.Drawing.Size(271, 17);
             this.ResizeForMediaCheckBox.TabIndex = 1;
-            this.ResizeForMediaCheckBox.Text = "Automatically resize the app to match media\'s video";
+            this.ResizeForMediaCheckBox.Text = "Automatically resize the app to match media\'s video.";
             this.ResizeForMediaCheckBox.UseVisualStyleBackColor = false;
             // 
             // AboutBttn
             // 
             this.AboutBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AboutBttn.Location = new System.Drawing.Point(15, 65);
+            this.AboutBttn.Location = new System.Drawing.Point(15, 395);
             this.AboutBttn.Name = "AboutBttn";
             this.AboutBttn.Size = new System.Drawing.Size(75, 23);
             this.AboutBttn.TabIndex = 0;
@@ -323,9 +347,9 @@
             this.DownloadedMediaPanel.Controls.Add(this.BackBttn);
             this.DownloadedMediaPanel.Controls.Add(this.MediaListView);
             this.DownloadedMediaPanel.Controls.Add(this.folderLabel);
-            this.DownloadedMediaPanel.Location = new System.Drawing.Point(140, 1);
+            this.DownloadedMediaPanel.Location = new System.Drawing.Point(9, 352);
             this.DownloadedMediaPanel.Name = "DownloadedMediaPanel";
-            this.DownloadedMediaPanel.Size = new System.Drawing.Size(772, 445);
+            this.DownloadedMediaPanel.Size = new System.Drawing.Size(123, 76);
             this.DownloadedMediaPanel.TabIndex = 3;
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
@@ -334,7 +358,7 @@
             // ClearFilterBttn
             // 
             this.ClearFilterBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearFilterBttn.Location = new System.Drawing.Point(705, 31);
+            this.ClearFilterBttn.Location = new System.Drawing.Point(56, 31);
             this.ClearFilterBttn.Name = "ClearFilterBttn";
             this.ClearFilterBttn.Size = new System.Drawing.Size(52, 23);
             this.ClearFilterBttn.TabIndex = 11;
@@ -348,7 +372,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTxtBox.Location = new System.Drawing.Point(46, 33);
             this.SearchTxtBox.Name = "SearchTxtBox";
-            this.SearchTxtBox.Size = new System.Drawing.Size(653, 20);
+            this.SearchTxtBox.Size = new System.Drawing.Size(38, 20);
             this.SearchTxtBox.TabIndex = 10;
             this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
             // 
@@ -371,7 +395,7 @@
             this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EnqueueBttn.Location = new System.Drawing.Point(549, 3);
+            this.EnqueueBttn.Location = new System.Drawing.Point(-100, 3);
             this.EnqueueBttn.Name = "EnqueueBttn";
             this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
             this.EnqueueBttn.TabIndex = 8;
@@ -399,7 +423,7 @@
             this.OpenCurrentFldrBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.OpenCurrentFldrBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCurrentFldrBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(648, 3);
+            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(-1, 3);
             this.OpenCurrentFldrBttn.Name = "OpenCurrentFldrBttn";
             this.OpenCurrentFldrBttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.OpenCurrentFldrBttn.Size = new System.Drawing.Size(110, 20);
@@ -422,7 +446,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(450, 3);
+            this.BackBttn.Location = new System.Drawing.Point(-199, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -444,7 +468,7 @@
             this.MediaListView.HideSelection = false;
             this.MediaListView.Location = new System.Drawing.Point(0, 59);
             this.MediaListView.Name = "MediaListView";
-            this.MediaListView.Size = new System.Drawing.Size(772, 386);
+            this.MediaListView.Size = new System.Drawing.Size(123, 29);
             this.MediaListView.TabIndex = 1;
             this.MediaListView.UseCompatibleStateImageBehavior = false;
             this.MediaListView.View = System.Windows.Forms.View.List;
@@ -915,6 +939,8 @@
         private System.Windows.Forms.TextBox SearchTxtBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ClearFilterBttn;
+        private System.Windows.Forms.CheckBox ChangePanelWhenMediaIsSelectedCheckBox;
+        private System.Windows.Forms.CheckBox ClearFilterWhenMediaIsSelectedCheckBox;
     }
 }
 

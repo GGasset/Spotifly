@@ -12,7 +12,7 @@ namespace Spotifly.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -128,6 +128,30 @@ namespace Spotifly.Properties {
             }
             set {
                 this["AverageLoadingTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ChangePanelWhenMediaIsSelected {
+            get {
+                return ((bool)(this["ChangePanelWhenMediaIsSelected"]));
+            }
+            set {
+                this["ChangePanelWhenMediaIsSelected"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ClearFilterWhenMediaIsSelected {
+            get {
+                return ((bool)(this["ClearFilterWhenMediaIsSelected"]));
+            }
+            set {
+                this["ClearFilterWhenMediaIsSelected"] = value;
             }
         }
     }

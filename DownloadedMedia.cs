@@ -192,7 +192,14 @@ namespace Spotifly
                             SetFormSizeForCurrentMedia();
                             FormBorderStyle = FormBorderStyle.FixedSingle;
                         }
-                        SetActivePanel(0);
+                        if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
+                        {
+                            SearchTxtBox.Text = string.Empty;
+                        }
+                        if (ChangePanelWhenMediaIsSelectedCheckBox.Checked)
+                        {
+                            SetActivePanel(0);
+                        }
                         Focus();
                         GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
                         //PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
