@@ -82,6 +82,7 @@
             this.WebDwnldSttsLabel = new System.Windows.Forms.Label();
             this.WebAudioDwnldBttn = new System.Windows.Forms.Button();
             this.WebVideoDwnldBtnn = new System.Windows.Forms.Button();
+            this.CheckMediaIndexWithSongQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.ControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ElapsedTimeBarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
@@ -269,6 +270,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.SettingsPanel.Controls.Add(this.CheckMediaIndexWithSongQueueCheckBox);
             this.SettingsPanel.Controls.Add(this.ClearFilterWhenMediaIsSelectedCheckBox);
             this.SettingsPanel.Controls.Add(this.ChangePanelWhenMediaIsSelectedCheckBox);
             this.SettingsPanel.Controls.Add(this.ThemeSelectionComboBox);
@@ -304,7 +306,7 @@
             // 
             this.ThemeSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ThemeSelectionComboBox.FormattingEnabled = true;
-            this.ThemeSelectionComboBox.Location = new System.Drawing.Point(7, 77);
+            this.ThemeSelectionComboBox.Location = new System.Drawing.Point(7, 100);
             this.ThemeSelectionComboBox.Name = "ThemeSelectionComboBox";
             this.ThemeSelectionComboBox.Size = new System.Drawing.Size(121, 21);
             this.ThemeSelectionComboBox.TabIndex = 2;
@@ -840,6 +842,16 @@
             this.WebVideoDwnldBtnn.UseVisualStyleBackColor = true;
             this.WebVideoDwnldBtnn.Click += new System.EventHandler(this.WebVideoDwnldBtnn_Click);
             // 
+            // CheckMediaIndexWithSongQueueCheckBox
+            // 
+            this.CheckMediaIndexWithSongQueueCheckBox.AutoSize = true;
+            this.CheckMediaIndexWithSongQueueCheckBox.Location = new System.Drawing.Point(7, 77);
+            this.CheckMediaIndexWithSongQueueCheckBox.Name = "CheckMediaIndexWithSongQueueCheckBox";
+            this.CheckMediaIndexWithSongQueueCheckBox.Size = new System.Drawing.Size(238, 17);
+            this.CheckMediaIndexWithSongQueueCheckBox.TabIndex = 5;
+            this.CheckMediaIndexWithSongQueueCheckBox.Text = "Go to the playlist position with queued media.";
+            this.CheckMediaIndexWithSongQueueCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -941,6 +953,7 @@
         private System.Windows.Forms.Button ClearFilterBttn;
         private System.Windows.Forms.CheckBox ChangePanelWhenMediaIsSelectedCheckBox;
         private System.Windows.Forms.CheckBox ClearFilterWhenMediaIsSelectedCheckBox;
+        private System.Windows.Forms.CheckBox CheckMediaIndexWithSongQueueCheckBox;
     }
 }
 

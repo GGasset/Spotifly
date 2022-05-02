@@ -118,6 +118,7 @@ namespace Spotifly
 
             ChangePanelWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ChangePanelWhenMediaIsSelected;
             ClearFilterWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ClearFilterWhenMediaIsSelected;
+            CheckMediaIndexWithSongQueueCheckBox.Checked = Settings.Default.CheckMediaIndexWithSongQueue;
 
             MediaListView_DrawMedia("");
 
@@ -192,7 +193,7 @@ namespace Spotifly
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!loading && e.CloseReason != CloseReason.TaskManagerClosing && e.CloseReason != CloseReason.None)
+            if (!loading)
             {
                 Settings.Default.lastSessionMediaURL = urlPlaylist[playlistIndex];
                 Settings.Default.LastSessionTime = axWindowsMediaPlayer.Ctlcontrols.currentPosition;
@@ -204,6 +205,7 @@ namespace Spotifly
                 Settings.Default.LastSessionTheme = currentTheme;
                 Settings.Default.ChangePanelWhenMediaIsSelected = ChangePanelWhenMediaIsSelectedCheckBox.Checked;
                 Settings.Default.ClearFilterWhenMediaIsSelected = ClearFilterWhenMediaIsSelectedCheckBox.Checked;
+                Settings.Default.CheckMediaIndexWithSongQueue = CheckMediaIndexWithSongQueueCheckBox.Checked;
                 //Settings.Default.Reset();
                 Settings.Default.Save();
                 //Settings.Default.Reload();

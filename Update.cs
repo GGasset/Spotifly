@@ -57,7 +57,18 @@ namespace Spotifly
                 SetProgressBarValueForCurrentMediaPos();
                 string elapsedTime = showRemainingTimeInElapsed ? GetRemainingTimeString() : axWindowsMediaPlayer.Ctlcontrols.currentPositionString;
                 ElapsedTimeLabel.Text = string.IsNullOrWhiteSpace(elapsedTime) || string.IsNullOrWhiteSpace(axWindowsMediaPlayer.URL) ? "00:00" : elapsedTime;
+            }
+            catch
+            { }
+        }
 
+        private void MidUpdate()
+        {
+
+            if (axWindowsMediaPlayer.uiMode != "none" && !axWindowsMediaPlayer.fullScreen)
+                axWindowsMediaPlayer.uiMode = "none";
+            try
+            {
                 GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
                 if (isPlaying)
                 {
@@ -71,18 +82,7 @@ namespace Spotifly
                         axWindowsMediaPlayer.Ctlcontrols.pause();
                     PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);
                 }
-            }
-            catch
-            { }
-        }
 
-        private void MidUpdate()
-        {
-
-            if (axWindowsMediaPlayer.uiMode != "none" && !axWindowsMediaPlayer.fullScreen)
-                axWindowsMediaPlayer.uiMode = "none";
-            try
-            {
                 if (MinimumSize.Width == verticalModeMinWidth && ResizeForMediaCheckBox.Checked && panels[0].Visible)
                 {
                     MinimumSize = new Size(normalMinWidth, MinimumSize.Height);
@@ -97,7 +97,6 @@ namespace Spotifly
                 if (currentName != CurrentMediaTxtBox.Text)
                     CurrentMediaTxtBox.Text = currentName;
 
-                GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
                 /*if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsReady || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsStopped ||
                     axWindowsMediaPlayer.playState == WMPPlayState.wmppsUndefined)
                     PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Playy, ButtonColor);

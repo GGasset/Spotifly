@@ -154,5 +154,17 @@ namespace Spotifly.Properties {
                 this["ClearFilterWhenMediaIsSelected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CheckMediaIndexWithSongQueue {
+            get {
+                return ((bool)(this["CheckMediaIndexWithSongQueue"]));
+            }
+            set {
+                this["CheckMediaIndexWithSongQueue"] = value;
+            }
+        }
     }
 }

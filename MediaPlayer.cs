@@ -50,11 +50,6 @@ namespace Spotifly
 
         private void PlayFile(int positionsToAdvance)
         {
-            PlayFile(positionsToAdvance, isPlaying);
-        }
-
-        private void PlayFile(int positionsToAdvance, bool startPlaying)
-        {
             if (priorityQueue.Count > 0 && positionsToAdvance == 1)
             {
                 Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue()));
@@ -62,9 +57,9 @@ namespace Spotifly
             else
             {
                 if (playlistIndex != -1)
-                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)], startPlaying));
+                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
                 else
-                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = positionsToAdvance], startPlaying));
+                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
                 if (!loading)
                     CurrentMediaTxtBox.Text = GetCurrentMediaName();
             }
@@ -124,23 +119,23 @@ namespace Spotifly
                 }
             }
 
-            Task.Run(() => SetURL(URL, isPlaying));
+            Task.Run(() => SetURL(URL));
             CheckPlaylistIndex();
 
             if (!loading)
                 CurrentMediaTxtBox.Text = GetCurrentMediaName();
         }
 
-        private void SetURL(string URL, bool startPlaying)
+        private void SetURL(string URL)
         {
             try
             {
                 if (URL != axWindowsMediaPlayer.URL)
                 {
-                    currentUrlFolder = URL.Remove(URL.LastIndexOf('\\'));
+                    currentUrlFolder = URL.Remove(URL.LastIndexOf(@"\"));
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(100);
                     axWindowsMediaPlayer.Ctlcontrols.play();
                     /*if (startPlaying)
                         try
