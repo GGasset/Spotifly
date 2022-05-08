@@ -1,7 +1,7 @@
 # Spotifly
-MusicPlayer-YoutubeDownloader
----
 
+#### Description:
+Youtube Downloader / Media Player
 Winforms app that puts together a media player, Spotify colors(in dark theme) and a similar playlist sytem but with folders, Youtube's browser(Youtube webpage, when you select a video you can download its video or just the audio) and youtube downloaders.  To create a playlist create a folder in download path.
 
 ---
