@@ -209,6 +209,11 @@ namespace Spotifly
                         priorityQueue.Enqueue(e.Item.Text);
                         addToQueue = false;
                         EnqueueBttn.Text = EnqueueBttn.Text.Replace(" t", "");
+
+                        if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
+                        {
+                            SearchTxtBox.Text = string.Empty;
+                        }
                     }
                 }
         }
