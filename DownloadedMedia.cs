@@ -71,7 +71,7 @@ namespace Spotifly
 
         private string[] FilterFiles(string[] files)
         {
-            string[] supportedExtensions = ".WEBM .MPG .MP2 .MPEG .MPE .MPV .OGG .MP4 .M4P .M4V .AVI .WMV .WAV".ToLower(System.Globalization.CultureInfo.InvariantCulture).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] supportedExtensions = ".WEBM .MP4 .WAV".ToLower(System.Globalization.CultureInfo.InvariantCulture).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             string[] filteredFiles;
             bool[] compatibleFilesIndex = new bool[files.Length];
             int compatibleFiles = 0;
