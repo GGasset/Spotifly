@@ -11,13 +11,20 @@ class volumeProcesser:
         self.fps = 30000
         self.audio_arr = self.audio.to_soundarray(nbytes=4, fps=self.fps)
 
-    def get_min_max_volume(self):
+    def set_min_max_volume(self):
         min, max = 0, 0
         for frame in range(len(self.audio_arr)):
             frame_audio = self.audio_arr[frame]
             sum = frame_audio[0] + frame_audio[1]
             max += (sum - max) * int(sum > max)
             min -= (min - sum) * int(sum < min)
+            self.min = min
+            self.max = max
 
-    def get_volume(ms):
-        pass
+    def get_volume(self, ms):
+        frame = ms * (self.fps / 1000)
+        frame_audio = self.audio_arr[frame]
+        sum = frame_audio[0] + frame_audio[1]
+        return sum
+
+    def get_volume_percentage(self, min, max, volume):
