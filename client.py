@@ -15,6 +15,9 @@ DISCONET_MSG = f'Disconnect from {PORT}'
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+def start():
+    threading.Thread(target=listen_and_process_messages)
+
 def send_message(msg):
     msg = msg.encode(FORMAT)
 
