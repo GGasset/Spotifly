@@ -10,6 +10,8 @@ Winforms app that puts together a media player, Spotify colors(in dark theme) an
 
 #### - right click on Solution > Restore NuGet packages
 
+#### - at cmd: pip install ffmpeg moviepy
+
 #### - At just below the top of the Visual Studio window click start and enjoy!
 ---
 ## If you still can't build:
