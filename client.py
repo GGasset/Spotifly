@@ -19,10 +19,10 @@ def send_message(msg):
     msg = msg.encode(FORMAT)
 
     msg_len = len(message)
-    encoded_lenght = str(msg_len).encode(FORMAT)
-    encoded_lenght += b' ' * (HEADER - len(encoded_lenght))
+    encoded_length = str(msg_len).encode(FORMAT)
+    encoded_length += b' ' * (HEADER - len(encoded_length))
 
-    client.send(encoded_lenght)
+    client.send(encoded_length)
     client.send(msg)
 
 def listen_and_process_messages():
