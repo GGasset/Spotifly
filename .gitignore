@@ -1,5 +1,5 @@
 ﻿.vs/
 bin/
 obj/
-packages
+packages/
 __pycache__/
