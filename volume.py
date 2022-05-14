@@ -36,3 +36,6 @@ class volumeProcessor:
         # max between percentage self.min_percentage
         percentage = percentage * (percentage > self.min_percentage) + self.min_percentage * (percentage < self.min_percentage)
         return percentage
+
+    def get_volume_percentage_from_ms(self, ms):
+        return self.get_volume_percentage(self.get_volume(ms))
