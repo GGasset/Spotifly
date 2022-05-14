@@ -1,8 +1,8 @@
 import moviepy.editor as mp
 
-class volumeProcesser:
-    def __init__(self):
-        pass
+class volumeProcessor:
+    def __init__(self, min_percentage):
+        self.min_percentage = min_percentage
 
     def set_url(self, url):
         self.url = url
@@ -27,4 +27,12 @@ class volumeProcesser:
         sum = frame_audio[0] + frame_audio[1]
         return sum
 
-    def get_volume_percentage(self, min, max, volume):
+    def get_volume_percentage(self, volume):
+        percentage = volume - self.min
+        new_max = self.max - self.min
+        percentage /= new_max
+        percentage *= 100
+
+        # max between percentage self.min_percentage
+        percentage = percentage * (percentage > self.min_percentage) + self.min_percentage * (percentage < self.min_percentage)
+        return percentage
