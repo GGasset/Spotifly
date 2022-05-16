@@ -48,24 +48,7 @@ namespace Spotifly
             }
         }
 
-        private void PlayFile(int positionsToAdvance)
-        {
-            if (priorityQueue.Count > 0 && positionsToAdvance == 1)
-            {
-                Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue()));
-            }
-            else
-            {
-                if (playlistIndex != -1)
-                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
-                else
-                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
-                if (!loading)
-                    CurrentMediaTxtBox.Text = GetCurrentMediaName();
-            }
-        }
-
-        private void PlayFileInUnshuffled(string name)
+        private void PlayFileInUnshuffled(string name, bool checkForMediaIndex = true)
         {
             try
             {
@@ -84,7 +67,7 @@ namespace Spotifly
 
                 if (index != -1)
                 {
-                    PlayFileInUnshuffled(index);
+                    PlayFileInUnshuffled(index, checkForMediaIndex);
                 }
             }
             catch (Exception)
@@ -93,7 +76,7 @@ namespace Spotifly
             }
         }
 
-        private void PlayFileInUnshuffled(int index)
+        private void PlayFileInUnshuffled(int index, bool checkForMediaIndex = true)
         {
             try
             {
@@ -107,7 +90,7 @@ namespace Spotifly
             }
         }
 
-        private void PlayFile(string URL, bool isName = false)
+        private void PlayFile(string URL, bool isName = false, bool checkPlaylistIndex = true)
         {
             //if is a name parse url to be a url
             if (isName)
@@ -120,10 +103,29 @@ namespace Spotifly
             }
 
             Task.Run(() => SetURL(URL));
-            CheckPlaylistIndex();
+
+            if (checkPlaylistIndex)
+                CheckPlaylistIndex();
 
             if (!loading)
                 CurrentMediaTxtBox.Text = GetCurrentMediaName();
+        }
+
+        private void PlayFile(int positionsToAdvance)
+        {
+            if (priorityQueue.Count > 0 && positionsToAdvance == 1)
+            {
+                Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
+            }
+            else
+            {
+                if (playlistIndex != -1)
+                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
+                else
+                    Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
+                if (!loading)
+                    CurrentMediaTxtBox.Text = GetCurrentMediaName();
+            }
         }
 
         private void SetURL(string URL)
