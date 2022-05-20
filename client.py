@@ -11,7 +11,7 @@ IP = socket.gethostbyname(socket.gethostname())
 ADDR = (IP, PORT)
 
 FORMAT = 'utf-8'
-DISCONET_MSG = f'Disconnect from {PORT}'
+DISCONNECT_MSG = f'Disconnect from {PORT}'
 
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
