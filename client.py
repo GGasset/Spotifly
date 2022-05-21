@@ -3,7 +3,7 @@ from email import message
 from http import client
 import socket
 import threading
-import volume
+from volume import volumeProcessor
 
 HEADER = 64
 PORT = 7451
@@ -18,7 +18,7 @@ socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def start():
     threading.Thread(target=listen_and_process_messages)
 
-def send_message(msg):
+def send_message(msg: str):
     msg = msg.encode(FORMAT)
 
     msg_len = len(message)
@@ -29,8 +29,19 @@ def send_message(msg):
     socket.send(msg)
 
 def listen_and_process_messages():
+    v = volumeProcessor(27)
     while True:
         msg_len = socket.recv(HEADER).decode(FORMAT)
         if msg_len:
             msg_len = int(msg_len)
             msg = socket.recv(msg_len).decode(FORMAT)
+            
+            # Process message
+            msg = msg.split(IP)
+
+            if msg[0] == 'url':
+                v.set_min_max_volume(url=msg[1])
+                send_message('Finished loading')
+            else:
+                volume = v.get_volume_percentage_from_ms(int(msg[1]))
+                send_message(str(volume))

@@ -2,8 +2,9 @@ import moviepy.editor as mp
 
 class volumeProcessor:
     def __init__(self, min_percentage):
-        if min_percentage <= 1:
-            min_percentage *= 100
+        # If min percentage is less or equal to one multiply it times 100
+        min_percentage = (min_percentage * 100) * min_percentage <= 1 + min_percentage * min_percentage > 1
+
         self.min_percentage = min_percentage
 
     def set_url(self, url):
@@ -13,8 +14,11 @@ class volumeProcessor:
         self.fps = 30000
         self.audio_arr = self.audio.to_soundarray(nbytes=4, fps=self.fps)
 
-    def set_min_max_volume(self):
-        """You must use for each media set_url before using this function"""
+    def set_min_max_volume(self, url='None'):
+        """You must use for each media set_url before using this function or use url='url.extension'"""
+        if url != 'None':
+            self.set_url(url)
+
         min, max = 0, 0
         for frame in range(len(self.audio_arr)):
             frame_audio = self.audio_arr[int(frame)]
