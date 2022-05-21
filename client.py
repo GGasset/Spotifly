@@ -3,7 +3,7 @@ from email import message
 from http import client
 import socket
 import threading
-from volume import volumeProcessor
+from volume import VolumeProcessor
 
 HEADER = 64
 PORT = 7451
@@ -29,7 +29,7 @@ def send_message(msg: str):
     socket.send(msg)
 
 def listen_and_process_messages():
-    v = volumeProcessor(27)
+    v = VolumeProcessor(27)
     while True:
         msg_len = socket.recv(HEADER).decode(FORMAT)
         if msg_len:

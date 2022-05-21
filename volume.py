@@ -1,6 +1,6 @@
 import moviepy.editor as mp
 
-class volumeProcessor:
+class VolumeProcessor:
     def __init__(self, min_percentage):
         # If min percentage is less or equal to one multiply it times 100
         min_percentage = (min_percentage * 100) * min_percentage <= 1 + min_percentage * min_percentage > 1

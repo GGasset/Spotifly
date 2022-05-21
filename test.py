@@ -1,7 +1,7 @@
 import numpy as np
-from volume import volumeProcessor
+from volume import VolumeProcessor
 
-v = volumeProcessor(20)
+v = VolumeProcessor(20)
 
 v.set_url('./current_media/Daviles de Novelda - Las calles de oro (Videoclip Oficial).mp4')
 
