@@ -1,3 +1,4 @@
+import enum
 import moviepy.editor as mp
 
 class VolumeProcessor:
@@ -14,15 +15,20 @@ class VolumeProcessor:
         self.fps = 30000
         self.audio_arr = self.audio.to_soundarray(nbytes=4, fps=self.fps)
 
+    def get_audio_sum_list(self):
+        output = []
+        for i, sound in enumerate(self.audio_arr):
+            output.append(sound[0] + sound[1])
+        return output
+
     def set_min_max_volume(self, url='None'):
         """You must use for each media set_url before using this function or use url='url.extension'"""
         if url != 'None':
             self.set_url(url)
 
         min, max = 0, 0
-        for frame in range(len(self.audio_arr)):
-            frame_audio = self.audio_arr[int(frame)]
-            sum = frame_audio[0] + frame_audio[1]
+        for frame, sound in enumerate(self.audio_arr):
+            sum = sound[0] + sound[1]
             max += (sum - max) * int(sum > max)
             min -= (min - sum) * int(sum < min)
             self.min = min

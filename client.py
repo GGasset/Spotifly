@@ -5,12 +5,12 @@ import socket
 import threading
 from volume import VolumeProcessor
 
-HEADER = 64
+HEADER = 128
 PORT = 7451
 IP = socket.gethostbyname(socket.gethostname())
 ADDR = (IP, PORT)
 
-FORMAT = 'utf-8'
+FORMAT = 'ascii'
 DISCONNECT_MSG = f'Disconnect from {PORT}'
 
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,8 +18,8 @@ socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def start():
     threading.Thread(target=listen_and_process_messages)
 
-def send_message(msg: str):
-    msg = msg.encode(FORMAT)
+def send_message(msg):
+    msg = str(msg).encode(FORMAT)
 
     msg_len = len(message)
     encoded_length = str(msg_len).encode(FORMAT)
@@ -37,11 +37,5 @@ def listen_and_process_messages():
             msg = socket.recv(msg_len).decode(FORMAT)
             
             # Process message
-            msg = msg.split(IP)
-
-            if msg[0] == 'url':
-                v.set_min_max_volume(url=msg[1])
-                send_message('Finished loading')
-            else:
-                volume = v.get_volume_percentage_from_ms(int(msg[1]))
-                send_message(str(volume))
+            v.set_url(msg)
+            send_message(v.get_audio_sum_list())
