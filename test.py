@@ -10,8 +10,12 @@ v.set_url('./current_media/Daviles de Novelda - Las calles de oro (Videoclip Ofi
 print('Seconds to get media object: ', time.time() - initial_time)
 
 initial_time = time.time()
-print('Audio len: ', len(v.get_audio_sum_list()))
-print('Seconds to get audio sum array: ', time.time() - initial_time)
+audio_sum = v.get_audio_sum_list()
+print('Audio len: ', len(audio_sum))
+
+encoded_len = len(str(len(str(audio_sum).encode('ascii'))).encode('ascii'))
+print(f'Audio len in bytes: {encoded_len}')
+print('Seconds to get and parse audio sum array: ', time.time() - initial_time)
 
 initial_time = time.time()
 v.set_min_max_volume()

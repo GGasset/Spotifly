@@ -5,7 +5,7 @@ import socket
 import threading
 from volume import VolumeProcessor
 
-HEADER = 128
+HEADER = 64
 PORT = 7451
 IP = socket.gethostbyname(socket.gethostname())
 ADDR = (IP, PORT)
@@ -38,4 +38,6 @@ def listen_and_process_messages():
             
             # Process message
             v.set_url(msg)
-            send_message(v.get_audio_sum_list())
+
+            send = f'fps: {v.fps}/audio: {v.get_audio_sum_list()}'
+            send_message(send)
