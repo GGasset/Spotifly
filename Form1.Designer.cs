@@ -41,6 +41,7 @@
             this.ElapsedTimeLabel = new System.Windows.Forms.Label();
             this.PlayBttn = new System.Windows.Forms.Button();
             this.SettingsPanel = new System.Windows.Forms.Panel();
+            this.CheckMediaIndexWithSongQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.ClearFilterWhenMediaIsSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.ChangePanelWhenMediaIsSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.ThemeSelectionComboBox = new System.Windows.Forms.ComboBox();
@@ -82,7 +83,7 @@
             this.WebDwnldSttsLabel = new System.Windows.Forms.Label();
             this.WebAudioDwnldBttn = new System.Windows.Forms.Button();
             this.WebVideoDwnldBtnn = new System.Windows.Forms.Button();
-            this.CheckMediaIndexWithSongQueueCheckBox = new System.Windows.Forms.CheckBox();
+            this.AutoVolumeChckBox = new System.Windows.Forms.CheckBox();
             this.ControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ElapsedTimeBarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
@@ -104,6 +105,7 @@
             this.ControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ControlPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ControlPanel.Controls.Add(this.AutoVolumeChckBox);
             this.ControlPanel.Controls.Add(this.ElapsedTimeBarPictureBox);
             this.ControlPanel.Controls.Add(this.ShuffleBttn);
             this.ControlPanel.Controls.Add(this.CurrentMediaTxtBox);
@@ -143,7 +145,7 @@
             this.ShuffleBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShuffleBttn.Image = global::Spotifly.Properties.Resources.Shuffle_Image;
             this.ShuffleBttn.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.ShuffleBttn.Location = new System.Drawing.Point(580, 27);
+            this.ShuffleBttn.Location = new System.Drawing.Point(564, 28);
             this.ShuffleBttn.Name = "ShuffleBttn";
             this.ShuffleBttn.Size = new System.Drawing.Size(58, 38);
             this.ShuffleBttn.TabIndex = 7;
@@ -187,7 +189,7 @@
             this.NextMediaBttn.FlatAppearance.BorderSize = 0;
             this.NextMediaBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NextMediaBttn.Image = global::Spotifly.Properties.Resources.Advance;
-            this.NextMediaBttn.Location = new System.Drawing.Point(511, 24);
+            this.NextMediaBttn.Location = new System.Drawing.Point(495, 25);
             this.NextMediaBttn.Name = "NextMediaBttn";
             this.NextMediaBttn.Size = new System.Drawing.Size(45, 45);
             this.NextMediaBttn.TabIndex = 6;
@@ -203,7 +205,7 @@
             this.PrevMediaBttn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PrevMediaBttn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.PrevMediaBttn.Image = global::Spotifly.Properties.Resources.Previous;
-            this.PrevMediaBttn.Location = new System.Drawing.Point(346, 24);
+            this.PrevMediaBttn.Location = new System.Drawing.Point(330, 25);
             this.PrevMediaBttn.Name = "PrevMediaBttn";
             this.PrevMediaBttn.Size = new System.Drawing.Size(45, 45);
             this.PrevMediaBttn.TabIndex = 4;
@@ -257,7 +259,7 @@
             this.PlayBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PlayBttn.ForeColor = System.Drawing.Color.Transparent;
             this.PlayBttn.Image = global::Spotifly.Properties.Resources.Playy;
-            this.PlayBttn.Location = new System.Drawing.Point(433, 24);
+            this.PlayBttn.Location = new System.Drawing.Point(417, 25);
             this.PlayBttn.Name = "PlayBttn";
             this.PlayBttn.Size = new System.Drawing.Size(45, 45);
             this.PlayBttn.TabIndex = 0;
@@ -281,6 +283,16 @@
             this.SettingsPanel.Size = new System.Drawing.Size(766, 430);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
+            // 
+            // CheckMediaIndexWithSongQueueCheckBox
+            // 
+            this.CheckMediaIndexWithSongQueueCheckBox.AutoSize = true;
+            this.CheckMediaIndexWithSongQueueCheckBox.Location = new System.Drawing.Point(7, 77);
+            this.CheckMediaIndexWithSongQueueCheckBox.Name = "CheckMediaIndexWithSongQueueCheckBox";
+            this.CheckMediaIndexWithSongQueueCheckBox.Size = new System.Drawing.Size(238, 17);
+            this.CheckMediaIndexWithSongQueueCheckBox.TabIndex = 5;
+            this.CheckMediaIndexWithSongQueueCheckBox.Text = "Go to the playlist position with queued media.";
+            this.CheckMediaIndexWithSongQueueCheckBox.UseVisualStyleBackColor = true;
             // 
             // ClearFilterWhenMediaIsSelectedCheckBox
             // 
@@ -842,15 +854,15 @@
             this.WebVideoDwnldBtnn.UseVisualStyleBackColor = true;
             this.WebVideoDwnldBtnn.Click += new System.EventHandler(this.WebVideoDwnldBtnn_Click);
             // 
-            // CheckMediaIndexWithSongQueueCheckBox
+            // AutoVolumeChckBox
             // 
-            this.CheckMediaIndexWithSongQueueCheckBox.AutoSize = true;
-            this.CheckMediaIndexWithSongQueueCheckBox.Location = new System.Drawing.Point(7, 77);
-            this.CheckMediaIndexWithSongQueueCheckBox.Name = "CheckMediaIndexWithSongQueueCheckBox";
-            this.CheckMediaIndexWithSongQueueCheckBox.Size = new System.Drawing.Size(238, 17);
-            this.CheckMediaIndexWithSongQueueCheckBox.TabIndex = 5;
-            this.CheckMediaIndexWithSongQueueCheckBox.Text = "Go to the playlist position with queued media.";
-            this.CheckMediaIndexWithSongQueueCheckBox.UseVisualStyleBackColor = true;
+            this.AutoVolumeChckBox.AutoSize = true;
+            this.AutoVolumeChckBox.Location = new System.Drawing.Point(718, 52);
+            this.AutoVolumeChckBox.Name = "AutoVolumeChckBox";
+            this.AutoVolumeChckBox.Size = new System.Drawing.Size(117, 17);
+            this.AutoVolumeChckBox.TabIndex = 13;
+            this.AutoVolumeChckBox.Text = "Auto-Adjust volume";
+            this.AutoVolumeChckBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -954,6 +966,7 @@
         private System.Windows.Forms.CheckBox ChangePanelWhenMediaIsSelectedCheckBox;
         private System.Windows.Forms.CheckBox ClearFilterWhenMediaIsSelectedCheckBox;
         private System.Windows.Forms.CheckBox CheckMediaIndexWithSongQueueCheckBox;
+        private System.Windows.Forms.CheckBox AutoVolumeChckBox;
     }
 }
 

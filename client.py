@@ -37,7 +37,12 @@ def listen_and_process_messages():
             msg = socket.recv(msg_len).decode(FORMAT)
             
             # Process message
-            v.set_url(msg)
+            if msg != 'Handshake':
+                print(f'Received url: {msg} and started processing it')
+                v.set_url(msg)
+                v.get_audio_sum_list(writeToFile=True)
+            else:
+                print('Handshake')
 
-            send = f'fps: {v.fps}/audio: {v.get_audio_sum_list()}'
-            send_message(send)
+if __name__ == '__main__':
+    start()

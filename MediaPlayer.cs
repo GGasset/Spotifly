@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace Spotifly
 {
@@ -8,6 +10,7 @@ namespace Spotifly
     {
         private Queue<string> priorityQueue;
         private bool isPlaying = false;
+        private string currentMediaDirectory;
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
@@ -128,6 +131,8 @@ namespace Spotifly
             }
         }
 
+
+
         private void SetURL(string URL)
         {
             try
@@ -137,8 +142,26 @@ namespace Spotifly
                     currentUrlFolder = URL.Remove(URL.LastIndexOf(@"\"));
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
+
+                    string[] filesToDelete = Directory.GetFiles(currentMediaDirectory);
+
+                    foreach (var file in filesToDelete)
+                    {
+                        File.Delete(file);
+                    }
+
+                    string path = URL.Remove(0, URL.IndexOf(@"\") + 1);
+
+                    File.Copy(URL, currentMediaDirectory + path);
+
+                    path = @".\media\" + path;
+
+                    socket.SendMessage(path.Replace(@"\", "/"));
+
                     System.Threading.Thread.Sleep(100);
                     axWindowsMediaPlayer.Ctlcontrols.play();
+
+
                     /*if (startPlaying)
                         try
                         {

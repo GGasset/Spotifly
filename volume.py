@@ -12,13 +12,23 @@ class VolumeProcessor:
         self.url = url
         self.media = mp.VideoFileClip(url)
         self.audio = self.media.audio
-        self.fps = 30000
+        self.fps = 20000
         self.audio_arr = self.audio.to_soundarray(nbytes=4, fps=self.fps)
+        self.audio_len = len(self.audio_arr)
 
-    def get_audio_sum_list(self):
+    def get_audio_sum_list(self, writeToFile=False):
+        file = None
+        if writeToFile:
+            file = open('./media/media_audio.txt', 'w')
         output = []
         for i, sound in enumerate(self.audio_arr):
-            output.append(sound[0] + sound[1])
+            sum = sound[0] + sound[1]
+            output.append(sum)
+            if writeToFile:
+                to_write = str(sum) + (', ' * (i < self.audio_len - 1))
+                file.write(to_write)
+        if writeToFile:
+            file.close()
         return output
 
     def set_min_max_volume(self, url='None'):

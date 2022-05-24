@@ -26,6 +26,8 @@ namespace Spotifly
         private readonly Hashtable table = new Hashtable();
         private readonly Random random = new Random(DateTime.Now.Millisecond);
 
+        private SocketHandler socket;
+
 
         public Form1()
         {
@@ -98,6 +100,11 @@ namespace Spotifly
             DwnldSttsLabel.Text = "";
             WebDwnldSttsLabel.Text = "";
 
+            socket = new SocketHandler(7451);
+            socket.SendMessage("Handshake");
+
+            currentMediaDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\media\";
+
 
             if (Settings.Default.LastSessionFolder.Length != 0 && Directory.Exists(Settings.Default.LastSessionFolder))
                 folderPath = Settings.Default.LastSessionFolder;
@@ -151,6 +158,7 @@ namespace Spotifly
             Settings.Default.AverageLoadingTime = Convert.ToInt32((watch.Elapsed.Milliseconds + Settings.Default.AverageLoadingTime) / 2);
             table.Add("about", $"Developed by Germán Gasset Martí\nYoutubeExplode was used to download youtube videos\naverageLoadingTime: {Settings.Default.AverageLoadingTime}ms, currentLoadingTime: {watch.Elapsed.Milliseconds}ms" +
                     "\n\n\n\t\t\t\tCopyright ©  2020 Germán Gasset About");
+            
             int elapsedMS = (int)watch.ElapsedMilliseconds, minWait = 600;
             await Task.Delay(Math.Max(0, minWait - elapsedMS)).ConfigureAwait(true);
             loading = false;
