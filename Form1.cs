@@ -3,6 +3,7 @@ using Spotifly.Properties;
 using System;
 using System.Collections;
 using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -100,10 +101,22 @@ namespace Spotifly
             DwnldSttsLabel.Text = "";
             WebDwnldSttsLabel.Text = "";
 
+            var projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent;
+
+            currentMediaDirectory = projectDirectory.FullName + @"\media\";
+
+
             socket = new SocketHandler(7451);
+
+            //Start python scripts
+            string cmdText = $"/k cd {projectDirectory.FullName} & python client.py";
+            ProcessStartInfo cmdStartInfo = new ProcessStartInfo("cmd.exe", cmdText);
+            Process p = new Process();
+            p.StartInfo = cmdStartInfo;
+            p.Start();
+
             socket.SendMessage("Handshake");
 
-            currentMediaDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\media\";
 
 
             if (Settings.Default.LastSessionFolder.Length != 0 && Directory.Exists(Settings.Default.LastSessionFolder))
@@ -127,7 +140,7 @@ namespace Spotifly
             ClearFilterWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ClearFilterWhenMediaIsSelected;
             CheckMediaIndexWithSongQueueCheckBox.Checked = Settings.Default.CheckMediaIndexWithSongQueue;
 
-            MediaListView_DrawMedia("");
+            MediaListView_DrawMedia("", false, false);
 
             SetShuffleBttn(Settings.Default.Shuffle);
             if (!string.IsNullOrEmpty(Settings.Default.lastSessionMediaURL))

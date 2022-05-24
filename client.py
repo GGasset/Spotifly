@@ -14,9 +14,12 @@ FORMAT = 'ascii'
 DISCONNECT_MSG = f'Disconnect from {PORT}'
 
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socket.bind(ADDR)
+socket.connect(ADDR)
 
 def start():
-    threading.Thread(target=listen_and_process_messages)
+    #threading.Thread(target=listen_and_process_messages)
+    listen_and_process_messages()
 
 def send_message(msg):
     msg = str(msg).encode(FORMAT)
