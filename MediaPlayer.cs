@@ -85,7 +85,7 @@ namespace Spotifly
             {
                 string[] unshuffled;
                 GetFilteredFilesAndFolders(folderPath, out unshuffled, out _);
-                PlayFile(unshuffled[index]);
+                PlayFile(unshuffled[index], false, checkForMediaIndex);
             }
             catch (Exception)
             {
@@ -109,9 +109,6 @@ namespace Spotifly
 
             if (checkPlaylistIndex)
                 CheckPlaylistIndex();
-
-            if (!loading)
-                CurrentMediaTxtBox.Text = GetCurrentMediaName();
         }
 
         private void PlayFile(int positionsToAdvance)
@@ -126,8 +123,6 @@ namespace Spotifly
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
                 else
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
-                if (!loading)
-                    CurrentMediaTxtBox.Text = GetCurrentMediaName();
             }
         }
 
@@ -142,6 +137,9 @@ namespace Spotifly
                     currentUrlFolder = URL.Remove(URL.LastIndexOf(@"\"));
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
+                    CurrentMediaTxtBox.Text = UrlToName(URL);
+                    System.Threading.Thread.Sleep(100);
+                    axWindowsMediaPlayer.Ctlcontrols.play();
 
                     string[] filesToDelete = Directory.GetFiles(currentMediaDirectory);
 
@@ -185,11 +183,6 @@ namespace Spotifly
                 }
             }
             catch { }
-        }
-
-        private string GetCurrentMediaName()
-        {
-            return UrlToName(urlPlaylist[playlistIndex]);
         }
 
         private string UrlToName(string url)// => url.Remove(url.LastIndexOf('.')).Remove(0, url.LastIndexOf(initialFolderPath, StringComparison.InvariantCulture) + initialFolderPath.Length + 1);

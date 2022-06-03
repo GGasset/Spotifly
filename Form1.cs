@@ -191,7 +191,6 @@ namespace Spotifly
                 }
                 axWindowsMediaPlayer.Ctlcontrols.currentPosition = Settings.Default.LastSessionTime;
 
-                CurrentMediaTxtBox.Text = GetCurrentMediaName();
                 SetActivePanel(0);
             }
 
@@ -216,7 +215,7 @@ namespace Spotifly
         {
             if (!loading)
             {
-                Settings.Default.lastSessionMediaURL = urlPlaylist[playlistIndex];
+                Settings.Default.lastSessionMediaURL = axWindowsMediaPlayer.URL;
                 Settings.Default.LastSessionTime = axWindowsMediaPlayer.Ctlcontrols.currentPosition;
                 Settings.Default.LastSessionVolume = VolumeTrackBar.Value;
                 Settings.Default.LastSessionFolder = folderPath;
