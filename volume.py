@@ -38,7 +38,9 @@ class VolumeProcessor:
 
         min, max = 0, 0
         for frame, sound in enumerate(self.audio_arr):
-            sum = sound[0] + sound[1]
+            sum = 0
+            for i, value in enumerate(sound):
+                sum += value
             max += (sum - max) * int(sum > max)
             min -= (min - sum) * int(sum < min)
             self.min = min
