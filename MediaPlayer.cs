@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 namespace Spotifly
 {
@@ -10,7 +8,6 @@ namespace Spotifly
     {
         private Queue<string> priorityQueue;
         private bool isPlaying = false;
-        private string currentMediaDirectory;
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
@@ -108,25 +105,26 @@ namespace Spotifly
             Task.Run(() => SetURL(URL));
 
             if (checkPlaylistIndex)
-                CheckPlaylistIndex();
+                playlistIndex = CheckPlaylistIndex();
         }
 
+        bool isQueued = false;
         private void PlayFile(int positionsToAdvance)
         {
             if (priorityQueue.Count > 0 && positionsToAdvance == 1)
             {
+                isQueued = true;
                 Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
             }
             else
             {
+                isQueued = false;
                 if (playlistIndex != -1)
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
                 else
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
             }
         }
-
-
 
         private void SetURL(string URL)
         {
@@ -140,26 +138,6 @@ namespace Spotifly
                     CurrentMediaTxtBox.Text = UrlToName(URL);
                     System.Threading.Thread.Sleep(100);
                     axWindowsMediaPlayer.Ctlcontrols.play();
-
-                    string[] filesToDelete = Directory.GetFiles(currentMediaDirectory);
-
-                    foreach (var file in filesToDelete)
-                    {
-                        File.Delete(file);
-                    }
-
-                    string path = URL.Remove(0, URL.IndexOf(@"\") + 1);
-
-                    File.Copy(URL, currentMediaDirectory + path);
-
-                    path = @".\media\" + path;
-
-                    socket.SendMessage(path.Replace(@"\", "/"));
-
-                    System.Threading.Thread.Sleep(100);
-                    axWindowsMediaPlayer.Ctlcontrols.play();
-
-
                     /*if (startPlaying)
                         try
                         {
