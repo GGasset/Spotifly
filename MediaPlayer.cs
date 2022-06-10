@@ -105,17 +105,20 @@ namespace Spotifly
             Task.Run(() => SetURL(URL));
 
             if (checkPlaylistIndex)
-                CheckPlaylistIndex();
+                playlistIndex = CheckPlaylistIndex();
         }
 
+        bool isQueued = false;
         private void PlayFile(int positionsToAdvance)
         {
             if (priorityQueue.Count > 0 && positionsToAdvance == 1)
             {
+                isQueued = true;
                 Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
             }
             else
             {
+                isQueued = false;
                 if (playlistIndex != -1)
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
                 else

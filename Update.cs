@@ -92,7 +92,8 @@ namespace Spotifly
                 VolumeTrackBar.Value = axWindowsMediaPlayer.settings.volume;
                 MediaLengthLabel.Location = new Point(Width - (initialMediaLengthLabelDistanceToFormEnd + MediaLengthLabel.Width), MediaLengthLabel.Location.Y);
 
-                //CheckPlaylistIndex();
+                if (!isQueued || CheckMediaIndexWithSongQueueCheckBox.Checked)
+                    CheckPlaylistIndex();
                 
                 /*if (axWindowsMediaPlayer.playState == WMPPlayState.wmppsReady || axWindowsMediaPlayer.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer.playState == WMPPlayState.wmppsStopped ||
                     axWindowsMediaPlayer.playState == WMPPlayState.wmppsUndefined)
