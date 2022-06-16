@@ -181,6 +181,8 @@ namespace Spotifly
                 {
                     if (!addToQueue)
                     {
+                        string previousMedia = urlPlaylist[playlistIndex];
+
                         isQueued = false;
                         if (shuffle)
                             PlayFileInUnshuffled(e.Item.Text);
@@ -201,6 +203,14 @@ namespace Spotifly
                         {
                             SetActivePanel(0);
                         }
+                        bool isDifferentFolderFromLastPlayedMediaFolder = GetFolderFromUrl(previousMedia) != currentUrlFolder;
+                        if (isDifferentFolderFromLastPlayedMediaFolder)
+                        {
+                            GetFilteredFilesAndFolders(currentUrlFolder, out string[] files, out _);
+                            urlPlaylist = files;
+                            CheckPlaylistIndex();
+                        }
+
                         Focus();
                         //playlistIndex = CheckPlaylistIndex();
                         //GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
@@ -255,6 +265,12 @@ namespace Spotifly
         private void ClearFilterBttn_Click(object sender, EventArgs e)
         {
             SearchTxtBox.Text = string.Empty;
+        }
+
+        private string GetFolderFromUrl(string mediaUrl)
+        {
+            mediaUrl = mediaUrl.Remove(mediaUrl.LastIndexOf(@"\"));
+            return mediaUrl;
         }
 
         private void DownloadedMediaPanel_VisibleChanged(object sender, EventArgs e)
