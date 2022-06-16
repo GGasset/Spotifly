@@ -206,7 +206,7 @@ namespace Spotifly
 
                         currentUrlFolder = folderPath;
 
-                        bool isDifferentFolderFromLastPlayedMediaFolder = GetFolderFromUrl(previousMedia) != GetFolderFromUrl(urlPlaylist[playlistIndex]);
+                        bool isDifferentFolderFromLastPlayedMediaFolder = GetFolderFromUrl(previousMedia) != currentUrlFolder;
                         if (isDifferentFolderFromLastPlayedMediaFolder)
                         {
                             GetFilteredFilesAndFolders(currentUrlFolder, out string[] files, out _);
