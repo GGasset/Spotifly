@@ -138,6 +138,10 @@ namespace Spotifly
                     CurrentMediaTxtBox.Text = UrlToName(URL);
                     System.Threading.Thread.Sleep(100);
                     axWindowsMediaPlayer.Ctlcontrols.play();
+                    if (!isPlaying)
+                    {
+                        axWindowsMediaPlayer.Ctlcontrols.pause();
+                    }
                     /*if (startPlaying)
                         try
                         {
