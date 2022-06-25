@@ -12,6 +12,7 @@ namespace Spotifly
         {
             try
             {
+                BrowserBackBttn.Enabled = e.Address != initialBrowserUrl;
                 if (e.Address.Contains(initialBrowserUrl) && e.Address != initialBrowserUrl && e.Address.Contains("/watch"))//address is a video
                 {
                     GetVideo(e.Address);
@@ -41,6 +42,12 @@ namespace Spotifly
         private void WebAudioDwnldBttn_Click(object sender, EventArgs e)
         {
             DownloadVideo(WebBrowser.Address, true);
+        }
+        
+        private void BrowserBackBttn_Click(object sender, EventArgs e)
+        {
+            if (WebBrowser.CanGoBack)
+                WebBrowser.Back();
         }
     }
 }

@@ -277,9 +277,9 @@
             this.SettingsPanel.Controls.Add(this.ThemeSelectionComboBox);
             this.SettingsPanel.Controls.Add(this.ResizeForMediaCheckBox);
             this.SettingsPanel.Controls.Add(this.AboutBttn);
-            this.SettingsPanel.Location = new System.Drawing.Point(35, 174);
+            this.SettingsPanel.Location = new System.Drawing.Point(140, 12);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.Size = new System.Drawing.Size(77, 54);
+            this.SettingsPanel.Size = new System.Drawing.Size(766, 430);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
             // 
@@ -337,7 +337,7 @@
             // AboutBttn
             // 
             this.AboutBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AboutBttn.Location = new System.Drawing.Point(15, 19);
+            this.AboutBttn.Location = new System.Drawing.Point(15, 395);
             this.AboutBttn.Name = "AboutBttn";
             this.AboutBttn.Size = new System.Drawing.Size(75, 23);
             this.AboutBttn.TabIndex = 0;
@@ -360,9 +360,9 @@
             this.DownloadedMediaPanel.Controls.Add(this.BackBttn);
             this.DownloadedMediaPanel.Controls.Add(this.MediaListView);
             this.DownloadedMediaPanel.Controls.Add(this.folderLabel);
-            this.DownloadedMediaPanel.Location = new System.Drawing.Point(142, 12);
+            this.DownloadedMediaPanel.Location = new System.Drawing.Point(19, 382);
             this.DownloadedMediaPanel.Name = "DownloadedMediaPanel";
-            this.DownloadedMediaPanel.Size = new System.Drawing.Size(721, 414);
+            this.DownloadedMediaPanel.Size = new System.Drawing.Size(101, 52);
             this.DownloadedMediaPanel.TabIndex = 3;
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
@@ -371,7 +371,7 @@
             // ClearFilterBttn
             // 
             this.ClearFilterBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearFilterBttn.Location = new System.Drawing.Point(654, 31);
+            this.ClearFilterBttn.Location = new System.Drawing.Point(34, 31);
             this.ClearFilterBttn.Name = "ClearFilterBttn";
             this.ClearFilterBttn.Size = new System.Drawing.Size(52, 23);
             this.ClearFilterBttn.TabIndex = 11;
@@ -385,7 +385,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTxtBox.Location = new System.Drawing.Point(46, 33);
             this.SearchTxtBox.Name = "SearchTxtBox";
-            this.SearchTxtBox.Size = new System.Drawing.Size(636, 20);
+            this.SearchTxtBox.Size = new System.Drawing.Size(16, 20);
             this.SearchTxtBox.TabIndex = 10;
             this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
             // 
@@ -408,7 +408,7 @@
             this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EnqueueBttn.Location = new System.Drawing.Point(498, 3);
+            this.EnqueueBttn.Location = new System.Drawing.Point(-122, 3);
             this.EnqueueBttn.Name = "EnqueueBttn";
             this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
             this.EnqueueBttn.TabIndex = 8;
@@ -438,7 +438,7 @@
             this.OpenCurrentFldrBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.OpenCurrentFldrBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCurrentFldrBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(597, 3);
+            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(-23, 3);
             this.OpenCurrentFldrBttn.Name = "OpenCurrentFldrBttn";
             this.OpenCurrentFldrBttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.OpenCurrentFldrBttn.Size = new System.Drawing.Size(110, 20);
@@ -461,7 +461,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(399, 3);
+            this.BackBttn.Location = new System.Drawing.Point(-221, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -483,7 +483,7 @@
             this.MediaListView.HideSelection = false;
             this.MediaListView.Location = new System.Drawing.Point(0, 59);
             this.MediaListView.Name = "MediaListView";
-            this.MediaListView.Size = new System.Drawing.Size(721, 367);
+            this.MediaListView.Size = new System.Drawing.Size(101, 5);
             this.MediaListView.TabIndex = 1;
             this.MediaListView.UseCompatibleStateImageBehavior = false;
             this.MediaListView.View = System.Windows.Forms.View.List;
@@ -866,6 +866,7 @@
             this.BrowserBackBttn.TabIndex = 5;
             this.BrowserBackBttn.Text = "<-------";
             this.BrowserBackBttn.UseVisualStyleBackColor = false;
+            this.BrowserBackBttn.Click += new System.EventHandler(this.BrowserBackBttn_Click);
             this.BrowserBackBttn.MouseEnter += new System.EventHandler(this.BrowserBackBttn_MouseEnter);
             this.BrowserBackBttn.MouseLeave += new System.EventHandler(this.BrowserBackBttn_MouseLeave);
             // 

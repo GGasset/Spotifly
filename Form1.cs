@@ -224,6 +224,7 @@ namespace Spotifly
             activePanelIndex = panelIndex;
             foreach (Panel panel in panels)
                 panel.Visible = ReferenceEquals(panel, panels[panelIndex]);
+            BrowserBackBttn.Visible = panelIndex == 2;
         }
 
         private void SetFormSizeForCurrentMedia()
