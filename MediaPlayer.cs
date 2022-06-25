@@ -136,12 +136,13 @@ namespace Spotifly
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
                     CurrentMediaTxtBox.Text = UrlToName(URL);
-                    System.Threading.Thread.Sleep(100);
-                    axWindowsMediaPlayer.Ctlcontrols.play();
-                    if (!isPlaying)
+                    do
                     {
-                        axWindowsMediaPlayer.Ctlcontrols.pause();
-                    }
+                        Thread.Sleep(5);
+                    } while (axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsTransitioning);
+                    axWindowsMediaPlayer.Ctlcontrols.play();
+                    /*Thread.Sleep(50);
+                    axWindowsMediaPlayer.Ctlcontrols.pause();*/
                     /*if (startPlaying)
                         try
                         {

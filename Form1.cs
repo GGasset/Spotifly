@@ -362,6 +362,30 @@ namespace Spotifly
             BrowseBttn.ForeColor = color;
         }
 
+        private void BrowserBackBttn_MouseEnter(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);
+            BrowserBackBttn.ForeColor = color;
+        }
+
+        private void BrowserBackBttn_MouseLeave(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out Color foreColor, out _, out _, out _);
+            BrowserBackBttn.ForeColor = foreColor;
+        }
+
+        private void EnqueueBttn_MouseEnter(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out _, out Color highlightColor, out _, out _);
+            EnqueueBttn.ForeColor = highlightColor;
+        }
+
+        private void EnqueueBttn_MouseLeave(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out Color color, out _, out _, out _);
+            EnqueueBttn.ForeColor = color;
+        }
+
         private void SettingsBttn_MouseEnter(object sender, EventArgs e)
         {
             GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);
