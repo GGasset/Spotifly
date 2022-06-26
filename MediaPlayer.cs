@@ -183,6 +183,7 @@ namespace Spotifly
         {
             try
             {
+                playlistIndex = 0;
                 for (int i = 0; i < urlPlaylist.Length; i++)
                     if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
                     {

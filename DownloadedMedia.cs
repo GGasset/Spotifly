@@ -9,7 +9,7 @@ namespace Spotifly
     public partial class Form1
     {
         private bool addToQueue = false;
-        private readonly string initialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
+        private string initialFolderPath;
         private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
         private string fileFilterMemory = "";
 
@@ -37,9 +37,6 @@ namespace Spotifly
                 CheckPlaylistIndex();
             }
 
-
-
-
             if (unshuffleNeed)//Unshuffle Playlist
                 UnshufflePlaylist(filesUrls);
 
@@ -55,7 +52,7 @@ namespace Spotifly
             if (path == null)
                 path = folderPath;
             files = FilterFiles(Directory.GetFiles(path));
-            folder = Directory.GetDirectories(path);
+            folder = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
         }
 
         /// <summary>
@@ -223,8 +220,7 @@ namespace Spotifly
                     else
                     {
                         priorityQueue.Enqueue(e.Item.Text);
-                        addToQueue = false;
-                        EnqueueBttn.Text = EnqueueBttn.Text.Replace(" t", "");
+                        EnqueueBttn_Click(this, null);
 
                         if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
                         {

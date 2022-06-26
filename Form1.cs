@@ -19,7 +19,7 @@ namespace Spotifly
         private readonly Size panelSize = new Size(750, 418), mediaPanelSize;
         private readonly Point panelLocation = new Point(141, 12), mediaPanelLocation;
         private Panel[] panels;
-        private string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}", currentUrlFolder;
+        private string folderPath, currentUrlFolder;
         private bool shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed;
         private int playlistIndex = 0, activePanelIndex, verticalModeMinWidth = 710, normalMinWidth, verticalModeStart = 750;
         private readonly int initialMediaLengthLabelDistanceToFormEnd;
@@ -30,7 +30,6 @@ namespace Spotifly
         public Form1()
         {
             InitializeComponent();
-            Directory.CreateDirectory(initialFolderPath);
 
             normalMinWidth = MinimumSize.Width;
             initialMediaLengthLabelDistanceToFormEnd = Width - (MediaLengthLabel.Location.X + MediaLengthLabel.Width);
@@ -44,6 +43,9 @@ namespace Spotifly
             };
             WebBrowser.AddressChanged += WebBrowser_AddressChanged;
             BrowseBttn.Parent = PanelGroupBox;
+
+            SetFolderPathFromSettings();
+            Directory.CreateDirectory(initialFolderPath);
             ChangeTheme(currentTheme = Settings.Default.LastSessionTheme);
         }
 
@@ -97,10 +99,7 @@ namespace Spotifly
             DescriptionTextBox.Text = "";
             DwnldSttsLabel.Text = "";
             WebDwnldSttsLabel.Text = "";
-
-
-            if (Settings.Default.LastSessionFolder.Length != 0 && Directory.Exists(Settings.Default.LastSessionFolder))
-                folderPath = Settings.Default.LastSessionFolder;
+            CurrentInitialFolderLabel.Text = $"Initial folder path: {initialFolderPath}";
 
             BackBttn.Visible = folderPath != initialFolderPath;
 
@@ -197,7 +196,6 @@ namespace Spotifly
                 Settings.Default.lastSessionMediaURL = axWindowsMediaPlayer.URL;
                 Settings.Default.LastSessionTime = axWindowsMediaPlayer.Ctlcontrols.currentPosition;
                 Settings.Default.LastSessionVolume = VolumeTrackBar.Value;
-                Settings.Default.LastSessionFolder = folderPath;
                 Settings.Default.Shuffle = shuffle;
                 Settings.Default.ResizeForMedia = ResizeForMediaCheckBox.Checked;
                 Settings.Default.ShowRemainingTimeInElapsed = showRemainingTimeInElapsed;
@@ -205,6 +203,7 @@ namespace Spotifly
                 Settings.Default.ChangePanelWhenMediaIsSelected = ChangePanelWhenMediaIsSelectedCheckBox.Checked;
                 Settings.Default.ClearFilterWhenMediaIsSelected = ClearFilterWhenMediaIsSelectedCheckBox.Checked;
                 Settings.Default.CheckMediaIndexWithSongQueue = CheckMediaIndexWithSongQueueCheckBox.Checked;
+                Settings.Default.InitialFolderPath = initialFolderPath;
                 //Settings.Default.Reset();
                 Settings.Default.Save();
                 //Settings.Default.Reload();
@@ -215,6 +214,14 @@ namespace Spotifly
             progressBarBrush.Dispose();
             WebBrowser.LoadUrl("www.google.com");
             WebBrowser.Dispose();
+        }
+
+        private void SetFolderPathFromSettings()
+        {
+            if (Settings.Default.InitialFolderPath == "None")
+                Settings.Default.InitialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
+            folderPath = Settings.Default.InitialFolderPath;
+            initialFolderPath = folderPath;
         }
 
         #region panelControl

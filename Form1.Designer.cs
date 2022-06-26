@@ -41,6 +41,8 @@
             this.ElapsedTimeLabel = new System.Windows.Forms.Label();
             this.PlayBttn = new System.Windows.Forms.Button();
             this.SettingsPanel = new System.Windows.Forms.Panel();
+            this.ChangeInitialFolderBttn = new System.Windows.Forms.Button();
+            this.CurrentInitialFolderLabel = new System.Windows.Forms.Label();
             this.CheckMediaIndexWithSongQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.ClearFilterWhenMediaIsSelectedCheckBox = new System.Windows.Forms.CheckBox();
             this.ChangePanelWhenMediaIsSelectedCheckBox = new System.Windows.Forms.CheckBox();
@@ -271,6 +273,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.SettingsPanel.Controls.Add(this.ChangeInitialFolderBttn);
+            this.SettingsPanel.Controls.Add(this.CurrentInitialFolderLabel);
             this.SettingsPanel.Controls.Add(this.CheckMediaIndexWithSongQueueCheckBox);
             this.SettingsPanel.Controls.Add(this.ClearFilterWhenMediaIsSelectedCheckBox);
             this.SettingsPanel.Controls.Add(this.ChangePanelWhenMediaIsSelectedCheckBox);
@@ -282,6 +286,25 @@
             this.SettingsPanel.Size = new System.Drawing.Size(766, 430);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
+            // 
+            // ChangeInitialFolderBttn
+            // 
+            this.ChangeInitialFolderBttn.Location = new System.Drawing.Point(7, 155);
+            this.ChangeInitialFolderBttn.Name = "ChangeInitialFolderBttn";
+            this.ChangeInitialFolderBttn.Size = new System.Drawing.Size(162, 23);
+            this.ChangeInitialFolderBttn.TabIndex = 7;
+            this.ChangeInitialFolderBttn.Text = "Change initial folder path";
+            this.ChangeInitialFolderBttn.UseVisualStyleBackColor = true;
+            this.ChangeInitialFolderBttn.Click += new System.EventHandler(this.ChangeInitialFolderBttn_Click);
+            // 
+            // CurrentInitialFolderLabel
+            // 
+            this.CurrentInitialFolderLabel.AutoSize = true;
+            this.CurrentInitialFolderLabel.Location = new System.Drawing.Point(4, 139);
+            this.CurrentInitialFolderLabel.Name = "CurrentInitialFolderLabel";
+            this.CurrentInitialFolderLabel.Size = new System.Drawing.Size(85, 13);
+            this.CurrentInitialFolderLabel.TabIndex = 6;
+            this.CurrentInitialFolderLabel.Text = "Initial folder label";
             // 
             // CheckMediaIndexWithSongQueueCheckBox
             // 
@@ -337,7 +360,7 @@
             // AboutBttn
             // 
             this.AboutBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AboutBttn.Location = new System.Drawing.Point(15, 395);
+            this.AboutBttn.Location = new System.Drawing.Point(7, 395);
             this.AboutBttn.Name = "AboutBttn";
             this.AboutBttn.Size = new System.Drawing.Size(75, 23);
             this.AboutBttn.TabIndex = 0;
@@ -362,7 +385,7 @@
             this.DownloadedMediaPanel.Controls.Add(this.folderLabel);
             this.DownloadedMediaPanel.Location = new System.Drawing.Point(19, 382);
             this.DownloadedMediaPanel.Name = "DownloadedMediaPanel";
-            this.DownloadedMediaPanel.Size = new System.Drawing.Size(101, 52);
+            this.DownloadedMediaPanel.Size = new System.Drawing.Size(122, 60);
             this.DownloadedMediaPanel.TabIndex = 3;
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
@@ -371,7 +394,7 @@
             // ClearFilterBttn
             // 
             this.ClearFilterBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearFilterBttn.Location = new System.Drawing.Point(34, 31);
+            this.ClearFilterBttn.Location = new System.Drawing.Point(55, 31);
             this.ClearFilterBttn.Name = "ClearFilterBttn";
             this.ClearFilterBttn.Size = new System.Drawing.Size(52, 23);
             this.ClearFilterBttn.TabIndex = 11;
@@ -385,7 +408,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTxtBox.Location = new System.Drawing.Point(46, 33);
             this.SearchTxtBox.Name = "SearchTxtBox";
-            this.SearchTxtBox.Size = new System.Drawing.Size(16, 20);
+            this.SearchTxtBox.Size = new System.Drawing.Size(37, 20);
             this.SearchTxtBox.TabIndex = 10;
             this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
             // 
@@ -408,7 +431,7 @@
             this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EnqueueBttn.Location = new System.Drawing.Point(-122, 3);
+            this.EnqueueBttn.Location = new System.Drawing.Point(-101, 3);
             this.EnqueueBttn.Name = "EnqueueBttn";
             this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
             this.EnqueueBttn.TabIndex = 8;
@@ -438,7 +461,7 @@
             this.OpenCurrentFldrBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.OpenCurrentFldrBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCurrentFldrBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(-23, 3);
+            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(-2, 3);
             this.OpenCurrentFldrBttn.Name = "OpenCurrentFldrBttn";
             this.OpenCurrentFldrBttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.OpenCurrentFldrBttn.Size = new System.Drawing.Size(110, 20);
@@ -461,7 +484,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(-221, 3);
+            this.BackBttn.Location = new System.Drawing.Point(-200, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -483,7 +506,7 @@
             this.MediaListView.HideSelection = false;
             this.MediaListView.Location = new System.Drawing.Point(0, 59);
             this.MediaListView.Name = "MediaListView";
-            this.MediaListView.Size = new System.Drawing.Size(101, 5);
+            this.MediaListView.Size = new System.Drawing.Size(122, 13);
             this.MediaListView.TabIndex = 1;
             this.MediaListView.UseCompatibleStateImageBehavior = false;
             this.MediaListView.View = System.Windows.Forms.View.List;
@@ -704,7 +727,7 @@
             this.BrowseBttn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.BrowseBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BrowseBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrowseBttn.Location = new System.Drawing.Point(6, 64);
+            this.BrowseBttn.Location = new System.Drawing.Point(6, 66);
             this.BrowseBttn.Name = "BrowseBttn";
             this.BrowseBttn.Size = new System.Drawing.Size(123, 26);
             this.BrowseBttn.TabIndex = 2;
@@ -974,6 +997,8 @@
         private System.Windows.Forms.CheckBox ClearFilterWhenMediaIsSelectedCheckBox;
         private System.Windows.Forms.CheckBox CheckMediaIndexWithSongQueueCheckBox;
         private System.Windows.Forms.Button BrowserBackBttn;
+        private System.Windows.Forms.Button ChangeInitialFolderBttn;
+        private System.Windows.Forms.Label CurrentInitialFolderLabel;
     }
 }
 

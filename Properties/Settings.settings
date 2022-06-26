@@ -11,9 +11,6 @@
     <Setting Name="LastSessionVolume" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="LastSessionFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Shuffle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -37,6 +34,9 @@
     </Setting>
     <Setting Name="CheckMediaIndexWithSongQueue" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="InitialFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">None</Value>
     </Setting>
   </Settings>
 </SettingsFile>

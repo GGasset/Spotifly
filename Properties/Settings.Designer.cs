@@ -12,7 +12,7 @@ namespace Spotifly.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -56,18 +56,6 @@ namespace Spotifly.Properties {
             }
             set {
                 this["LastSessionVolume"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastSessionFolder {
-            get {
-                return ((string)(this["LastSessionFolder"]));
-            }
-            set {
-                this["LastSessionFolder"] = value;
             }
         }
         
@@ -164,6 +152,18 @@ namespace Spotifly.Properties {
             }
             set {
                 this["CheckMediaIndexWithSongQueue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public string InitialFolderPath {
+            get {
+                return ((string)(this["InitialFolderPath"]));
+            }
+            set {
+                this["InitialFolderPath"] = value;
             }
         }
     }
