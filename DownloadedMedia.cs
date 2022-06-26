@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Spotifly
 {
@@ -138,14 +139,10 @@ namespace Spotifly
                 MediaListView.Items.Add(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0);
             }
 
-            if (files.Length > 0)
-                icons.Images.Add(Icon.ExtractAssociatedIcon(files[0]));
-            for (int i = 0; i < files.Length; i++)
+            string[] filteredFiles = FilterFilesByFilter(files, fileFilter);
+            for (int i = 0; i < filteredFiles.Length; i++)
             {
-                if (files[i].ToLowerInvariant().Contains(fileFilter.ToLowerInvariant()))
-                {
-                    MediaListView.Items.Add(UrlToName(files[i]));
-                }
+                MediaListView.Items.Add(UrlToName(filteredFiles[i]));
             }
 
             folderLabel.Text = folderPath;
@@ -153,10 +150,43 @@ namespace Spotifly
 
             if (fileFilter != string.Empty)
             {
-                SongCountLabel.Text += $" and {MediaListView.Items.Count - folders.Length} filtered files";
+                SongCountLabel.Text += $" and {filteredFiles.Length} filtered files";
             }
 
             MediaListView.SmallImageList = icons;
+        }
+
+        private string[] FilterFilesByFilter(string[] files, string filter)
+        {
+            List<string> filteredFiles = new List<string>();
+            filter = filter.ToLowerInvariant();
+            string[] filterWords = filter.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string fileName in files)
+            {
+                string file = fileName.ToLowerInvariant();
+                string fileVariant = file.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+                bool passesFilter = file.Contains(filter) || fileVariant.Contains(filter);
+
+                bool containsAllWords = false;
+                foreach (string filterWord in filterWords)
+                {
+                    if (file.Contains(filterWord) || fileVariant.Contains(filterWord))
+                    {
+                        containsAllWords = true;
+                    }
+                    else
+                    {
+                        containsAllWords = false;
+                        break;
+                    }
+                }
+
+                if (passesFilter || containsAllWords)
+                {
+                    filteredFiles.Add(fileName);
+                }
+            }
+            return filteredFiles.ToArray();
         }
 
         private void SearchTxtBox_TextChanged(object sender, EventArgs e)
