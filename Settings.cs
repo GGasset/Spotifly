@@ -36,6 +36,8 @@ namespace Spotifly
                 {
                     Directory.Delete(folders[i]);
                 }
+
+                MessageBox.Show("FInished moving files!");
             }
             else
             {
@@ -44,6 +46,7 @@ namespace Spotifly
                 {
                     MessageBox.Show($"Now {AppName} is not going to respond while copying files, please wait or all your files won't be copied.");
                     MoveFiles(true, previousFolderPath, previousFolderPath, folderPath, folderPath);
+                    MessageBox.Show("Finished copying files!");
                 }
             }
 
@@ -51,7 +54,6 @@ namespace Spotifly
             SearchTxtBox.Text = "";
             MediaListView_DrawMedia();
             playlistIndex = 0;
-            axWindowsMediaPlayer.URL = "";
         }
 
         private void MoveFiles(bool copyInsteadOfMove, string baseFolderPath, string folderPath, string toBaseFolderPath, string toCurrentFolderPath)
