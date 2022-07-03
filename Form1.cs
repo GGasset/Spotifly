@@ -62,9 +62,11 @@ namespace Spotifly
 
             table.Add("er", "ERROR");
             table.Add("wait", "Please wait until the download finishes to download another video");
-            table.Add("preparing", "Download Status: Preparing...");
-            table.Add("download", "Download Status: Downloading...");
-            table.Add("finished", "Download Status: Prepared");
+            table.Add("status", "Download Status:");
+            table.Add("prepared", "Prepared");
+            table.Add("preparing", "Preparing...");
+            table.Add("download", "Downloading...");
+            table.Add("finished", "Finished");
             table.Add("getEr", "There has been a problem getting the video.");
             table.Add("path", "Couldn't reach the download path. Please restart the app");
             table.Add("internet", "There has been an internet error. Please check your internet conection.");
@@ -98,7 +100,7 @@ namespace Spotifly
             UploadDateLabel.Text = "";
             DescriptionTextBox.Text = "";
             DwnldSttsLabel.Text = "";
-            WebDwnldSttsLabel.Text = "";
+            StaticWebDwnldSttsLabel.Text = "";
             CurrentInitialFolderLabel.Text = $"Initial folder path: {initialFolderPath}";
 
             BackBttn.Visible = folderPath != initialFolderPath;
@@ -231,7 +233,9 @@ namespace Spotifly
             activePanelIndex = panelIndex;
             foreach (Panel panel in panels)
                 panel.Visible = ReferenceEquals(panel, panels[panelIndex]);
-            BrowserBackBttn.Visible = panelIndex == 2;
+
+            BrowserBackBttn.Visible = panelIndex == 2 && !IsBrowserOnHomePage();
+            DownloadGroupBox.Visible = panelIndex == 2 && IsBrowserOnVideo();
         }
 
         private void SetFormSizeForCurrentMedia()

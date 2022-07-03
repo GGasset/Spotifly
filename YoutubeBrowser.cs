@@ -12,7 +12,6 @@ namespace Spotifly
         {
             try
             {
-                BrowserBackBttn.Enabled = e.Address != initialBrowserUrl;
                 if (e.Address.Contains(initialBrowserUrl) && e.Address != initialBrowserUrl && e.Address.Contains("/watch"))//address is a video
                 {
                     GetVideo(e.Address);
@@ -20,7 +19,11 @@ namespace Spotifly
                     Invoke(new Action(() => SetDownloadGroupBox(true)));
                 }
                 else
+                {
                     Invoke(new Action(() => SetDownloadGroupBox(false)));
+                }
+                BrowserBackBttn.Visible = !IsBrowserOnHomePage();
+                DownloadGroupBox.Visible = IsBrowserOnVideo();
             }
             catch (Exception)
             {  }
@@ -28,8 +31,11 @@ namespace Spotifly
             void SetDownloadGroupBox(bool value)
             {
                 if (value && !downloading)
-                    WebDwnldSttsLabel.Text = string.Empty;
-                DownloadGroupBox.Visible = value;
+                {
+                    StaticWebDwnldSttsLabel.Text = (string)table["status"];
+                    WebDownloadStatusLabel.Text = (string)table["prepared"];
+                }
+                DownloadGroupBox.Enabled = value;
                 DownloadGroupBox.BringToFront();
             }
         }
@@ -49,5 +55,8 @@ namespace Spotifly
             if (WebBrowser.CanGoBack)
                 WebBrowser.Back();
         }
+
+        private bool IsBrowserOnVideo() => WebBrowser.Address.Contains("/watch");
+        private bool IsBrowserOnHomePage() => WebBrowser.Address == initialBrowserUrl;
     }
 }

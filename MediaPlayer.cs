@@ -174,8 +174,8 @@ namespace Spotifly
         {
             if (string.IsNullOrEmpty(url))
                 return "";
-            url = url.Remove(url.LastIndexOf('.'));
-            url = url.Remove(0, url.LastIndexOf(initialFolderPath, StringComparison.InvariantCulture) + initialFolderPath.Length + 1);
+            url = url.Remove(url.LastIndexOf(".", StringComparison.InvariantCulture));
+            url = url.Remove(0, url.LastIndexOf(@"\", StringComparison.InvariantCulture) + 1);
             return url;
         }
 

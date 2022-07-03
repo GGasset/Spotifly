@@ -124,7 +124,8 @@ namespace Spotifly
             {
                 downloading = true;
                 DwnldSttsLabel.Text = (string)table["preparing"];
-                WebDwnldSttsLabel.Text = (string)table["preparing"];
+                StaticWebDwnldSttsLabel.Text = (string)table["status"];
+                WebDownloadStatusLabel.Text = (string)table["preparing"];
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(link).ConfigureAwait(true);
                 IStreamInfo streamInfo;
                 if (onlyAudio)
@@ -142,7 +143,8 @@ namespace Spotifly
                 if (streamInfo != null)
                 {
                     DwnldSttsLabel.Text = (string)table["download"];
-                    WebDwnldSttsLabel.Text = (string)table["download"];
+                    StaticWebDwnldSttsLabel.Text = (string)table["status"];
+                    WebDownloadStatusLabel.Text = (string)table["download"];
                     await client.Videos.Streams.DownloadAsync(streamInfo, $@"{folderPath}\{videoName}.{streamInfo.Container}").ConfigureAwait(true);
                     MediaListView_DrawMedia(null, true);
                     SetShuffleBttn(shuffle);
@@ -170,7 +172,8 @@ namespace Spotifly
             {
                 downloading = false;
                 DwnldSttsLabel.Text = (string)table["finished"];
-                WebDwnldSttsLabel.Text = (string)table["finished"];
+                StaticWebDwnldSttsLabel.Text = (string)table["status"];
+                WebDownloadStatusLabel.Text = (string)table["finished"];
             }
         }
 

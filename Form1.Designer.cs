@@ -82,7 +82,8 @@
             this.LoadImage = new System.Windows.Forms.PictureBox();
             this.YoutubeBrowserPanel = new System.Windows.Forms.Panel();
             this.DownloadGroupBox = new System.Windows.Forms.GroupBox();
-            this.WebDwnldSttsLabel = new System.Windows.Forms.Label();
+            this.WebDownloadStatusLabel = new System.Windows.Forms.Label();
+            this.StaticWebDwnldSttsLabel = new System.Windows.Forms.Label();
             this.WebAudioDwnldBttn = new System.Windows.Forms.Button();
             this.WebVideoDwnldBtnn = new System.Windows.Forms.Button();
             this.BrowserBackBttn = new System.Windows.Forms.Button();
@@ -98,7 +99,6 @@
             this.PanelGroupBox.SuspendLayout();
             this.LoadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadImage)).BeginInit();
-            this.YoutubeBrowserPanel.SuspendLayout();
             this.DownloadGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -281,9 +281,9 @@
             this.SettingsPanel.Controls.Add(this.ThemeSelectionComboBox);
             this.SettingsPanel.Controls.Add(this.ResizeForMediaCheckBox);
             this.SettingsPanel.Controls.Add(this.AboutBttn);
-            this.SettingsPanel.Location = new System.Drawing.Point(140, 12);
+            this.SettingsPanel.Location = new System.Drawing.Point(82, 286);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.Size = new System.Drawing.Size(766, 430);
+            this.SettingsPanel.Size = new System.Drawing.Size(51, 35);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
             // 
@@ -360,7 +360,7 @@
             // AboutBttn
             // 
             this.AboutBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AboutBttn.Location = new System.Drawing.Point(7, 395);
+            this.AboutBttn.Location = new System.Drawing.Point(7, 0);
             this.AboutBttn.Name = "AboutBttn";
             this.AboutBttn.Size = new System.Drawing.Size(75, 23);
             this.AboutBttn.TabIndex = 0;
@@ -527,7 +527,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MediaPlayerPanel.Controls.Add(this.axWindowsMediaPlayer);
-            this.MediaPlayerPanel.Location = new System.Drawing.Point(19, 225);
+            this.MediaPlayerPanel.Location = new System.Drawing.Point(18, 271);
             this.MediaPlayerPanel.Name = "MediaPlayerPanel";
             this.MediaPlayerPanel.Size = new System.Drawing.Size(58, 29);
             this.MediaPlayerPanel.TabIndex = 3;
@@ -727,7 +727,7 @@
             this.BrowseBttn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.BrowseBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BrowseBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrowseBttn.Location = new System.Drawing.Point(6, 66);
+            this.BrowseBttn.Location = new System.Drawing.Point(6, 68);
             this.BrowseBttn.Name = "BrowseBttn";
             this.BrowseBttn.Size = new System.Drawing.Size(123, 26);
             this.BrowseBttn.TabIndex = 2;
@@ -803,7 +803,7 @@
             // 
             this.LoadingPanel.BackColor = System.Drawing.Color.Transparent;
             this.LoadingPanel.Controls.Add(this.LoadImage);
-            this.LoadingPanel.Location = new System.Drawing.Point(57, 269);
+            this.LoadingPanel.Location = new System.Drawing.Point(19, 306);
             this.LoadingPanel.Name = "LoadingPanel";
             this.LoadingPanel.Size = new System.Drawing.Size(41, 36);
             this.LoadingPanel.TabIndex = 3;
@@ -825,43 +825,51 @@
             this.YoutubeBrowserPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.YoutubeBrowserPanel.Controls.Add(this.DownloadGroupBox);
-            this.YoutubeBrowserPanel.Location = new System.Drawing.Point(12, 310);
+            this.YoutubeBrowserPanel.Location = new System.Drawing.Point(140, 12);
             this.YoutubeBrowserPanel.Name = "YoutubeBrowserPanel";
-            this.YoutubeBrowserPanel.Size = new System.Drawing.Size(57, 36);
+            this.YoutubeBrowserPanel.Size = new System.Drawing.Size(772, 424);
             this.YoutubeBrowserPanel.TabIndex = 4;
             this.YoutubeBrowserPanel.Visible = false;
             // 
             // DownloadGroupBox
             // 
-            this.DownloadGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.DownloadGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.DownloadGroupBox.Controls.Add(this.WebDwnldSttsLabel);
+            this.DownloadGroupBox.Controls.Add(this.WebDownloadStatusLabel);
+            this.DownloadGroupBox.Controls.Add(this.StaticWebDwnldSttsLabel);
             this.DownloadGroupBox.Controls.Add(this.WebAudioDwnldBttn);
             this.DownloadGroupBox.Controls.Add(this.WebVideoDwnldBtnn);
-            this.DownloadGroupBox.Location = new System.Drawing.Point(233, -222);
+            this.DownloadGroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DownloadGroupBox.Location = new System.Drawing.Point(3, 165);
             this.DownloadGroupBox.Name = "DownloadGroupBox";
-            this.DownloadGroupBox.Size = new System.Drawing.Size(173, 92);
+            this.DownloadGroupBox.Size = new System.Drawing.Size(129, 90);
             this.DownloadGroupBox.TabIndex = 0;
             this.DownloadGroupBox.TabStop = false;
-            this.DownloadGroupBox.Text = "Download";
             this.DownloadGroupBox.Visible = false;
             // 
-            // WebDwnldSttsLabel
+            // WebDownloadStatusLabel
             // 
-            this.WebDwnldSttsLabel.AutoSize = true;
-            this.WebDwnldSttsLabel.Location = new System.Drawing.Point(6, 16);
-            this.WebDwnldSttsLabel.Name = "WebDwnldSttsLabel";
-            this.WebDwnldSttsLabel.Size = new System.Drawing.Size(135, 13);
-            this.WebDwnldSttsLabel.TabIndex = 2;
-            this.WebDwnldSttsLabel.Text = "Download status: Prepared";
+            this.WebDownloadStatusLabel.AutoSize = true;
+            this.WebDownloadStatusLabel.Location = new System.Drawing.Point(12, 34);
+            this.WebDownloadStatusLabel.Name = "WebDownloadStatusLabel";
+            this.WebDownloadStatusLabel.Size = new System.Drawing.Size(50, 13);
+            this.WebDownloadStatusLabel.TabIndex = 3;
+            this.WebDownloadStatusLabel.Text = "Prepared";
+            // 
+            // StaticWebDwnldSttsLabel
+            // 
+            this.StaticWebDwnldSttsLabel.AutoSize = true;
+            this.StaticWebDwnldSttsLabel.Location = new System.Drawing.Point(6, 16);
+            this.StaticWebDwnldSttsLabel.Name = "StaticWebDwnldSttsLabel";
+            this.StaticWebDwnldSttsLabel.Size = new System.Drawing.Size(89, 13);
+            this.StaticWebDwnldSttsLabel.TabIndex = 2;
+            this.StaticWebDwnldSttsLabel.Text = "Download status:";
             // 
             // WebAudioDwnldBttn
             // 
             this.WebAudioDwnldBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.WebAudioDwnldBttn.Location = new System.Drawing.Point(121, 63);
+            this.WebAudioDwnldBttn.Location = new System.Drawing.Point(67, 61);
             this.WebAudioDwnldBttn.Name = "WebAudioDwnldBttn";
-            this.WebAudioDwnldBttn.Size = new System.Drawing.Size(43, 23);
+            this.WebAudioDwnldBttn.Size = new System.Drawing.Size(59, 23);
             this.WebAudioDwnldBttn.TabIndex = 1;
             this.WebAudioDwnldBttn.Text = "Audio";
             this.WebAudioDwnldBttn.UseVisualStyleBackColor = true;
@@ -870,9 +878,9 @@
             // WebVideoDwnldBtnn
             // 
             this.WebVideoDwnldBtnn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.WebVideoDwnldBtnn.Location = new System.Drawing.Point(121, 34);
+            this.WebVideoDwnldBtnn.Location = new System.Drawing.Point(4, 61);
             this.WebVideoDwnldBtnn.Name = "WebVideoDwnldBtnn";
-            this.WebVideoDwnldBtnn.Size = new System.Drawing.Size(43, 23);
+            this.WebVideoDwnldBtnn.Size = new System.Drawing.Size(59, 23);
             this.WebVideoDwnldBtnn.TabIndex = 0;
             this.WebVideoDwnldBtnn.Text = "Video";
             this.WebVideoDwnldBtnn.UseVisualStyleBackColor = true;
@@ -899,6 +907,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(912, 515);
+            this.Controls.Add(this.DownloadGroupBox);
             this.Controls.Add(this.BrowserBackBttn);
             this.Controls.Add(this.YoutubeBrowserPanel);
             this.Controls.Add(this.LoadingPanel);
@@ -934,7 +943,6 @@
             this.PanelGroupBox.ResumeLayout(false);
             this.LoadingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LoadImage)).EndInit();
-            this.YoutubeBrowserPanel.ResumeLayout(false);
             this.DownloadGroupBox.ResumeLayout(false);
             this.DownloadGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -986,7 +994,7 @@
         private System.Windows.Forms.GroupBox DownloadGroupBox;
         private System.Windows.Forms.Button WebVideoDwnldBtnn;
         private System.Windows.Forms.Button WebAudioDwnldBttn;
-        private System.Windows.Forms.Label WebDwnldSttsLabel;
+        private System.Windows.Forms.Label StaticWebDwnldSttsLabel;
         private System.Windows.Forms.Button OpenCurrentFldrBttn;
         private System.Windows.Forms.Label SongCountLabel;
         private System.Windows.Forms.Button EnqueueBttn;
@@ -999,6 +1007,7 @@
         private System.Windows.Forms.Button BrowserBackBttn;
         private System.Windows.Forms.Button ChangeInitialFolderBttn;
         private System.Windows.Forms.Label CurrentInitialFolderLabel;
+        private System.Windows.Forms.Label WebDownloadStatusLabel;
     }
 }
 
