@@ -226,6 +226,7 @@ namespace Spotifly
 
                     }
                     MessageBox.Show($"{e.Item.Text} deleted!", "Finished deleting", MessageBoxButtons.OK);
+                    return;
                 }
             }
             else if (isDirectory)
