@@ -166,5 +166,17 @@ namespace Spotifly.Properties {
                 this["InitialFolderPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ToggleAddToQueue {
+            get {
+                return ((bool)(this["ToggleAddToQueue"]));
+            }
+            set {
+                this["ToggleAddToQueue"] = value;
+            }
+        }
     }
 }

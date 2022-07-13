@@ -94,7 +94,7 @@ namespace Spotifly
             CurrentMediaTxtBox.Text = "";
             ElapsedTimeLabel.Text = "";
             MediaLengthLabel.Text = "";
-            folderLabel.Text = $"Looking to media files in {folderPath}";
+            folderLabel.Text = $"{folderPath}";
             TitleTextBox.Text = "";
             ViewsLabel.Text = "";
             UploadDateLabel.Text = "";
@@ -120,6 +120,7 @@ namespace Spotifly
             ChangePanelWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ChangePanelWhenMediaIsSelected;
             ClearFilterWhenMediaIsSelectedCheckBox.Checked = Settings.Default.ClearFilterWhenMediaIsSelected;
             CheckMediaIndexWithSongQueueCheckBox.Checked = Settings.Default.CheckMediaIndexWithSongQueue;
+            ToggleAddToQueueCheckBox.Checked = Settings.Default.ToggleAddToQueue;
 
             MediaListView_DrawMedia("");
 
@@ -205,6 +206,7 @@ namespace Spotifly
                 Settings.Default.ChangePanelWhenMediaIsSelected = ChangePanelWhenMediaIsSelectedCheckBox.Checked;
                 Settings.Default.ClearFilterWhenMediaIsSelected = ClearFilterWhenMediaIsSelectedCheckBox.Checked;
                 Settings.Default.CheckMediaIndexWithSongQueue = CheckMediaIndexWithSongQueueCheckBox.Checked;
+                Settings.Default.ToggleAddToQueue = ToggleAddToQueueCheckBox.Checked;
                 Settings.Default.InitialFolderPath = initialFolderPath;
                 //Settings.Default.Reset();
                 Settings.Default.Save();

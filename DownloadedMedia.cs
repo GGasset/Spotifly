@@ -250,7 +250,11 @@ namespace Spotifly
                     else
                     {
                         priorityQueue.Enqueue(e.Item.Text);
-                        EnqueueBttn_Click(this, null);
+
+                        if (!ToggleAddToQueueCheckBox.Checked)
+                        {
+                            EnqueueBttn_Click(this, null);
+                        }
 
                         if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
                         {

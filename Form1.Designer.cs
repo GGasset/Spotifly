@@ -41,6 +41,7 @@
             this.ElapsedTimeLabel = new System.Windows.Forms.Label();
             this.PlayBttn = new System.Windows.Forms.Button();
             this.SettingsPanel = new System.Windows.Forms.Panel();
+            this.ToggleAddToQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.ChangeInitialFolderBttn = new System.Windows.Forms.Button();
             this.CurrentInitialFolderLabel = new System.Windows.Forms.Label();
             this.CheckMediaIndexWithSongQueueCheckBox = new System.Windows.Forms.CheckBox();
@@ -273,6 +274,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.SettingsPanel.Controls.Add(this.ToggleAddToQueueCheckBox);
             this.SettingsPanel.Controls.Add(this.ChangeInitialFolderBttn);
             this.SettingsPanel.Controls.Add(this.CurrentInitialFolderLabel);
             this.SettingsPanel.Controls.Add(this.CheckMediaIndexWithSongQueueCheckBox);
@@ -281,15 +283,25 @@
             this.SettingsPanel.Controls.Add(this.ThemeSelectionComboBox);
             this.SettingsPanel.Controls.Add(this.ResizeForMediaCheckBox);
             this.SettingsPanel.Controls.Add(this.AboutBttn);
-            this.SettingsPanel.Location = new System.Drawing.Point(82, 286);
+            this.SettingsPanel.Location = new System.Drawing.Point(140, 12);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.Size = new System.Drawing.Size(51, 35);
+            this.SettingsPanel.Size = new System.Drawing.Size(622, 414);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
             // 
+            // ToggleAddToQueueCheckBox
+            // 
+            this.ToggleAddToQueueCheckBox.AutoSize = true;
+            this.ToggleAddToQueueCheckBox.Location = new System.Drawing.Point(7, 100);
+            this.ToggleAddToQueueCheckBox.Name = "ToggleAddToQueueCheckBox";
+            this.ToggleAddToQueueCheckBox.Size = new System.Drawing.Size(125, 17);
+            this.ToggleAddToQueueCheckBox.TabIndex = 8;
+            this.ToggleAddToQueueCheckBox.Text = "Toggle add to queue";
+            this.ToggleAddToQueueCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ChangeInitialFolderBttn
             // 
-            this.ChangeInitialFolderBttn.Location = new System.Drawing.Point(7, 155);
+            this.ChangeInitialFolderBttn.Location = new System.Drawing.Point(7, 178);
             this.ChangeInitialFolderBttn.Name = "ChangeInitialFolderBttn";
             this.ChangeInitialFolderBttn.Size = new System.Drawing.Size(162, 23);
             this.ChangeInitialFolderBttn.TabIndex = 7;
@@ -300,7 +312,7 @@
             // CurrentInitialFolderLabel
             // 
             this.CurrentInitialFolderLabel.AutoSize = true;
-            this.CurrentInitialFolderLabel.Location = new System.Drawing.Point(4, 139);
+            this.CurrentInitialFolderLabel.Location = new System.Drawing.Point(4, 162);
             this.CurrentInitialFolderLabel.Name = "CurrentInitialFolderLabel";
             this.CurrentInitialFolderLabel.Size = new System.Drawing.Size(85, 13);
             this.CurrentInitialFolderLabel.TabIndex = 6;
@@ -340,7 +352,7 @@
             // 
             this.ThemeSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ThemeSelectionComboBox.FormattingEnabled = true;
-            this.ThemeSelectionComboBox.Location = new System.Drawing.Point(7, 100);
+            this.ThemeSelectionComboBox.Location = new System.Drawing.Point(7, 123);
             this.ThemeSelectionComboBox.Name = "ThemeSelectionComboBox";
             this.ThemeSelectionComboBox.Size = new System.Drawing.Size(121, 21);
             this.ThemeSelectionComboBox.TabIndex = 2;
@@ -360,7 +372,7 @@
             // AboutBttn
             // 
             this.AboutBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AboutBttn.Location = new System.Drawing.Point(7, 0);
+            this.AboutBttn.Location = new System.Drawing.Point(7, 379);
             this.AboutBttn.Name = "AboutBttn";
             this.AboutBttn.Size = new System.Drawing.Size(75, 23);
             this.AboutBttn.TabIndex = 0;
@@ -825,9 +837,9 @@
             this.YoutubeBrowserPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.YoutubeBrowserPanel.Location = new System.Drawing.Point(140, 12);
+            this.YoutubeBrowserPanel.Location = new System.Drawing.Point(18, 346);
             this.YoutubeBrowserPanel.Name = "YoutubeBrowserPanel";
-            this.YoutubeBrowserPanel.Size = new System.Drawing.Size(772, 424);
+            this.YoutubeBrowserPanel.Size = new System.Drawing.Size(46, 36);
             this.YoutubeBrowserPanel.TabIndex = 4;
             this.YoutubeBrowserPanel.Visible = false;
             // 
@@ -1008,6 +1020,7 @@
         private System.Windows.Forms.Button ChangeInitialFolderBttn;
         private System.Windows.Forms.Label CurrentInitialFolderLabel;
         private System.Windows.Forms.Label WebDownloadStatusLabel;
+        private System.Windows.Forms.CheckBox ToggleAddToQueueCheckBox;
     }
 }
 
