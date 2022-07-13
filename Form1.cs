@@ -379,6 +379,7 @@ namespace Spotifly
             EnqueueBttn.ForeColor = color;
         }
 
+
         private void SettingsBttn_MouseEnter(object sender, EventArgs e)
         {
             GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);
