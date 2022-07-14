@@ -21,5 +21,5 @@ Winforms app that puts together a media player, Spotify colors(in dark theme) an
 #### - Rebuild solution. If these steps don't initially resolve your issue try repeating the steps a second time.
 ---
 ![Main-Page](https://github.com/GGasset/Spotifly/blob/main/Images/Main-Page.png?raw=true)
-![Media-List-View](https://github.com/GGasset/Spotifly/blob/main/Images/Media-List-View.png?raw=true)
-![Browser](https://github.com/GGasset/Spotifly/blob/main/Images/Browser.png?raw=true)
+![Downloaded-Media-List](https://github.com/GGasset/Spotifly/blob/main/Images/Media-List-View.png?raw=true)
+![Youtube-Browser](https://github.com/GGasset/Spotifly/blob/main/Images/Youtube%20Browser.png)
