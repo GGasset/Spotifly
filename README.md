@@ -12,7 +12,7 @@ Winforms app that puts together a media player, Spotify colors(in dark theme) an
 
 #### - At just below the top of the Visual Studio window click start and enjoy!
 ---
-## If you still can't build:
+## If you still can't build because there are errors:
 
 #### - right click on Solution > Restore NuGet packages
 #### - right click on Solution > Clean Solution
