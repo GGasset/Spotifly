@@ -22,4 +22,4 @@ Winforms app that puts together a media player, Spotify colors(in dark theme) an
 ---
 ![Main-Page](https://github.com/GGasset/Spotifly/blob/main/Images/Main-Page.png?raw=true)
 ![Downloaded-Media-List](https://github.com/GGasset/Spotifly/blob/main/Images/Downloaded%20media.png?raw=true)
-![Youtube-Browser](https://github.com/GGasset/Spotifly/blob/main/Images/Youtube%20Browser.png)
+![Youtube-Browser](https://github.com/GGasset/Spotifly/blob/main/Images/Youtube%20Browser.png?raw=true)
