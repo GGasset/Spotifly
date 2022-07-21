@@ -120,11 +120,11 @@ namespace Spotifly
             }
             else
             {
-                isQueued = false;
                 if (playlistIndex != -1)
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = AdvanceIndexesOnPlaylists(playlistIndex, positionsToAdvance, urlPlaylist.Length)]));
                 else
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
+                isQueued = false;
             }
         }
 
