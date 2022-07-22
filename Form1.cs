@@ -52,13 +52,14 @@ namespace Spotifly
         private async void Form1_Load(object sender, EventArgs e)
         {
             //Settings.Default.Reset();
-            panels = new Panel[5];
+            panels = new Panel[6];
             panels[0] = MediaPlayerPanel;
             panels[1] = DownloadedMediaPanel;
-            //panels[2] = BrowserPanel;
-            panels[2] = YoutubeBrowserPanel;
-            panels[3] = SettingsPanel;
-            panels[4] = LoadingPanel;
+            panels[2] = QueuedMediaPanel;
+            //panels[3] = BrowserPanel;
+            panels[3] = YoutubeBrowserPanel;
+            panels[4] = SettingsPanel;
+            panels[5] = LoadingPanel;
 
             table.Add("er", "ERROR");
             table.Add("wait", "Please wait until the download finishes to download another video");
@@ -75,7 +76,7 @@ namespace Spotifly
 
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            SetActivePanel(4);
+            SetActivePanel(5);
 
             LoadingPanel.Size = panelSize;
             LoadingPanel.Location = panelLocation;
@@ -85,6 +86,8 @@ namespace Spotifly
             BrowserPanel.Location = panelLocation;
             DownloadedMediaPanel.Size = mediaPanelSize;
             DownloadedMediaPanel.Location = mediaPanelLocation;
+            QueuedMediaPanel.Size = mediaPanelSize;
+            QueuedMediaPanel.Location = mediaPanelLocation;
             SettingsPanel.Size = panelSize;
             SettingsPanel.Location = panelLocation;
             MediaPlayerPanel.Size = mediaPanelSize;
@@ -236,8 +239,8 @@ namespace Spotifly
             foreach (Panel panel in panels)
                 panel.Visible = ReferenceEquals(panel, panels[panelIndex]);
 
-            BrowserBackBttn.Visible = panelIndex == 2 && !IsBrowserOnHomePage();
-            DownloadGroupBox.Visible = panelIndex == 2 && IsBrowserOnVideo();
+            BrowserBackBttn.Visible = panelIndex == 3 && !IsBrowserOnHomePage();
+            DownloadGroupBox.Visible = panelIndex == 3 && IsBrowserOnVideo();
         }
 
         private void SetFormSizeForCurrentMedia()
@@ -313,13 +316,23 @@ namespace Spotifly
             }
         }
 
+        private void QueuedMediaBttn_Click(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                if (ActiveForm.FormBorderStyle == FormBorderStyle.FixedSingle)
+                    ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
+                SetActivePanel(2);
+            }
+        }
+
         private void BrowseBttn_Click(object sender, EventArgs e)
         {
             if (!loading)
             {
                 if (FormBorderStyle == FormBorderStyle.FixedSingle)
                     ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
-                SetActivePanel(2);
+                SetActivePanel(3);
             }
         }
 
@@ -329,7 +342,7 @@ namespace Spotifly
             {
                 if (FormBorderStyle == FormBorderStyle.FixedSingle)
                     ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
-                SetActivePanel(3);
+                SetActivePanel(4);
             }
         }
 
@@ -378,7 +391,6 @@ namespace Spotifly
             GetColorsForTheme(currentTheme, out _, out Color color, out _, out _, out _);
             EnqueueBttn.ForeColor = color;
         }
-
 
         private void SettingsBttn_MouseEnter(object sender, EventArgs e)
         {
