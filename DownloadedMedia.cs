@@ -129,19 +129,21 @@ namespace Spotifly
         private void SetListViewItems(string[] files, string[] folders, string fileFilter = "")
         {
             ImageList icons = new ImageList();
-            MediaListView.Clear();
 
             icons.Images.Add(Properties.Resources.FolderImage);
             icons.Images.Add(Properties.Resources.video_icon);
+
+            var folderItems = new ListViewItem[folders.Length];
             for (int i = 0; i < folders.Length; i++)
             {
-                MediaListView.Items.Add(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0);
+                folderItems[i] = new ListViewItem(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0);
             }
 
             string[] filteredFiles = FilterFilesByFilter(files, fileFilter);
+            var fileItems = new ListViewItem[filteredFiles.Length];
             for (int i = 0; i < filteredFiles.Length; i++)
             {
-                MediaListView.Items.Add(UrlToName(filteredFiles[i]), 1);
+                fileItems[i] = new ListViewItem(UrlToName(filteredFiles[i]), 1);
             }
 
             folderLabel.Text = folderPath;
@@ -153,6 +155,9 @@ namespace Spotifly
             }
 
             MediaListView.SmallImageList = icons;
+            MediaListView.Clear();
+            MediaListView.Items.AddRange(folderItems);
+            MediaListView.Items.AddRange(fileItems);
         }
 
         private string[] FilterFilesByFilter(string[] files, string filter)
