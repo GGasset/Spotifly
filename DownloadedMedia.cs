@@ -132,6 +132,7 @@ namespace Spotifly
             MediaListView.Clear();
 
             icons.Images.Add(Properties.Resources.FolderImage);
+            icons.Images.Add(Properties.Resources.video_icon);
             for (int i = 0; i < folders.Length; i++)
             {
                 MediaListView.Items.Add(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0);
@@ -140,7 +141,7 @@ namespace Spotifly
             string[] filteredFiles = FilterFilesByFilter(files, fileFilter);
             for (int i = 0; i < filteredFiles.Length; i++)
             {
-                MediaListView.Items.Add(UrlToName(filteredFiles[i]));
+                MediaListView.Items.Add(UrlToName(filteredFiles[i]), 1);
             }
 
             folderLabel.Text = folderPath;
