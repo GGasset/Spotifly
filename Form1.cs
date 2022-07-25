@@ -412,6 +412,18 @@ namespace Spotifly
             EnqueueBttn.ForeColor = color;
         }
 
+        private void DeleteFileBttn_MouseEnter(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out _, out Color hightlightColor, out _, out _);
+            DeleteFileBttn.ForeColor = hightlightColor;
+        }
+
+        private void DeleteFileBttn_MouseLeave(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out Color foreColor, out _, out _, out _);
+            DeleteFileBttn.ForeColor = foreColor;
+        }
+
         private void SettingsBttn_MouseEnter(object sender, EventArgs e)
         {
             GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);

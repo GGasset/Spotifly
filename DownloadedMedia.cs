@@ -324,7 +324,7 @@ namespace Spotifly
             if (willDelete)
             {
                 willDelete = false;
-                DeleteFIleBttn.Text = "Delete";
+                DeleteFileBttn.Text = "Delete";
                 return;
             }
 
@@ -332,7 +332,7 @@ namespace Spotifly
             if (pressedButton == DialogResult.Yes)
             {
                 willDelete = true;
-                DeleteFIleBttn.Text = "Will Delete";
+                DeleteFileBttn.Text = "Will Delete";
             }
         }
 
