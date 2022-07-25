@@ -15,7 +15,7 @@ namespace Spotifly
 
         private void UpdatesStart()
         {
-            timer.Interval = 100;
+            timer.Interval = 50;
             timer.Tick += Update;
             timer.Start();
             axWindowsMediaPlayer.settings.volume = Properties.Settings.Default.LastSessionVolume;
@@ -59,7 +59,7 @@ namespace Spotifly
                 ElapsedTimeLabel.Text = string.IsNullOrWhiteSpace(elapsedTime) || string.IsNullOrWhiteSpace(axWindowsMediaPlayer.URL) ? "00:00" : elapsedTime;
 
                 GetColorsForTheme(currentTheme, out _, out _, out _, out Color ButtonColor, out _);
-                if (isPlaying)
+                if (isPlaying && !isPcLocked)
                 {
                     if (axWindowsMediaPlayer.playState != WMPPlayState.wmppsPlaying)
                         axWindowsMediaPlayer.Ctlcontrols.play();

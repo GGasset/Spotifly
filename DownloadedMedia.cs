@@ -297,6 +297,8 @@ namespace Spotifly
                     {
                         SearchTxtBox.Text = string.Empty;
                     }
+
+                    UpdateQueuedMediaListView();
                 }
             }
         }

@@ -50,6 +50,7 @@ namespace Spotifly
                 }
             }
 
+            priorityQueue.Clear();
             currentUrlFolder = folderBrowser.SelectedPath;
             SearchTxtBox.Text = "";
             MediaListView_DrawMedia();

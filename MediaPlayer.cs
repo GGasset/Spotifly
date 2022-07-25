@@ -23,6 +23,7 @@ namespace Spotifly
                     axWindowsMediaPlayer.uiMode = "mini";
                     axWindowsMediaPlayer.fullScreen = true;
                 }
+
             }
         }
 
@@ -126,6 +127,7 @@ namespace Spotifly
                     Task.Run(() => SetURL(urlPlaylist[playlistIndex = 0]));
                 isQueued = false;
             }
+            UpdateQueuedMediaListView();
         }
 
         private void SetURL(string URL)

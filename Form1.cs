@@ -1,4 +1,5 @@
 ﻿using CefSharp.WinForms;
+using Microsoft.Win32;
 using Spotifly.Properties;
 using System;
 using System.Collections;
@@ -20,7 +21,7 @@ namespace Spotifly
         private readonly Point panelLocation = new Point(141, 12), mediaPanelLocation;
         private Panel[] panels;
         private string folderPath, currentUrlFolder;
-        private bool shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed;
+        private bool shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed, isPcLocked = false;
         private int playlistIndex = 0, activePanelIndex, verticalModeMinWidth = 710, normalMinWidth, verticalModeStart = 750;
         private readonly int initialMediaLengthLabelDistanceToFormEnd;
         private readonly Hashtable table = new Hashtable();
@@ -71,6 +72,8 @@ namespace Spotifly
             table.Add("getEr", "There has been a problem getting the video.");
             table.Add("path", "Couldn't reach the download path. Please restart the app");
             table.Add("internet", "There has been an internet error. Please check your internet conection.");
+
+            SystemEvents.PowerModeChanged += PowerModeChange;
 
             #region prepareForm
 
@@ -229,6 +232,23 @@ namespace Spotifly
                 Settings.Default.InitialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
             folderPath = Settings.Default.InitialFolderPath;
             initialFolderPath = folderPath;
+        }
+
+        private void PowerModeChange(object sender, PowerModeChangedEventArgs e)
+        {
+            switch (e.Mode)
+            {
+                case PowerModes.Resume:
+                    isPcLocked = false;
+                    break;
+                case PowerModes.Suspend:
+                    isPcLocked = true;
+                    if (axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsPlaying)
+                        PlayBttn_Click(this, null);
+                    break;
+                default:
+                    break;
+            }
         }
 
         #region panelControl
