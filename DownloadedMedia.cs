@@ -13,6 +13,123 @@ namespace Spotifly
         private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
         private string fileFilterMemory = "";
 
+        private void MediaListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (!e.IsSelected)
+                return;
+            string pathWithoutExtension = $@"{folderPath}\{e.Item.Text}";
+            bool isDirectory = Directory.Exists(pathWithoutExtension);
+
+            if (willDelete)
+            {
+                DeleteFIleBttn_Click(this, null);
+
+                DialogResult selectedButton = MessageBox.Show(!isDirectory ? "Are you sure you want to delete this item?"
+                    : "Are you sure you want to delete this folder. IMPORTANT: this will delete all the items and folders inside.", "Important", MessageBoxButtons.YesNoCancel);
+
+                if (selectedButton == DialogResult.Yes)
+                {
+                    if (isDirectory)
+                    {
+                        Directory.Delete(pathWithoutExtension, true);
+                    }
+                    else
+                    {
+                        string path = "";
+                        string[] files = Directory.GetFiles(folderPath);
+                        foreach (var file in files)
+                        {
+                            path = file;
+                            if (UrlToName(path) == e.Item.Text)
+                                break;
+                        }
+                        File.Delete(path);
+
+                    }
+                    MessageBox.Show($"{e.Item.Text} deleted!", "Finished deleting", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            else if (isDirectory)
+            {
+                folderPath = $@"{folderPath}\{e.Item.Text}";
+                BackBttn.Visible = folderPath != initialFolderPath;
+                GetFilteredFilesAndFolders(folderPath, out string[] files, out string[] folders);
+                SetListViewItems(files, folders);
+            }
+            else if (e.ItemIndex - foldersMemory.Length >= 0)
+            {
+                if (!addToQueue)
+                {
+                    string previousMedia = urlPlaylist[playlistIndex];
+
+                    isQueued = false;
+                    if (shuffle)
+                        PlayFileInUnshuffled(e.Item.Text);
+                    else
+                        //PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
+                        PlayFile(e.Item.Text, true);
+
+                    if (ResizeForMediaCheckBox.Checked)
+                    {
+                        SetFormSizeForCurrentMedia();
+                        FormBorderStyle = FormBorderStyle.FixedSingle;
+                    }
+                    if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
+                    {
+                        SearchTxtBox.Text = string.Empty;
+                    }
+                    if (ChangePanelWhenMediaIsSelectedCheckBox.Checked)
+                    {
+                        SetActivePanel(0);
+                    }
+
+                    currentUrlFolder = folderPath;
+
+                    bool isDifferentFolderFromLastPlayedMediaFolder = GetFolderFromUrl(previousMedia) != currentUrlFolder;
+                    if (isDifferentFolderFromLastPlayedMediaFolder)
+                    {
+                        GetFilteredFilesAndFolders(currentUrlFolder, out string[] files, out _);
+                        urlPlaylist = files;
+                        CheckPlaylistIndex();
+                    }
+
+                    Focus();
+                    //playlistIndex = CheckPlaylistIndex();
+                    //GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
+                    //PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
+                }
+                else
+                {
+                    priorityQueue.Enqueue(e.Item.Text);
+
+                    if (!ToggleAddToQueueCheckBox.Checked)
+                    {
+                        EnqueueBttn_Click(this, null);
+                    }
+
+                    if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
+                    {
+                        SearchTxtBox.Text = string.Empty;
+                    }
+
+                    UpdateQueuedMediaListView();
+                }
+            }
+        }
+
+        Form mediaSettingsForm = null;
+        private void MediaSettingsBttn_Click(object sender, EventArgs e)
+        {
+            if (mediaSettingsForm != null)
+            {
+                mediaSettingsForm.BringToFront();
+                return;
+            }
+
+            //mediaSettingsForm = new MediaSettingsForm();
+        }
+
         private void MediaListView_DrawMedia(string fileFilter = null, bool unshuffleNeed = false)
         {
             string[] filesUrls, folders;
@@ -196,111 +313,6 @@ namespace Spotifly
         private void SearchTxtBox_TextChanged(object sender, EventArgs e)
         {
             MediaListView_DrawMedia(SearchTxtBox.Text);
-        }
-
-        private void MediaListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            if (!e.IsSelected)
-                return;
-            string pathWithoutExtension = $@"{folderPath}\{e.Item.Text}";
-            bool isDirectory = Directory.Exists(pathWithoutExtension);
-
-            if (willDelete)
-            {
-                DeleteFIleBttn_Click(this, null);
-
-                DialogResult selectedButton = MessageBox.Show(!isDirectory ? "Are you sure you want to delete this item?" 
-                    : "Are you sure you want to delete this folder. IMPORTANT: this will delete all the items and folders inside.", "Important", MessageBoxButtons.YesNoCancel);
-                
-                if (selectedButton == DialogResult.Yes)
-                {
-                    if (isDirectory)
-                    {
-                        Directory.Delete(pathWithoutExtension, true);
-                    }
-                    else
-                    {
-                        string path = "";
-                        string[] files = Directory.GetFiles(folderPath);
-                        foreach (var file in files)
-                        {
-                            path = file;
-                            if (UrlToName(path) == e.Item.Text)
-                                break;
-                        }
-                        File.Delete(path);
-
-                    }
-                    MessageBox.Show($"{e.Item.Text} deleted!", "Finished deleting", MessageBoxButtons.OK);
-                    return;
-                }
-            }
-            else if (isDirectory)
-            {
-                folderPath = $@"{folderPath}\{e.Item.Text}";
-                BackBttn.Visible = folderPath != initialFolderPath;
-                GetFilteredFilesAndFolders(folderPath, out string[] files, out string[] folders);
-                SetListViewItems(files, folders);
-            }
-            else if (e.ItemIndex - foldersMemory.Length >= 0)
-            {
-                if (!addToQueue)
-                {
-                    string previousMedia = urlPlaylist[playlistIndex];
-
-                    isQueued = false;
-                    if (shuffle)
-                        PlayFileInUnshuffled(e.Item.Text);
-                    else
-                        //PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
-                        PlayFile(e.Item.Text, true);
-
-                    if (ResizeForMediaCheckBox.Checked)
-                    {
-                        SetFormSizeForCurrentMedia();
-                        FormBorderStyle = FormBorderStyle.FixedSingle;
-                    }
-                    if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
-                    {
-                        SearchTxtBox.Text = string.Empty;
-                    }
-                    if (ChangePanelWhenMediaIsSelectedCheckBox.Checked)
-                    {
-                        SetActivePanel(0);
-                    }
-
-                    currentUrlFolder = folderPath;
-
-                    bool isDifferentFolderFromLastPlayedMediaFolder = GetFolderFromUrl(previousMedia) != currentUrlFolder;
-                    if (isDifferentFolderFromLastPlayedMediaFolder)
-                    {
-                        GetFilteredFilesAndFolders(currentUrlFolder, out string[] files, out _);
-                        urlPlaylist = files;
-                        CheckPlaylistIndex();
-                    }
-
-                    Focus();
-                    //playlistIndex = CheckPlaylistIndex();
-                    //GetColorsForTheme(currentTheme, out _, out _, out _, out Color buttonColor, out _);
-                    //PlayBttn.Image = SubstituteNotBlankFromImage(Properties.Resources.Pause, buttonColor);
-                }
-                else
-                {
-                    priorityQueue.Enqueue(e.Item.Text);
-
-                    if (!ToggleAddToQueueCheckBox.Checked)
-                    {
-                        EnqueueBttn_Click(this, null);
-                    }
-
-                    if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
-                    {
-                        SearchTxtBox.Text = string.Empty;
-                    }
-
-                    UpdateQueuedMediaListView();
-                }
-            }
         }
 
         private void EnqueueBttn_Click(object sender, EventArgs e)

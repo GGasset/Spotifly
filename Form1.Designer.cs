@@ -405,9 +405,9 @@
             this.DownloadedMediaPanel.Controls.Add(this.BackBttn);
             this.DownloadedMediaPanel.Controls.Add(this.MediaListView);
             this.DownloadedMediaPanel.Controls.Add(this.folderLabel);
-            this.DownloadedMediaPanel.Location = new System.Drawing.Point(527, 72);
+            this.DownloadedMediaPanel.Location = new System.Drawing.Point(137, 12);
             this.DownloadedMediaPanel.Name = "DownloadedMediaPanel";
-            this.DownloadedMediaPanel.Size = new System.Drawing.Size(370, 366);
+            this.DownloadedMediaPanel.Size = new System.Drawing.Size(760, 426);
             this.DownloadedMediaPanel.TabIndex = 3;
             this.DownloadedMediaPanel.Visible = false;
             this.DownloadedMediaPanel.VisibleChanged += new System.EventHandler(this.DownloadedMediaPanel_VisibleChanged);
@@ -423,13 +423,14 @@
             this.MediaSettingsBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.MediaSettingsBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MediaSettingsBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MediaSettingsBttn.Location = new System.Drawing.Point(-150, 3);
+            this.MediaSettingsBttn.Location = new System.Drawing.Point(374, 3);
             this.MediaSettingsBttn.Name = "MediaSettingsBttn";
             this.MediaSettingsBttn.Size = new System.Drawing.Size(93, 20);
             this.MediaSettingsBttn.TabIndex = 13;
             this.MediaSettingsBttn.Text = "Settings";
             this.MediaSettingsBttn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.MediaSettingsBttn.UseVisualStyleBackColor = false;
+            this.MediaSettingsBttn.Click += new System.EventHandler(this.MediaSettingsBttn_Click);
             // 
             // DeleteFileBttn
             // 
@@ -441,7 +442,7 @@
             this.DeleteFileBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.DeleteFileBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteFileBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DeleteFileBttn.Location = new System.Drawing.Point(59, 3);
+            this.DeleteFileBttn.Location = new System.Drawing.Point(449, 3);
             this.DeleteFileBttn.Name = "DeleteFileBttn";
             this.DeleteFileBttn.Size = new System.Drawing.Size(93, 20);
             this.DeleteFileBttn.TabIndex = 12;
@@ -455,7 +456,7 @@
             // ClearFilterBttn
             // 
             this.ClearFilterBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearFilterBttn.Location = new System.Drawing.Point(318, 31);
+            this.ClearFilterBttn.Location = new System.Drawing.Point(708, 31);
             this.ClearFilterBttn.Name = "ClearFilterBttn";
             this.ClearFilterBttn.Size = new System.Drawing.Size(52, 23);
             this.ClearFilterBttn.TabIndex = 11;
@@ -469,7 +470,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTxtBox.Location = new System.Drawing.Point(46, 33);
             this.SearchTxtBox.Name = "SearchTxtBox";
-            this.SearchTxtBox.Size = new System.Drawing.Size(271, 20);
+            this.SearchTxtBox.Size = new System.Drawing.Size(661, 20);
             this.SearchTxtBox.TabIndex = 10;
             this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
             // 
@@ -492,7 +493,7 @@
             this.EnqueueBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.EnqueueBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnqueueBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EnqueueBttn.Location = new System.Drawing.Point(158, 3);
+            this.EnqueueBttn.Location = new System.Drawing.Point(548, 3);
             this.EnqueueBttn.Name = "EnqueueBttn";
             this.EnqueueBttn.Size = new System.Drawing.Size(93, 20);
             this.EnqueueBttn.TabIndex = 8;
@@ -522,7 +523,7 @@
             this.OpenCurrentFldrBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.OpenCurrentFldrBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenCurrentFldrBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(257, 3);
+            this.OpenCurrentFldrBttn.Location = new System.Drawing.Point(647, 3);
             this.OpenCurrentFldrBttn.Name = "OpenCurrentFldrBttn";
             this.OpenCurrentFldrBttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.OpenCurrentFldrBttn.Size = new System.Drawing.Size(110, 20);
@@ -545,7 +546,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(-51, 3);
+            this.BackBttn.Location = new System.Drawing.Point(275, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;
@@ -567,7 +568,7 @@
             this.MediaListView.HideSelection = false;
             this.MediaListView.Location = new System.Drawing.Point(0, 59);
             this.MediaListView.Name = "MediaListView";
-            this.MediaListView.Size = new System.Drawing.Size(370, 332);
+            this.MediaListView.Size = new System.Drawing.Size(760, 392);
             this.MediaListView.TabIndex = 1;
             this.MediaListView.UseCompatibleStateImageBehavior = false;
             this.MediaListView.View = System.Windows.Forms.View.List;
@@ -585,7 +586,7 @@
             // PassItemToFirstInQueueButton
             // 
             this.PassItemToFirstInQueueButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.PassItemToFirstInQueueButton.Location = new System.Drawing.Point(169, 396);
+            this.PassItemToFirstInQueueButton.Location = new System.Drawing.Point(169, 0);
             this.PassItemToFirstInQueueButton.Name = "PassItemToFirstInQueueButton";
             this.PassItemToFirstInQueueButton.Size = new System.Drawing.Size(160, 21);
             this.PassItemToFirstInQueueButton.TabIndex = 13;
@@ -1003,15 +1004,15 @@
             this.QueuedMediaPanel.Controls.Add(this.PassItemToFirstInQueueButton);
             this.QueuedMediaPanel.Controls.Add(this.DeleteItemFromQueueButton);
             this.QueuedMediaPanel.Controls.Add(this.QueuedMediaListView);
-            this.QueuedMediaPanel.Location = new System.Drawing.Point(141, 12);
+            this.QueuedMediaPanel.Location = new System.Drawing.Point(18, 384);
             this.QueuedMediaPanel.Name = "QueuedMediaPanel";
-            this.QueuedMediaPanel.Size = new System.Drawing.Size(291, 422);
+            this.QueuedMediaPanel.Size = new System.Drawing.Size(18, 26);
             this.QueuedMediaPanel.TabIndex = 6;
             // 
             // DeleteItemFromQueueButton
             // 
             this.DeleteItemFromQueueButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteItemFromQueueButton.Location = new System.Drawing.Point(3, 396);
+            this.DeleteItemFromQueueButton.Location = new System.Drawing.Point(3, 0);
             this.DeleteItemFromQueueButton.Name = "DeleteItemFromQueueButton";
             this.DeleteItemFromQueueButton.Size = new System.Drawing.Size(160, 21);
             this.DeleteItemFromQueueButton.TabIndex = 12;
@@ -1030,7 +1031,7 @@
             this.QueuedMediaListView.HideSelection = false;
             this.QueuedMediaListView.Location = new System.Drawing.Point(3, 0);
             this.QueuedMediaListView.Name = "QueuedMediaListView";
-            this.QueuedMediaListView.Size = new System.Drawing.Size(288, 390);
+            this.QueuedMediaListView.Size = new System.Drawing.Size(15, 0);
             this.QueuedMediaListView.TabIndex = 0;
             this.QueuedMediaListView.UseCompatibleStateImageBehavior = false;
             this.QueuedMediaListView.View = System.Windows.Forms.View.List;
