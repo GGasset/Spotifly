@@ -17,8 +17,8 @@ namespace Spotifly
         private static string AppName { get => "Spotifly"; }
 
         private readonly ChromiumWebBrowser WebBrowser;
-        private readonly Size panelSize = new Size(750, 418), mediaPanelSize;
-        private readonly Point panelLocation = new Point(141, 12), mediaPanelLocation;
+        private readonly Size/* panelSize = new Size(770, 435),*/ mediaPanelSize;
+        private readonly Point/* panelLocation = new Point(141, 2),*/ mediaPanelLocation;
         private Panel[] panels;
         private string folderPath, currentUrlFolder;
         private bool shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed, isPcLocked = false;
@@ -35,7 +35,9 @@ namespace Spotifly
             normalMinWidth = MinimumSize.Width;
             initialMediaLengthLabelDistanceToFormEnd = Width - (MediaLengthLabel.Location.X + MediaLengthLabel.Width);
             mediaPanelLocation = new Point(PanelGroupBox.Width + PanelGroupBox.Location.X, 0);
-            mediaPanelSize = new Size(Width - mediaPanelLocation.X, ControlPanel.Location.Y + 5);
+            mediaPanelSize = new Size(Width - mediaPanelLocation.X - 16, ControlPanel.Location.Y + 5);
+            /*panelSize = mediaPanelSize;
+            panelLocation = mediaPanelLocation;*/
 
             WebBrowser = new ChromiumWebBrowser(initialBrowserUrl)
             {
@@ -43,7 +45,6 @@ namespace Spotifly
                 Dock = DockStyle.Fill,
             };
             WebBrowser.AddressChanged += WebBrowser_AddressChanged;
-            BrowseBttn.Parent = PanelGroupBox;
 
             SetFolderPathFromSettings();
             Directory.CreateDirectory(initialFolderPath);
@@ -81,20 +82,22 @@ namespace Spotifly
 
             SetActivePanel(5);
 
-            LoadingPanel.Size = panelSize;
-            LoadingPanel.Location = panelLocation;
+            BrowseBttn.Parent = PanelGroupBox;
+            LoadingPanel.Size = mediaPanelSize;
+            LoadingPanel.Location = mediaPanelLocation;
             YoutubeBrowserPanel.Size = mediaPanelSize;
             YoutubeBrowserPanel.Location = mediaPanelLocation;
-            BrowserPanel.Size = panelSize;
-            BrowserPanel.Location = panelLocation;
+            BrowserPanel.Size = mediaPanelSize;
+            BrowserPanel.Location = mediaPanelLocation;
             DownloadedMediaPanel.Size = mediaPanelSize;
             DownloadedMediaPanel.Location = mediaPanelLocation;
             QueuedMediaPanel.Size = mediaPanelSize;
             QueuedMediaPanel.Location = mediaPanelLocation;
-            SettingsPanel.Size = panelSize;
-            SettingsPanel.Location = panelLocation;
+            SettingsPanel.Size = mediaPanelSize;
+            SettingsPanel.Location = mediaPanelLocation;
             MediaPlayerPanel.Size = mediaPanelSize;
             MediaPlayerPanel.Location = mediaPanelLocation;
+
             CurrentMediaTxtBox.Size = new Size(PrevMediaBttn.Location.X - CurrentMediaTxtBox.Location.X, 20);
 
             CurrentMediaTxtBox.Text = "";
