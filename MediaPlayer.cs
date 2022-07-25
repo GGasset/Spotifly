@@ -142,7 +142,7 @@ namespace Spotifly
                     CurrentMediaTxtBox.Text = UrlToName(URL);
                     do
                     {
-                        Thread.Sleep(5);
+                        Thread.Sleep(10);
                     } while (axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsTransitioning);
                     axWindowsMediaPlayer.Ctlcontrols.play();
                     /*Thread.Sleep(50);
