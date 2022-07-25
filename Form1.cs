@@ -382,6 +382,19 @@ namespace Spotifly
             SongsBttn.ForeColor = color;
         }
 
+        private void QueuedMediaBttn_MouseEnter(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out _, out Color highlightColor, out _, out _);
+            QueuedMediaBttn.ForeColor = highlightColor;
+        }
+
+        private void QueuedMediaBttn_MouseLeave(object sender, EventArgs e)
+        {
+            GetColorsForTheme(currentTheme, out _, out Color foreColor, out _, out _, out _);
+            QueuedMediaBttn.ForeColor = foreColor;
+        }
+
+
         private void Button2_MouseEnter(object sender, EventArgs e)
         {
             GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);

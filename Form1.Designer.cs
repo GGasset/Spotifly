@@ -827,6 +827,8 @@
             this.QueuedMediaBttn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.QueuedMediaBttn.UseVisualStyleBackColor = false;
             this.QueuedMediaBttn.Click += new System.EventHandler(this.QueuedMediaBttn_Click);
+            this.QueuedMediaBttn.MouseEnter += new System.EventHandler(this.QueuedMediaBttn_MouseEnter);
+            this.QueuedMediaBttn.MouseLeave += new System.EventHandler(this.QueuedMediaBttn_MouseLeave);
             // 
             // MediaPlayerBttn
             // 
