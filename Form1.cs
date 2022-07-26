@@ -49,6 +49,13 @@ namespace Spotifly
             SetFolderPathFromSettings();
             Directory.CreateDirectory(initialFolderPath);
             ChangeTheme(currentTheme = Settings.Default.LastSessionTheme);
+
+            mediaSettingsForm = new MediaSettingsForm
+            {
+                Visible = false
+            };
+            /*mediaSettingsForm.Show();
+            mediaSettingsForm.Dispose();*/
         }
 
         private async void Form1_Load(object sender, EventArgs e)

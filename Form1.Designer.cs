@@ -449,7 +449,7 @@
             this.DeleteFileBttn.Text = "Delete";
             this.DeleteFileBttn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.DeleteFileBttn.UseVisualStyleBackColor = false;
-            this.DeleteFileBttn.Click += new System.EventHandler(this.DeleteFIleBttn_Click);
+            this.DeleteFileBttn.Click += new System.EventHandler(this.DeleteFileBttn_Click);
             this.DeleteFileBttn.MouseEnter += new System.EventHandler(this.DeleteFileBttn_MouseEnter);
             this.DeleteFileBttn.MouseLeave += new System.EventHandler(this.DeleteFileBttn_MouseLeave);
             // 

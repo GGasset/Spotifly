@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Spotifly
 {
@@ -58,6 +59,7 @@ namespace Spotifly
                 string[] unshuffled;
                 GetFilteredFilesAndFolders(folderPath, out unshuffled, out _);
                 int index = -1;
+                name = UrlToName(name);
 
                 for (int i = 0; i < unshuffled.Length; i++)
                 {
@@ -176,6 +178,12 @@ namespace Spotifly
         {
             if (string.IsNullOrEmpty(url))
                 return "";
+            bool isURL = false;
+            foreach (string supportedExtension in supportedExtensions)
+                isURL = isURL || url.Contains(supportedExtension);
+            if (!isURL)
+                return url;
+
             url = url.Remove(url.LastIndexOf(".", StringComparison.InvariantCulture));
             url = url.Remove(0, url.LastIndexOf(@"\", StringComparison.InvariantCulture) + 1);
             return url;

@@ -164,6 +164,12 @@
     <Compile Include="MediaPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MediaSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MediaSettingsForm.Designer.cs">
+      <DependentUpon>MediaSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueuedMedia.cs">
@@ -183,6 +189,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaSettingsForm.resx">
+      <DependentUpon>MediaSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
