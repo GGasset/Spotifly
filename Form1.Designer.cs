@@ -423,7 +423,7 @@
             this.MediaSettingsBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.MediaSettingsBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MediaSettingsBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MediaSettingsBttn.Location = new System.Drawing.Point(374, 3);
+            this.MediaSettingsBttn.Location = new System.Drawing.Point(449, 3);
             this.MediaSettingsBttn.Name = "MediaSettingsBttn";
             this.MediaSettingsBttn.Size = new System.Drawing.Size(93, 20);
             this.MediaSettingsBttn.TabIndex = 13;
@@ -442,7 +442,7 @@
             this.DeleteFileBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.DeleteFileBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteFileBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DeleteFileBttn.Location = new System.Drawing.Point(193, 3);
+            this.DeleteFileBttn.Location = new System.Drawing.Point(251, 3);
             this.DeleteFileBttn.Name = "DeleteFileBttn";
             this.DeleteFileBttn.Size = new System.Drawing.Size(93, 20);
             this.DeleteFileBttn.TabIndex = 12;
@@ -546,7 +546,7 @@
             this.BackBttn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BackBttn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBttn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BackBttn.Location = new System.Drawing.Point(275, 3);
+            this.BackBttn.Location = new System.Drawing.Point(350, 3);
             this.BackBttn.Name = "BackBttn";
             this.BackBttn.Size = new System.Drawing.Size(93, 20);
             this.BackBttn.TabIndex = 5;

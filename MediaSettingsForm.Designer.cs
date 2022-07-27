@@ -71,6 +71,7 @@
             this.FileRenameTextBox.Size = new System.Drawing.Size(321, 20);
             this.FileRenameTextBox.TabIndex = 2;
             this.FileRenameTextBox.Visible = false;
+            this.FileRenameTextBox.TextChanged += new System.EventHandler(this.FileRenameTextBox_TextChanged);
             // 
             // ConfirmRenameButton
             // 

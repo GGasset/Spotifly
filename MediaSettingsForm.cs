@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Spotifly
 {
@@ -47,6 +48,11 @@ namespace Spotifly
             }
 
             ChangeCurrentOption(MediaOptionsComboBox.Text);
+        }
+
+        internal void SetMediaOptionsCheckBox(bool v)
+        {
+            MediaOptionsCheckBox.Checked = v;
         }
 
         private void MediaOptionsComboBox_TextChanged(object sender, EventArgs e)
@@ -95,7 +101,25 @@ namespace Spotifly
                 return;
             }
 
-            bool isDirectory;
+            bool isFile = false;
+            foreach (var supportedExtension in PrincipalForm.SupportedExtensions)
+                isFile = isFile || fileToRename.EndsWith(supportedExtension);
+
+            if (isFile)
+            {
+                string folderPath = fileToRename.Remove(fileToRename.LastIndexOf(@"\") + 1);
+                //string fileName = PrincipalForm.UrlToName(fileToRename);
+                string extension = fileToRename.Remove(0, fileToRename.LastIndexOf("."));
+                File.Move(fileToRename, $@"{folderPath}{FileRenameTextBox.Text}{extension}");
+            }
+
+            SetRenamingMode(false);
+        }
+
+        private void FileRenameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            FileRenameTextBox.Text = FileRenameTextBox.Text.Replace("\"", " ").Replace("<", " ").Replace(">", " ").Replace("|", " ").Replace("...", " ").Replace("*", " ").Replace("/", " ")
+                    .Replace("?", "").Replace("¿", "");
         }
     }
 }

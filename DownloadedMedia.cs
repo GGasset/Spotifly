@@ -13,6 +13,7 @@ namespace Spotifly
         private string initialFolderPath;
         private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
         private string fileFilterMemory = "";
+        internal string[] SupportedExtensions = ".WEBM .MP4 .WAV".ToLower(System.Globalization.CultureInfo.InvariantCulture).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
         private void MediaListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
@@ -29,6 +30,19 @@ namespace Spotifly
             }
             else if ((option = mediaSettingsForm.GetSelectedOption()) == "None")
             {
+                if (addToQueue)
+                {
+                    if (!isDirectory)
+                        AddToQueue(e.Item.Text);
+                    else
+                    {
+                        GetFilteredFilesAndFolders(pathWithoutExtension, out string[] files, out _);
+                        AddToQueue(files);
+                    }
+                    UpdateQueuedMediaListView();
+
+                    return;
+                }
                 if (isDirectory)
                     ChangeDirectory(e.Item.Text);
                 else
@@ -37,23 +51,10 @@ namespace Spotifly
                 return;
             }
 
-            if (option == "Add to queue")
-            {
-                if (!isDirectory)
-                    AddToQueue(e.Item.Text);
-                else
-                {
-                    GetFilteredFilesAndFolders(pathWithoutExtension, out string[] files, out _);
-                    AddToQueue(files);
-                }
-                UpdateQueuedMediaListView();
-
-                return;
-            }
-
             if (option == "Delete item")
             {
                 DeleteItem(e.Item.Text, pathWithoutExtension, isDirectory);
+                mediaSettingsForm.SetMediaOptionsCheckBox(false);
                 return;
             }
 
@@ -61,7 +62,10 @@ namespace Spotifly
             {
                 string filePath = GetFullPath(folderPath, e.Item.Text);
                 mediaSettingsForm.fileToRename = filePath;
-                mediaSettingsForm.SetRenamingMode(true, filePath);
+                mediaSettingsForm.SetRenamingMode(true, UrlToName(filePath));
+
+                mediaSettingsForm.BringToFront();
+                return;
             }
 
             /*if (willDelete)
@@ -184,7 +188,7 @@ namespace Spotifly
 
         }
 
-        private string GetFullPath(string folderPath, string file)
+        internal string GetFullPath(string folderPath, string file)
         {
             string fullPath = string.Empty;
             GetFilteredFilesAndFolders(folderPath, out string[] files, out _);
@@ -206,7 +210,7 @@ namespace Spotifly
                 return;
             }
 
-            mediaSettingsForm = new MediaSettingsForm();
+            mediaSettingsForm = new MediaSettingsForm(this);
 
             mediaSettingsForm.Show();
             mediaSettingsForm.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -214,8 +218,7 @@ namespace Spotifly
 
         private void MediaListView_DrawMedia(string fileFilter = null, bool unshuffleNeed = false)
         {
-            string[] filesUrls, folders;
-            GetFilteredFilesAndFolders(folderPath, out filesUrls, out folders);
+            GetFilteredFilesAndFolders(folderPath, out string[] filesUrls, out string[] folders);
 
             if (fileFilter == null)
             {
@@ -264,7 +267,6 @@ namespace Spotifly
             filteredFilesMemory = filteredFiles;
         }
 
-        string[] supportedExtensions = ".WEBM .MP4 .WAV".ToLower(System.Globalization.CultureInfo.InvariantCulture).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
         private string[] FilterFiles(string[] files)
         {
             string[] filteredFiles;
@@ -273,8 +275,8 @@ namespace Spotifly
             for (int i = 0; i < files.Length; i++)
             {
                 bool compatible = false;
-                for (int j = 0; j < supportedExtensions.Length && !compatible; j++)
-                    if (files[i].Contains(supportedExtensions[j]))
+                for (int j = 0; j < SupportedExtensions.Length && !compatible; j++)
+                    if (files[i].Contains(SupportedExtensions[j]))
                     {
                         compatible = true;
                         compatibleFilesIndex[i] = true;

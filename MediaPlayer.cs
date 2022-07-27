@@ -174,12 +174,12 @@ namespace Spotifly
             catch { }
         }
 
-        private string UrlToName(string url)// => url.Remove(url.LastIndexOf('.')).Remove(0, url.LastIndexOf(initialFolderPath, StringComparison.InvariantCulture) + initialFolderPath.Length + 1);
+        internal string UrlToName(string url)// => url.Remove(url.LastIndexOf('.')).Remove(0, url.LastIndexOf(initialFolderPath, StringComparison.InvariantCulture) + initialFolderPath.Length + 1);
         {
             if (string.IsNullOrEmpty(url))
                 return "";
             bool hasExtension = false;
-            foreach (string supportedExtension in supportedExtensions)
+            foreach (string supportedExtension in SupportedExtensions)
                 hasExtension = hasExtension || url.Contains(supportedExtension);
 
             if (hasExtension)
