@@ -23,7 +23,7 @@ namespace Spotifly
 
             OptionsStrs = new List<string>()
             {
-                "Add to queue",
+                //"Add to queue",
                 "Delete item",
                 "Copy item",
                 "Move item",
@@ -95,7 +95,7 @@ namespace Spotifly
                 return;
             }
 
-            bool isDirectory
+            bool isDirectory;
         }
     }
 }

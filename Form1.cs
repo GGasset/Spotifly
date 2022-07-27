@@ -50,7 +50,7 @@ namespace Spotifly
             Directory.CreateDirectory(initialFolderPath);
             ChangeTheme(currentTheme = Settings.Default.LastSessionTheme);
 
-            mediaSettingsForm = new MediaSettingsForm
+            mediaSettingsForm = new MediaSettingsForm(this)
             {
                 Visible = false
             };
