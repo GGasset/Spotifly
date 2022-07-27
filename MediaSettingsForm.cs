@@ -7,30 +7,32 @@ namespace Spotifly
 {
     public partial class MediaSettingsForm : Form
     {
-        internal List<string> OptionsStr;
+        internal List<string> OptionsStrs;
         internal List<bool> Options;
-        private Size StartingSize = new Size(309, 86), RenamingSize = new Size(309, 133);
+        private Size StartingSize = new Size(309, 86), RenamingSize = new Size(379, 133);
         internal bool RenamingMode;
         internal string fileToRename;
+        private Form1 PrincipalForm;
 
-        public MediaSettingsForm()
+        public MediaSettingsForm(Form1 principalForm)
         {
             InitializeComponent();
-            this.Size = StartingSize;
+            this.PrincipalForm = principalForm;
+            SetRenamingMode(false);
             fileToRename = string.Empty;
 
-            OptionsStr = new List<string>()
+            OptionsStrs = new List<string>()
             {
                 "Add to queue",
-                "Delete file",
-                "Copy file",
-                "Move file",
-                "Rename file"
+                "Delete item",
+                "Copy item",
+                "Move item",
+                "Rename item"
             };
-            MediaOptionsComboBox.Text = OptionsStr[0];
+            MediaOptionsComboBox.Text = OptionsStrs[0];
 
             Options = new List<bool>();
-            foreach (var optionStr in OptionsStr)
+            foreach (var optionStr in OptionsStrs)
             {
                 MediaOptionsComboBox.Items.Add(optionStr);
                 Options.Add(false);
@@ -39,9 +41,9 @@ namespace Spotifly
 
         private void MediaOptionsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (RenamingMode)
+            if (!MediaOptionsCheckBox.Checked)
             {
-                ChangeRenamingMode(false);
+                SetRenamingMode(false);
             }
 
             ChangeCurrentOption(MediaOptionsComboBox.Text);
@@ -50,12 +52,10 @@ namespace Spotifly
         private void MediaOptionsComboBox_TextChanged(object sender, EventArgs e)
         {
             if (RenamingMode)
-                ChangeRenamingMode(false);
-
-            ChangeRenamingMode(MediaOptionsComboBox.Text == "Rename file");
+                SetRenamingMode(false);
         }
 
-        public void ChangeRenamingMode(bool v)
+        public void SetRenamingMode(bool v, string fileToRenameName = "")
         {
             if (v)
             {
@@ -64,18 +64,18 @@ namespace Spotifly
             else
             {
                 this.Size = StartingSize;
-                fileToRename = string.Empty;
+                fileToRenameName = string.Empty;
             }
 
-            FileToRenameLabel.Visible = FileToRenameName.Visible = FileRenameTextBox.Visible = ConfirmRenameButton.Visible = v;
-            MediaOptionsComboBox.Size = FileRenameTextBox.Size;
+            FileToRenameLabel.Visible = FileToRenameNameLabel.Visible = FileRenameTextBox.Visible = ConfirmRenameButton.Visible = RenamingMode = v;
+            FileToRenameNameLabel.Text = fileToRenameName;
         }
 
         private void ChangeCurrentOption(string option)
         {
-            for (int i = 0; i < OptionsStr.Count; i++)
+            for (int i = 0; i < OptionsStrs.Count; i++)
             {
-                Options[i] = option == OptionsStr[i] && MediaOptionsCheckBox.Checked;
+                Options[i] = option == OptionsStrs[i] && MediaOptionsCheckBox.Checked;
             }
         }
 
@@ -85,6 +85,17 @@ namespace Spotifly
                 return "None";
 
             return MediaOptionsComboBox.Text;
+        }
+
+        private void ConfirmRenameButton_Click(object sender, EventArgs e)
+        {
+            if (FileRenameTextBox.Text.Replace(" ", "") == "")
+            {
+                MessageBox.Show("Cannot rename to an Empty Name", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            bool isDirectory
         }
     }
 }

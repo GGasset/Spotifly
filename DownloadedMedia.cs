@@ -22,7 +22,7 @@ namespace Spotifly
             bool isDirectory = Directory.Exists(pathWithoutExtension);
             string option;
 
-            /*if (mediaSettingsForm.IsDisposed)
+            if (mediaSettingsForm.IsDisposed)
             {
                 ChangeMedia(e.Item.Text);
                 return;
@@ -30,8 +30,10 @@ namespace Spotifly
             else if ((option = mediaSettingsForm.GetSelectedOption()) == "None")
             {
                 if (isDirectory)
+                    ChangeDirectory(e.Item.Text);
+                else
+                    ChangeMedia(e.Item.Text);
 
-                ChangeMedia(e.Item.Text);
                 return;
             }
 
@@ -47,38 +49,24 @@ namespace Spotifly
                 UpdateQueuedMediaListView();
 
                 return;
-            }*/
+            }
 
-
-
-            if (willDelete)
+            if (option == "Delete item")
             {
-                DeleteFileBttn_Click(this, null);
+                DeleteItem(e.Item.Text, pathWithoutExtension, isDirectory);
+                return;
+            }
 
-                DialogResult selectedButton = MessageBox.Show(!isDirectory ? $"Are you sure you want to delete {e.Item.Text}?"
-                    : $"Are you sure you want to delete {e.Item.Text}. IMPORTANT: this will delete all the items and folders inside.", "Important", MessageBoxButtons.YesNoCancel);
+            if (option == "Rename item")
+            {
+                string filePath = GetFullPath(folderPath, e.Item.Text);
+                mediaSettingsForm.fileToRename = filePath;
+                mediaSettingsForm.SetRenamingMode(true, filePath);
+            }
 
-                if (selectedButton == DialogResult.Yes)
-                {
-                    if (isDirectory)
-                    {
-                        Directory.Delete(pathWithoutExtension, true);
-                    }
-                    else
-                    {
-                        string path = "";
-                        string[] files = Directory.GetFiles(folderPath);
-                        foreach (var file in files)
-                        {
-                            path = file;
-                            if (UrlToName(path) == e.Item.Text)
-                                break;
-                        }
-                        File.Delete(path);
-                    }
-                    MessageBox.Show($"{e.Item.Text} deleted!", "Finished deleting", MessageBoxButtons.OK);
-                    return;
-                }
+            /*if (willDelete)
+            {
+                DeleteItem(e.Item.Text, pathWithoutExtension, isDirectory);
             }
             else if (isDirectory)
             {
@@ -95,7 +83,7 @@ namespace Spotifly
                     AddToQueue(e.Item.Text);
                     UpdateQueuedMediaListView();
                 }
-            }
+            }*/
         }
 
         private void AddToQueue(string itemName)
@@ -170,6 +158,43 @@ namespace Spotifly
             }
 
             Focus();
+        }
+
+        private void DeleteItem(string itemName, string pathWithoutExtension, bool isDirectory)
+        {
+            //DeleteFileBttn_Click(this, null);
+
+            DialogResult selectedButton = MessageBox.Show(!isDirectory ? $"Are you sure you want to delete {itemName}?"
+                : $"Are you sure you want to delete {itemName}. IMPORTANT: this will delete all the items and folders inside.", "Important", MessageBoxButtons.YesNoCancel);
+
+            if (selectedButton == DialogResult.Yes)
+            {
+                if (isDirectory)
+                {
+                    Directory.Delete(pathWithoutExtension, true);
+                }
+                else
+                {
+                    string path = GetFullPath(folderPath, itemName);
+                    File.Delete(path);
+                }
+                MessageBox.Show($"{itemName} deleted!", "Finished deleting", MessageBoxButtons.OK);
+                return;
+            }
+
+        }
+
+        private string GetFullPath(string folderPath, string file)
+        {
+            string fullPath = string.Empty;
+            GetFilteredFilesAndFolders(folderPath, out string[] files, out _);
+            foreach (var folderFile in files)
+            {
+                fullPath = folderFile;
+                if (UrlToName(fullPath) == UrlToName(file))
+                    break;
+            }
+            return fullPath;
         }
 
         private void MediaSettingsBttn_Click(object sender, EventArgs e)

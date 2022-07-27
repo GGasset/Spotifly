@@ -178,14 +178,14 @@ namespace Spotifly
         {
             if (string.IsNullOrEmpty(url))
                 return "";
-            bool isURL = false;
+            bool hasExtension = false;
             foreach (string supportedExtension in supportedExtensions)
-                isURL = isURL || url.Contains(supportedExtension);
-            if (!isURL)
-                return url;
+                hasExtension = hasExtension || url.Contains(supportedExtension);
 
-            url = url.Remove(url.LastIndexOf(".", StringComparison.InvariantCulture));
-            url = url.Remove(0, url.LastIndexOf(@"\", StringComparison.InvariantCulture) + 1);
+            if (hasExtension)
+                url = url.Remove(url.LastIndexOf(".", StringComparison.InvariantCulture));
+            if (url.Contains(@"\"))
+                url = url.Remove(0, url.LastIndexOf(@"\", StringComparison.InvariantCulture) + 1);
             return url;
         }
 
