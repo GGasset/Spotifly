@@ -65,7 +65,7 @@
             this.ItemInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemInfoTextBox.Location = new System.Drawing.Point(12, 39);
-            this.ItemInfoTextBox.Name = "FileRenameTextBox";
+            this.ItemInfoTextBox.Name = "ItemInfoTextBox";
             this.ItemInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.ItemInfoTextBox.Size = new System.Drawing.Size(321, 20);
             this.ItemInfoTextBox.TabIndex = 2;
@@ -88,7 +88,7 @@
             // 
             this.PathToModifyLabel.AutoSize = true;
             this.PathToModifyLabel.Location = new System.Drawing.Point(93, 70);
-            this.PathToModifyLabel.Name = "FileToRenameNameLabel";
+            this.PathToModifyLabel.Name = "PathToModifyLabel";
             this.PathToModifyLabel.Size = new System.Drawing.Size(258, 13);
             this.PathToModifyLabel.TabIndex = 5;
             this.PathToModifyLabel.Text = "Media file URL to name passed as function from URL";
@@ -103,6 +103,7 @@
             this.Controls.Add(this.ItemInfoTextBox);
             this.Controls.Add(this.MediaOptionsComboBox);
             this.Controls.Add(this.MediaOptionsCheckBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MediaSettingsForm";
             this.ShowInTaskbar = false;
