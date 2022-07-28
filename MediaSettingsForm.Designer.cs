@@ -129,7 +129,7 @@
         private System.Windows.Forms.ComboBox MediaOptionsComboBox;
         private System.Windows.Forms.TextBox FileRenameTextBox;
         private System.Windows.Forms.Button ConfirmRenameButton;
-        private System.Windows.Forms.Label FileToRenameLabel;
+        internal System.Windows.Forms.Label FileToRenameLabel;
         private System.Windows.Forms.Label FileToRenameNameLabel;
     }
 }

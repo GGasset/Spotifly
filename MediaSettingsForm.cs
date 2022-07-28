@@ -11,8 +11,8 @@ namespace Spotifly
         internal List<string> OptionsStrs;
         internal List<bool> Options;
         private Size StartingSize = new Size(309, 86), RenamingSize = new Size(379, 133);
-        internal bool RenamingMode;
-        internal string fileToRename;
+        internal bool textBoxMode;
+        internal string optionPath;
         private Form1 PrincipalForm;
 
         public MediaSettingsForm(Form1 principalForm)
@@ -20,11 +20,12 @@ namespace Spotifly
             InitializeComponent();
             this.PrincipalForm = principalForm;
             SetRenamingMode(false);
-            fileToRename = string.Empty;
+            optionPath = string.Empty;
 
             OptionsStrs = new List<string>()
             {
                 //"Add to queue",
+                "Create folder",
                 "Delete item",
                 "Copy item",
                 "Move item",
@@ -46,6 +47,16 @@ namespace Spotifly
             {
                 SetRenamingMode(false);
             }
+            else if (GetSelectedOption() == "Create folder")
+            {
+                string folderName = PrincipalForm.folderPath;
+                if (folderName.EndsWith("\\"))
+                    folderName = folderName.Remove(folderName.LastIndexOf("\\"));
+                folderName.Remove(0, folderName.LastIndexOf("\\"));
+
+                SetRenamingMode(true, folderName);
+                FileToRenameLabel.Text = "Create folder at";
+            }
 
             ChangeCurrentOption(MediaOptionsComboBox.Text);
         }
@@ -57,7 +68,7 @@ namespace Spotifly
 
         private void MediaOptionsComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (RenamingMode)
+            if (textBoxMode)
                 SetRenamingMode(false);
         }
 
@@ -73,7 +84,7 @@ namespace Spotifly
                 fileToRenameName = string.Empty;
             }
 
-            FileToRenameLabel.Visible = FileToRenameNameLabel.Visible = FileRenameTextBox.Visible = ConfirmRenameButton.Visible = RenamingMode = v;
+            FileToRenameLabel.Visible = FileToRenameNameLabel.Visible = FileRenameTextBox.Visible = ConfirmRenameButton.Visible = textBoxMode = v;
             FileToRenameNameLabel.Text = fileToRenameName;
         }
 
@@ -97,28 +108,44 @@ namespace Spotifly
         {
             if (FileRenameTextBox.Text.Replace(" ", "") == "")
             {
-                MessageBox.Show("Cannot rename to an Empty Name", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Cannot do anything with empty text", "Error", MessageBoxButtons.OK);
                 return;
             }
 
+            if (GetSelectedOption() == "Rename item")
+                RenameFile();
+            else
+                CreateFolder();
+
+            SetRenamingMode(false);
+            MediaOptionsCheckBox.Checked = false;
+        }
+
+        private void CreateFolder()
+        {
+            string path = $@"{PrincipalForm.folderPath}\{FileRenameTextBox.Text}\";
+            Directory.CreateDirectory(path);
+        }
+
+        private void RenameFile()
+        {
+
             bool isFile = false;
             foreach (var supportedExtension in PrincipalForm.SupportedExtensions)
-                isFile = isFile || fileToRename.EndsWith(supportedExtension);
+                isFile = isFile || optionPath.EndsWith(supportedExtension);
 
             if (isFile)
             {
-                string folderPath = fileToRename.Remove(fileToRename.LastIndexOf(@"\") + 1);
+                string folderPath = optionPath.Remove(optionPath.LastIndexOf(@"\") + 1);
                 //string fileName = PrincipalForm.UrlToName(fileToRename);
-                string extension = fileToRename.Remove(0, fileToRename.LastIndexOf("."));
-                File.Move(fileToRename, $@"{folderPath}{FileRenameTextBox.Text}{extension}");
+                string extension = optionPath.Remove(0, optionPath.LastIndexOf("."));
+                File.Move(optionPath, $@"{folderPath}{FileRenameTextBox.Text}{extension}");
             }
-
-            SetRenamingMode(false);
         }
 
         private void FileRenameTextBox_TextChanged(object sender, EventArgs e)
         {
-            FileRenameTextBox.Text = FileRenameTextBox.Text.Replace("\"", " ").Replace("<", " ").Replace(">", " ").Replace("|", " ").Replace("...", " ").Replace("*", " ").Replace("/", " ")
+            FileRenameTextBox.Text = FileRenameTextBox.Text.Replace("\\", "").Replace("\"", " ").Replace("<", " ").Replace(">", " ").Replace("|", " ").Replace("...", " ").Replace("*", " ").Replace("/", " ")
                     .Replace("?", "").Replace("¿", "");
         }
     }

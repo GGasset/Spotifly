@@ -25,7 +25,10 @@ namespace Spotifly
 
             if (mediaSettingsForm.IsDisposed)
             {
-                ChangeMedia(e.Item.Text);
+                if (isDirectory)
+                    ChangeDirectory(e.Item.Text);
+                else
+                    ChangeMedia(e.Item.Text);
                 return;
             }
             else if ((option = mediaSettingsForm.GetSelectedOption()) == "None")
@@ -61,7 +64,7 @@ namespace Spotifly
             if (option == "Rename item")
             {
                 string filePath = GetFullPath(folderPath, e.Item.Text);
-                mediaSettingsForm.fileToRename = filePath;
+                mediaSettingsForm.optionPath = filePath;
                 mediaSettingsForm.SetRenamingMode(true, UrlToName(filePath));
 
                 mediaSettingsForm.BringToFront();

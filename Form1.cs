@@ -20,7 +20,7 @@ namespace Spotifly
         private readonly Size/* panelSize = new Size(770, 435),*/ mediaPanelSize;
         private readonly Point/* panelLocation = new Point(141, 2),*/ mediaPanelLocation;
         private Panel[] panels;
-        private string folderPath, currentUrlFolder;
+        internal string folderPath, currentUrlFolder;
         private bool shuffle, loading = true, showRemainingTimeInElapsed = Settings.Default.ShowRemainingTimeInElapsed, isPcLocked = false;
         private int playlistIndex = 0, activePanelIndex, verticalModeMinWidth = 710, normalMinWidth, verticalModeStart = 750;
         private readonly int initialMediaLengthLabelDistanceToFormEnd;
