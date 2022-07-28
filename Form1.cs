@@ -123,7 +123,7 @@ namespace Spotifly
 
             string lastSessionUrl = Settings.Default.lastSessionMediaURL;
             if (File.Exists(lastSessionUrl))
-                currentUrlFolder = lastSessionUrl.Remove(lastSessionUrl.LastIndexOf('\\'));
+                folderPath = currentUrlFolder = lastSessionUrl.Remove(lastSessionUrl.LastIndexOf('\\'));
 
             VolumeTrackBar.Value = Settings.Default.LastSessionVolume;
 

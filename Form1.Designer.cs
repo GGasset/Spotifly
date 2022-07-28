@@ -93,9 +93,9 @@
             this.WebVideoDwnldBtnn = new System.Windows.Forms.Button();
             this.BrowserBackBttn = new System.Windows.Forms.Button();
             this.QueuedMediaPanel = new System.Windows.Forms.Panel();
+            this.ShuffleQueueButton = new System.Windows.Forms.Button();
             this.DeleteItemFromQueueButton = new System.Windows.Forms.Button();
             this.QueuedMediaListView = new System.Windows.Forms.ListView();
-            this.ShuffleQueueButton = new System.Windows.Forms.Button();
             this.ControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ElapsedTimeBarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
@@ -1011,6 +1011,16 @@
             this.QueuedMediaPanel.Size = new System.Drawing.Size(485, 426);
             this.QueuedMediaPanel.TabIndex = 6;
             // 
+            // ShuffleQueueButton
+            // 
+            this.ShuffleQueueButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ShuffleQueueButton.Location = new System.Drawing.Point(335, 400);
+            this.ShuffleQueueButton.Name = "ShuffleQueueButton";
+            this.ShuffleQueueButton.Size = new System.Drawing.Size(75, 21);
+            this.ShuffleQueueButton.TabIndex = 14;
+            this.ShuffleQueueButton.Text = "Shuffle";
+            this.ShuffleQueueButton.UseVisualStyleBackColor = true;
+            // 
             // DeleteItemFromQueueButton
             // 
             this.DeleteItemFromQueueButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1038,15 +1048,6 @@
             this.QueuedMediaListView.UseCompatibleStateImageBehavior = false;
             this.QueuedMediaListView.View = System.Windows.Forms.View.List;
             this.QueuedMediaListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.QueuedMediaListView_ItemSelectionChanged);
-            // 
-            // ShuffleQueueButton
-            // 
-            this.ShuffleQueueButton.Location = new System.Drawing.Point(335, 400);
-            this.ShuffleQueueButton.Name = "ShuffleQueueButton";
-            this.ShuffleQueueButton.Size = new System.Drawing.Size(75, 21);
-            this.ShuffleQueueButton.TabIndex = 14;
-            this.ShuffleQueueButton.Text = "Shuffle";
-            this.ShuffleQueueButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

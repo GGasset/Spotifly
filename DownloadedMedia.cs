@@ -25,32 +25,12 @@ namespace Spotifly
 
             if (mediaSettingsForm.IsDisposed)
             {
-                if (isDirectory)
-                    ChangeDirectory(e.Item.Text);
-                else
-                    ChangeMedia(e.Item.Text);
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
                 return;
             }
             else if ((option = mediaSettingsForm.GetSelectedOption()) == "None")
             {
-                if (addToQueue)
-                {
-                    if (!isDirectory)
-                        AddToQueue(e.Item.Text);
-                    else
-                    {
-                        GetFilteredFilesAndFolders(pathWithoutExtension, out string[] files, out _);
-                        AddToQueue(files);
-                    }
-                    UpdateQueuedMediaListView();
-
-                    return;
-                }
-                if (isDirectory)
-                    ChangeDirectory(e.Item.Text);
-                else
-                    ChangeMedia(e.Item.Text);
-
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
                 return;
             }
 
@@ -63,7 +43,7 @@ namespace Spotifly
 
             if (option == "Rename item")
             {
-                string filePath = GetFullPath(folderPath, e.Item.Text);
+                string filePath = GetFullPathForFile(folderPath, e.Item.Text);
                 mediaSettingsForm.optionPath = filePath;
                 mediaSettingsForm.SetRenamingMode(true, UrlToName(filePath));
 
@@ -71,32 +51,97 @@ namespace Spotifly
                 return;
             }
 
-            /*if (willDelete)
+            if (option == "Copy item")
             {
-                DeleteItem(e.Item.Text, pathWithoutExtension, isDirectory);
-            }
-            else if (isDirectory)
-            {
-                ChangeDirectory(e.Item.Text);
-            }
-            else if (e.ItemIndex - foldersMemory.Length >= 0)
-            {
-                if (!addToQueue)
+                if (!isDirectory)
                 {
-                    ChangeMedia(e.Item.Text);
+                    mediaSettingsForm.optionPath = GetFullPathForFile(folderPath, e.Item.Text);
+                }
+                else if (mediaSettingsForm.optionPath != string.Empty)
+                {
+                    string prevFile = mediaSettingsForm.optionPath;
+                    var result = MessageBox.Show($"Do you want to copy {UrlToName(prevFile)} into folder?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        File.Copy(prevFile, $@"{folderPath}\{e.Item.Text}\{prevFile.Remove(0, prevFile.LastIndexOf(@"\") + 1)}");
+                        mediaSettingsForm.optionPath = string.Empty;
+                    }
+                    else
+                    {
+                        ChangeDirectory(e.Item.Text);
+                    }
                 }
                 else
                 {
-                    AddToQueue(e.Item.Text);
-                    UpdateQueuedMediaListView();
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
                 }
-            }*/
+                return;
+            }
+
+            if (option == "Move item")
+            {
+                if (!isDirectory)
+                {
+                    mediaSettingsForm.optionPath = GetFullPathForFile(folderPath, e.Item.Text);
+                }
+                else if (mediaSettingsForm.optionPath != string.Empty)
+                {
+                    string prevFile = mediaSettingsForm.optionPath;
+                    var result = MessageBox.Show($"Do you want to move {UrlToName(prevFile)} into folder?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        File.Move(prevFile, $@"{folderPath}\{e.Item.Text}\{prevFile.Remove(0, prevFile.LastIndexOf(@"\") + 1)}");
+                        mediaSettingsForm.optionPath = string.Empty;
+                    }
+                    else
+                    {
+                        ChangeDirectory(e.Item.Text);
+                    }
+                }
+                else
+                {
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                }
+                return;
+            }
+            
+            if (option == "Create folder")
+            {
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                return;
+            }
+        }
+
+        private void HandleListViewItemClickWhenNoOptionSelected(string itemText, string pathWithoutExtension, bool isDirectory)
+        {
+            if (addToQueue)
+            {
+                if (!isDirectory)
+                    AddToQueue(itemText);
+                else
+                {
+                    var result = MessageBox.Show("Do you want to add all the folder to queue?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        GetFilteredFilesAndFolders(pathWithoutExtension, out string[] files, out _);
+                        AddToQueue(files);
+                    }
+                    else
+                        ChangeDirectory(itemText);
+                }
+                UpdateQueuedMediaListView();
+
+                return;
+            }
+            if (isDirectory)
+                ChangeDirectory(itemText);
+            else
+                ChangeMedia(itemText);
         }
 
         private void AddToQueue(string itemName)
         {
             priorityQueue.Enqueue(itemName);
-
 
             // TODO: Delete this if when finished
             if (!ToggleAddToQueueCheckBox.Checked)
@@ -125,6 +170,9 @@ namespace Spotifly
         {
             this.folderPath = $@"{this.folderPath}\{folderName}";
             BackBttn.Visible = folderName != initialFolderPath;
+            if (mediaSettingsForm.GetSelectedOption() == "Create folder")
+                mediaSettingsForm.SetRenamingMode(true, folderName);
+
             GetFilteredFilesAndFolders(this.folderPath, out string[] files, out string[] folders);
             SetListViewItems(files, folders);
         }
@@ -182,16 +230,15 @@ namespace Spotifly
                 }
                 else
                 {
-                    string path = GetFullPath(folderPath, itemName);
+                    string path = GetFullPathForFile(folderPath, itemName);
                     File.Delete(path);
                 }
                 MessageBox.Show($"{itemName} deleted!", "Finished deleting", MessageBoxButtons.OK);
                 return;
             }
-
         }
 
-        internal string GetFullPath(string folderPath, string file)
+        internal string GetFullPathForFile(string folderPath, string file)
         {
             string fullPath = string.Empty;
             GetFilteredFilesAndFolders(folderPath, out string[] files, out _);
@@ -439,6 +486,7 @@ namespace Spotifly
         {
             folderPath = folderPath.Remove(folderPath.LastIndexOf(@"\", StringComparison.InvariantCulture));
             BackBttn.Visible = folderPath != initialFolderPath;
+            mediaSettingsForm.SetRenamingMode(true, UrlToName(folderPath));
             GetFilteredFilesAndFolders(folderPath, out string[] files, out string[] folders);
             SetListViewItems(files, folders);
         }

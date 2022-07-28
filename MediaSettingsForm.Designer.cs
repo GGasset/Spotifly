@@ -31,10 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MediaSettingsForm));
             this.MediaOptionsCheckBox = new System.Windows.Forms.CheckBox();
             this.MediaOptionsComboBox = new System.Windows.Forms.ComboBox();
-            this.FileRenameTextBox = new System.Windows.Forms.TextBox();
+            this.ItemInfoTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmRenameButton = new System.Windows.Forms.Button();
-            this.FileToRenameLabel = new System.Windows.Forms.Label();
-            this.FileToRenameNameLabel = new System.Windows.Forms.Label();
+            this.PathToModifyLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // MediaOptionsCheckBox
@@ -61,17 +60,17 @@
             this.MediaOptionsComboBox.TabIndex = 1;
             this.MediaOptionsComboBox.TextChanged += new System.EventHandler(this.MediaOptionsComboBox_TextChanged);
             // 
-            // FileRenameTextBox
+            // ItemInfoTextBox
             // 
-            this.FileRenameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ItemInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.FileRenameTextBox.Location = new System.Drawing.Point(12, 39);
-            this.FileRenameTextBox.Name = "FileRenameTextBox";
-            this.FileRenameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.FileRenameTextBox.Size = new System.Drawing.Size(321, 20);
-            this.FileRenameTextBox.TabIndex = 2;
-            this.FileRenameTextBox.Visible = false;
-            this.FileRenameTextBox.TextChanged += new System.EventHandler(this.FileRenameTextBox_TextChanged);
+            this.ItemInfoTextBox.Location = new System.Drawing.Point(12, 39);
+            this.ItemInfoTextBox.Name = "FileRenameTextBox";
+            this.ItemInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.ItemInfoTextBox.Size = new System.Drawing.Size(321, 20);
+            this.ItemInfoTextBox.TabIndex = 2;
+            this.ItemInfoTextBox.Visible = false;
+            this.ItemInfoTextBox.TextChanged += new System.EventHandler(this.FileRenameTextBox_TextChanged);
             // 
             // ConfirmRenameButton
             // 
@@ -80,38 +79,28 @@
             this.ConfirmRenameButton.Name = "ConfirmRenameButton";
             this.ConfirmRenameButton.Size = new System.Drawing.Size(75, 23);
             this.ConfirmRenameButton.TabIndex = 3;
-            this.ConfirmRenameButton.Text = "Rename";
+            this.ConfirmRenameButton.Text = "Confirm";
             this.ConfirmRenameButton.UseVisualStyleBackColor = true;
             this.ConfirmRenameButton.Visible = false;
             this.ConfirmRenameButton.Click += new System.EventHandler(this.ConfirmRenameButton_Click);
             // 
-            // FileToRenameLabel
+            // PathToModifyLabel
             // 
-            this.FileToRenameLabel.AutoSize = true;
-            this.FileToRenameLabel.Location = new System.Drawing.Point(93, 62);
-            this.FileToRenameLabel.Name = "FileToRenameLabel";
-            this.FileToRenameLabel.Size = new System.Drawing.Size(82, 13);
-            this.FileToRenameLabel.TabIndex = 4;
-            this.FileToRenameLabel.Text = "FIle to Rename:";
-            // 
-            // FileToRenameNameLabel
-            // 
-            this.FileToRenameNameLabel.AutoSize = true;
-            this.FileToRenameNameLabel.Location = new System.Drawing.Point(104, 75);
-            this.FileToRenameNameLabel.Name = "FileToRenameNameLabel";
-            this.FileToRenameNameLabel.Size = new System.Drawing.Size(258, 13);
-            this.FileToRenameNameLabel.TabIndex = 5;
-            this.FileToRenameNameLabel.Text = "Media file URL to name passed as function from URL";
+            this.PathToModifyLabel.AutoSize = true;
+            this.PathToModifyLabel.Location = new System.Drawing.Point(93, 70);
+            this.PathToModifyLabel.Name = "FileToRenameNameLabel";
+            this.PathToModifyLabel.Size = new System.Drawing.Size(258, 13);
+            this.PathToModifyLabel.TabIndex = 5;
+            this.PathToModifyLabel.Text = "Media file URL to name passed as function from URL";
             // 
             // MediaSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(363, 94);
-            this.Controls.Add(this.FileToRenameNameLabel);
-            this.Controls.Add(this.FileToRenameLabel);
+            this.Controls.Add(this.PathToModifyLabel);
             this.Controls.Add(this.ConfirmRenameButton);
-            this.Controls.Add(this.FileRenameTextBox);
+            this.Controls.Add(this.ItemInfoTextBox);
             this.Controls.Add(this.MediaOptionsComboBox);
             this.Controls.Add(this.MediaOptionsCheckBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -127,9 +116,8 @@
 
         private System.Windows.Forms.CheckBox MediaOptionsCheckBox;
         private System.Windows.Forms.ComboBox MediaOptionsComboBox;
-        private System.Windows.Forms.TextBox FileRenameTextBox;
+        private System.Windows.Forms.TextBox ItemInfoTextBox;
         private System.Windows.Forms.Button ConfirmRenameButton;
-        internal System.Windows.Forms.Label FileToRenameLabel;
-        private System.Windows.Forms.Label FileToRenameNameLabel;
+        private System.Windows.Forms.Label PathToModifyLabel;
     }
 }
