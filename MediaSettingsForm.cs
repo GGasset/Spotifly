@@ -19,7 +19,7 @@ namespace Spotifly
         {
             InitializeComponent();
             this.PrincipalForm = principalForm;
-            SetRenamingMode(false);
+            SetInputMode(false);
             optionPath = string.Empty;
 
             OptionsStrs = new List<string>()
@@ -27,9 +27,11 @@ namespace Spotifly
                 //"Add to queue",
                 "Create folder",
                 "Delete item",
+                "Rename item",
                 "Copy item",
                 "Move item",
-                "Rename item"
+                "Copy item to base folder",
+                "Move item to base foler",
             };
             MediaOptionsComboBox.Text = OptionsStrs[0];
 
@@ -45,12 +47,12 @@ namespace Spotifly
         {
             if (!MediaOptionsCheckBox.Checked)
             {
-                SetRenamingMode(false);
+                SetInputMode(false);
             }
             else if (GetSelectedOption() == "Create folder")
             {
                 string folderName = PrincipalForm.folderPath;
-                SetRenamingMode(true, PrincipalForm.UrlToName(folderName));
+                SetInputMode(true, PrincipalForm.UrlToName(folderName));
             }
 
             ChangeCurrentOption(MediaOptionsComboBox.Text);
@@ -65,11 +67,11 @@ namespace Spotifly
         private void MediaOptionsComboBox_TextChanged(object sender, EventArgs e)
         {
             if (textBoxMode)
-                SetRenamingMode(false);
+                SetInputMode(false);
             optionPath = string.Empty;
         }
 
-        public void SetRenamingMode(bool v, string fileToRenameName = "")
+        public void SetInputMode(bool v, string fileToRenameName = "")
         {
             if (v)
             {
@@ -114,7 +116,7 @@ namespace Spotifly
             else
                 CreateFolder();
 
-            SetRenamingMode(false);
+            SetInputMode(false);
             MediaOptionsCheckBox.Checked = false;
         }
 
