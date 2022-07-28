@@ -52,7 +52,8 @@ namespace Spotifly
 
             mediaSettingsForm = new MediaSettingsForm(this)
             {
-                Visible = false
+                Visible = false,
+                FormBorderStyle = FormBorderStyle.FixedSingle,
             };
             /*mediaSettingsForm.Show();
             mediaSettingsForm.Dispose();*/
