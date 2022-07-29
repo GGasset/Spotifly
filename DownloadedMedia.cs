@@ -33,15 +33,18 @@ namespace Spotifly
                 HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
                 return;
             }
-
-            if (option == "Delete item")
+            else if (option == "Create folder")
+            {
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                return;
+            }
+            else if (option == "Delete item")
             {
                 DeleteItem(e.Item.Text, pathWithoutExtension, isDirectory);
                 mediaSettingsForm.SetMediaOptionsCheckBox(false);
                 return;
             }
-
-            if (option == "Rename item")
+            else if (option == "Rename item")
             {
                 string filePath = GetFullPathForFile(folderPath, e.Item.Text);
                 mediaSettingsForm.optionPath = filePath;
@@ -50,8 +53,7 @@ namespace Spotifly
                 mediaSettingsForm.BringToFront();
                 return;
             }
-
-            if (option == "Copy item")
+            else if (option == "Copy item")
             {
                 if (!isDirectory)
                 {
@@ -77,8 +79,7 @@ namespace Spotifly
                 }
                 return;
             }
-
-            if (option == "Move item")
+            else if (option == "Move item")
             {
                 if (!isDirectory)
                 {
@@ -104,10 +105,28 @@ namespace Spotifly
                 }
                 return;
             }
-            
-            if (option == "Create folder")
+            else if (option == "Copy item to base folder")
             {
-                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                if (!isDirectory)
+                {
+                    string path = GetFullPathForFile(folderPath, e.Item.Text);
+                    string newPath = $@"{initialFolderPath}\{path.Remove(0, path.LastIndexOf(@"\") + 1)}";
+                    File.Copy(path, newPath);
+                }
+                else
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                return;
+            }
+            else if (option == "Move item to base folder")
+            {
+                if (!isDirectory)
+                {
+                    string path = GetFullPathForFile(folderPath, e.Item.Text);
+                    string newPath = $@"{initialFolderPath}\{path.Remove(0, path.LastIndexOf(@"\") + 1)}";
+                    File.Move(path, newPath);
+                }
+                else
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
                 return;
             }
         }

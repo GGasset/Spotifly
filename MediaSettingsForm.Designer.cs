@@ -105,6 +105,8 @@
             this.Controls.Add(this.MediaOptionsCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MediaSettingsForm";
             this.ShowInTaskbar = false;
             this.Text = "Options for media";
