@@ -123,6 +123,7 @@ namespace Spotifly
                 {
                     string path = GetFullPathForFile(folderPath, e.Item.Text);
                     string newPath = $@"{initialFolderPath}\{path.Remove(0, path.LastIndexOf(@"\") + 1)}";
+                    MessageBox.Show($"{path}\n{newPath}");
                     File.Move(path, newPath);
                 }
                 else
@@ -189,8 +190,8 @@ namespace Spotifly
         {
             this.folderPath = $@"{this.folderPath}\{folderName}";
             BackBttn.Visible = folderName != initialFolderPath;
-            if (mediaSettingsForm.GetSelectedOption() == "Create folder")
-                mediaSettingsForm.SetInputMode(true, folderName);
+            /*if (mediaSettingsForm.GetSelectedOption() == "Create folder")
+                mediaSettingsForm.SetInputMode(true, folderName);*/
 
             GetFilteredFilesAndFolders(this.folderPath, out string[] files, out string[] folders);
             SetListViewItems(files, folders);
@@ -505,7 +506,7 @@ namespace Spotifly
         {
             folderPath = folderPath.Remove(folderPath.LastIndexOf(@"\", StringComparison.InvariantCulture));
             BackBttn.Visible = folderPath != initialFolderPath;
-            mediaSettingsForm.SetInputMode(true, UrlToName(folderPath));
+            //mediaSettingsForm.SetInputMode(true, UrlToName(folderPath));
             GetFilteredFilesAndFolders(folderPath, out string[] files, out string[] folders);
             SetListViewItems(files, folders);
         }

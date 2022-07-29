@@ -31,7 +31,7 @@ namespace Spotifly
                 "Copy item",
                 "Move item",
                 "Copy item to base folder",
-                "Move item to base foler",
+                "Move item to base folder",
             };
             MediaOptionsComboBox.Text = OptionsStrs[0];
 
