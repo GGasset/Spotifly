@@ -163,7 +163,6 @@ namespace Spotifly
         {
             priorityQueue.Enqueue(itemName);
 
-            // TODO: Delete this if when finished
             if (!ToggleAddToQueueCheckBox.Checked)
             {
                 EnqueueBttn_Click(this, null);

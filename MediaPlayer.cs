@@ -56,8 +56,7 @@ namespace Spotifly
         {
             try
             {
-                string[] unshuffled;
-                GetFilteredFilesAndFolders(folderPath, out unshuffled, out _);
+                GetFilteredFilesAndFolders(folderPath, out string[] unshuffled, out _);
                 int index = -1;
                 name = UrlToName(name);
 
@@ -119,7 +118,9 @@ namespace Spotifly
             if (priorityQueue.Count > 0 && positionsToAdvance == 1)
             {
                 isQueued = true;
-                Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
+                Task.Run(() => SetURL(priorityQueue.Dequeue()));
+                if (CheckMediaIndexWithSongQueueCheckBox.Checked)
+                    CheckPlaylistIndex();
             }
             else
             {
