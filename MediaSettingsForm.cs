@@ -139,6 +139,8 @@ namespace Spotifly
                 string extension = optionPath.Remove(0, optionPath.LastIndexOf("."));
                 File.Move(optionPath, $@"{folderPath}{ItemInfoTextBox.Text}{extension}");
             }
+
+            SetMediaOptionsCheckBox(false);
         }
 
         private void FileRenameTextBox_TextChanged(object sender, EventArgs e)

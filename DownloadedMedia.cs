@@ -67,6 +67,7 @@ namespace Spotifly
                     {
                         File.Copy(prevFile, $@"{folderPath}\{e.Item.Text}\{prevFile.Remove(0, prevFile.LastIndexOf(@"\") + 1)}");
                         mediaSettingsForm.optionPath = string.Empty;
+                        mediaSettingsForm.SetMediaOptionsCheckBox(false);
                     }
                     else
                     {
@@ -93,6 +94,7 @@ namespace Spotifly
                     {
                         File.Move(prevFile, $@"{folderPath}\{e.Item.Text}\{prevFile.Remove(0, prevFile.LastIndexOf(@"\") + 1)}");
                         mediaSettingsForm.optionPath = string.Empty;
+                        mediaSettingsForm.SetMediaOptionsCheckBox(false);
                     }
                     else
                     {
@@ -112,6 +114,7 @@ namespace Spotifly
                     string path = GetFullPathForFile(folderPath, e.Item.Text);
                     string newPath = $@"{initialFolderPath}\{path.Remove(0, path.LastIndexOf(@"\") + 1)}";
                     File.Copy(path, newPath);
+                    mediaSettingsForm.SetMediaOptionsCheckBox(false);
                 }
                 else
                     HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
@@ -125,6 +128,7 @@ namespace Spotifly
                     string newPath = $@"{initialFolderPath}\{path.Remove(0, path.LastIndexOf(@"\") + 1)}";
                     MessageBox.Show($"{path}\n{newPath}");
                     File.Move(path, newPath);
+                    mediaSettingsForm.SetMediaOptionsCheckBox(false);
                 }
                 else
                     HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
