@@ -19,13 +19,13 @@ namespace Spotifly
 
             if (deleteItemFromQueue)
             {
-                var queueArray = priorityQueue.ToArray();
+                var queueArray = queuedMedia.ToArray();
 
-                priorityQueue.Clear();
+                queuedMedia.Clear();
                 for (int i = 0; i < queueArray.Length; i++)
                 {
                     if (e.ItemIndex != i)
-                        priorityQueue.Enqueue(queueArray[i]);
+                        queuedMedia.Enqueue(queueArray[i]);
                 }
                 UpdateQueuedMediaListView();
                 //DeleteItemFromQueueButton_Click(this, null);
@@ -33,12 +33,19 @@ namespace Spotifly
             }
             else if (PassItemToFirstInQueue)
             {
-
+                string[] queueToArray = queuedMedia.ToArray();
+                (queueToArray[0], queueToArray[e.ItemIndex]) = (queueToArray[e.ItemIndex], queueToArray[0]);
+                PassButtonToFirstInQueue_Click(this, null);
             }
             else
             {
 
             }
+        }
+
+        private void ShuffleQueueButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void PassButtonToFirstInQueue_Click(object sender, EventArgs e)
@@ -69,9 +76,9 @@ namespace Spotifly
         {
             ImageList icons = new ImageList();
             icons.Images.Add(Properties.Resources.video_icon);
-            var items = new ListViewItem[priorityQueue.Count];
-            var queue = priorityQueue.ToArray();
-            for (int i = 0; i < priorityQueue.Count; i++)
+            var items = new ListViewItem[queuedMedia.Count];
+            var queue = queuedMedia.ToArray();
+            for (int i = 0; i < queuedMedia.Count; i++)
                 items[i] = new ListViewItem(queue[i], 0);
             QueuedMediaListView.Items.Clear();
             QueuedMediaListView.Items.AddRange(items);

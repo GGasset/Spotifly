@@ -1020,6 +1020,7 @@
             this.ShuffleQueueButton.TabIndex = 14;
             this.ShuffleQueueButton.Text = "Shuffle";
             this.ShuffleQueueButton.UseVisualStyleBackColor = true;
+            this.ShuffleQueueButton.Click += new System.EventHandler(this.ShuffleQueueButton_Click);
             // 
             // DeleteItemFromQueueButton
             // 

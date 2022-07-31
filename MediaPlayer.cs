@@ -9,7 +9,7 @@ namespace Spotifly
 {
     public partial class Form1
     {
-        private Queue<string> priorityQueue;
+        private Queue<string> queuedMedia;
         private Queue<string> folderPriorityQueue;
         private bool isPlaying = false;
 
@@ -117,10 +117,10 @@ namespace Spotifly
         bool isQueued = false;
         private void PlayFile(int positionsToAdvance)
         {
-            if (priorityQueue.Count > 0 && positionsToAdvance == 1)
+            if (queuedMedia.Count > 0 && positionsToAdvance == 1)
             {
                 isQueued = true;
-                Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue(), folderPriorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
+                Task.Run(() => PlayFileInUnshuffled(queuedMedia.Dequeue(), folderPriorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
             }
             else
             {
@@ -194,7 +194,6 @@ namespace Spotifly
         {
             try
             {
-                playlistIndex = 0;
                 for (int i = 0; i < urlPlaylist.Length; i++)
                     if (urlPlaylist[i] == axWindowsMediaPlayer.URL)
                     {
@@ -205,7 +204,7 @@ namespace Spotifly
             }
             catch (Exception)
             {
-                return 0;
+                return playlistIndex;
             }
         }
 

@@ -165,7 +165,7 @@ namespace Spotifly
 
         private void AddToQueue(string itemName, string folderPath)
         {
-            priorityQueue.Enqueue(itemName);
+            queuedMedia.Enqueue(itemName);
             folderPriorityQueue.Enqueue(folderPath);
 
             if (!ToggleAddToQueueCheckBox.Checked)
@@ -183,7 +183,7 @@ namespace Spotifly
         {
             foreach (var file in filesToAdd)
             {
-                priorityQueue.Enqueue(UrlToName(file));
+                queuedMedia.Enqueue(UrlToName(file));
                 folderPriorityQueue.Enqueue(folderPath);
             }
 
