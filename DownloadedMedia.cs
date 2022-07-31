@@ -25,17 +25,17 @@ namespace Spotifly
 
             if (mediaSettingsForm.IsDisposed)
             {
-                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 return;
             }
             else if ((option = mediaSettingsForm.GetSelectedOption()) == "None")
             {
-                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 return;
             }
             else if (option == "Create folder")
             {
-                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 return;
             }
             else if (option == "Delete item")
@@ -75,7 +75,7 @@ namespace Spotifly
                 }
                 else
                 {
-                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 }
                 return;
             }
@@ -101,7 +101,7 @@ namespace Spotifly
                 }
                 else
                 {
-                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 }
                 return;
             }
@@ -114,7 +114,7 @@ namespace Spotifly
                     File.Copy(path, newPath);
                 }
                 else
-                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 return;
             }
             else if (option == "Move item to base folder")
@@ -127,24 +127,24 @@ namespace Spotifly
                     File.Move(path, newPath);
                 }
                 else
-                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory);
+                    HandleListViewItemClickWhenNoOptionSelected(e.Item.Text, pathWithoutExtension, isDirectory, folderPath);
                 return;
             }
         }
 
-        private void HandleListViewItemClickWhenNoOptionSelected(string itemText, string pathWithoutExtension, bool isDirectory)
+        private void HandleListViewItemClickWhenNoOptionSelected(string itemText, string pathWithoutExtension, bool isDirectory, string folderPath)
         {
             if (addToQueue)
             {
                 if (!isDirectory)
-                    AddToQueue(itemText);
+                    AddToQueue(itemText, folderPath);
                 else
                 {
                     var result = MessageBox.Show("Do you want to add all the folder to queue?", "", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
                         GetFilteredFilesAndFolders(pathWithoutExtension, out string[] files, out _);
-                        AddToQueue(files);
+                        AddToQueue(files, pathWithoutExtension);
                     }
                     else
                         ChangeDirectory(itemText);
@@ -159,9 +159,10 @@ namespace Spotifly
                 ChangeMedia(itemText);
         }
 
-        private void AddToQueue(string itemName)
+        private void AddToQueue(string itemName, string folderPath)
         {
             priorityQueue.Enqueue(itemName);
+            folderPriorityQueue.Enqueue(folderPath);
 
             if (!ToggleAddToQueueCheckBox.Checked)
             {
@@ -174,11 +175,12 @@ namespace Spotifly
             }
         }
 
-        private void AddToQueue(string[] filesToAdd)
+        private void AddToQueue(string[] filesToAdd, string folderPath)
         {
             foreach (var file in filesToAdd)
             {
-                priorityQueue.Enqueue(file);
+                priorityQueue.Enqueue(UrlToName(file));
+                folderPriorityQueue.Enqueue(folderPath);
             }
 
             if (ClearFilterWhenMediaIsSelectedCheckBox.Checked)
@@ -202,7 +204,7 @@ namespace Spotifly
 
             isQueued = false;
             if (shuffle)
-                PlayFileInUnshuffled(mediaName);
+                PlayFileInUnshuffled(mediaName, folderPath);
             else
                 //PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
                 PlayFile(mediaName, true);

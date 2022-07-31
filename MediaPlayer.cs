@@ -10,6 +10,7 @@ namespace Spotifly
     public partial class Form1
     {
         private Queue<string> priorityQueue;
+        private Queue<string> folderPriorityQueue;
         private bool isPlaying = false;
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
@@ -52,11 +53,11 @@ namespace Spotifly
             }
         }
 
-        private void PlayFileInUnshuffled(string name, bool checkForMediaIndex = true)
+        private void PlayFileInUnshuffled(string name, string mediaFolderPath, bool checkForMediaIndex = true)
         {
             try
             {
-                GetFilteredFilesAndFolders(folderPath, out string[] unshuffled, out _);
+                GetFilteredFilesAndFolders(mediaFolderPath, out string[] unshuffled, out _);
                 int index = -1;
                 name = UrlToName(name);
 
@@ -71,7 +72,7 @@ namespace Spotifly
 
                 if (index != -1)
                 {
-                    PlayFileInUnshuffled(index, checkForMediaIndex);
+                    PlayFileInUnshuffled(index, mediaFolderPath, checkForMediaIndex);
                 }
             }
             catch (Exception)
@@ -80,11 +81,12 @@ namespace Spotifly
             }
         }
 
-        private void PlayFileInUnshuffled(int index, bool checkForMediaIndex = true)
+        private void PlayFileInUnshuffled(int index, string folderPath = "", bool checkForMediaIndex = true)
         {
             try
             {
                 string[] unshuffled;
+                folderPath = folderPath == string.Empty? this.folderPath : folderPath;
                 GetFilteredFilesAndFolders(folderPath, out unshuffled, out _);
                 PlayFile(unshuffled[index], false, checkForMediaIndex);
             }
@@ -118,9 +120,7 @@ namespace Spotifly
             if (priorityQueue.Count > 0 && positionsToAdvance == 1)
             {
                 isQueued = true;
-                Task.Run(() => SetURL(priorityQueue.Dequeue()));
-                if (CheckMediaIndexWithSongQueueCheckBox.Checked)
-                    CheckPlaylistIndex();
+                Task.Run(() => PlayFileInUnshuffled(priorityQueue.Dequeue(), folderPriorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
             }
             else
             {

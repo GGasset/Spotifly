@@ -167,6 +167,7 @@ namespace Spotifly
             CurrentMediaTxtBox.Size = new Size(PrevMediaBttn.Location.X - CurrentMediaTxtBox.Location.X, 20);
             ThemeSelectionComboBox.Items.AddRange(GetThemes());
             priorityQueue = new System.Collections.Generic.Queue<string>();
+            folderPriorityQueue = new System.Collections.Generic.Queue<string>();
 
             watch.Stop();
             Settings.Default.AverageLoadingTime = Convert.ToInt32((watch.Elapsed.Milliseconds + Settings.Default.AverageLoadingTime) / 2);
