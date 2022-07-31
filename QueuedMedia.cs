@@ -33,19 +33,20 @@ namespace Spotifly
             }
             else if (PassItemToFirstInQueue)
             {
-                string[] queueToArray = queuedMedia.ToArray();
-                (queueToArray[0], queueToArray[e.ItemIndex]) = (queueToArray[e.ItemIndex], queueToArray[0]);
+                string[] queueArray = queuedMedia.ToArray();
+                (queueArray[0], queueArray[e.ItemIndex]) = (queueArray[e.ItemIndex], queueArray[0]);
+                queuedMedia = new Queue<string>(queueArray);
                 PassButtonToFirstInQueue_Click(this, null);
-            }
-            else
-            {
-
+                UpdateQueuedMediaListView();
             }
         }
 
         private void ShuffleQueueButton_Click(object sender, EventArgs e)
         {
-
+            string[] queueArray = queuedMedia.ToArray();
+            queueArray = ShufflePlaylist(queueArray);
+            queuedMedia = new Queue<string>(queueArray);
+            UpdateQueuedMediaListView();
         }
 
         private void PassButtonToFirstInQueue_Click(object sender, EventArgs e)

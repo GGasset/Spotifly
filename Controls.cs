@@ -95,28 +95,29 @@ namespace Spotifly
                 ShuffleBttn.BackColor = initialBackColor;
             }
             if (value)
-                ShufflePlaylist();
+                urlPlaylist = ShufflePlaylist(urlPlaylist);
             else
                 MediaListView_DrawMedia(null, true);
         }
 
-        private void ShufflePlaylist()
+        private string[] ShufflePlaylist(string[] playlist)
         {
             try
             {
-                for (int i = 0; i < urlPlaylist.Length; i++)//shuffle Playlist
+                for (int i = 0; i < playlist.Length; i++)//shuffle Playlist
                 {
                     i += 1 * Convert.ToByte(i == playlistIndex);
                     int rand = -1;
                     while (rand == -1 || rand == playlistIndex)
-                        rand = random.Next(i, urlPlaylist.Length);
-                    string newUrl = urlPlaylist[rand];
-                    urlPlaylist[rand] = urlPlaylist[i];
-                    urlPlaylist[i] = newUrl;
+                        rand = random.Next(i, playlist.Length);
+                    string newUrl = playlist[rand];
+                    playlist[rand] = playlist[i];
+                    playlist[i] = newUrl;
                 }
+                return playlist;
             }
             catch
-            { }
+            { return playlist; }
         }
 
         private void FullScreenBttn_Click(object sender, EventArgs e)

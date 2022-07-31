@@ -306,7 +306,7 @@ namespace Spotifly
                 if (currentUrlFolder == folderPath)
                     urlPlaylist = filesUrls;
                 if (shuffle)
-                    ShufflePlaylist();
+                    urlPlaylist = ShufflePlaylist(urlPlaylist);
 
                 BackupInMemory(folders, filesUrls);
                 fileFilterMemory = fileFilter;
