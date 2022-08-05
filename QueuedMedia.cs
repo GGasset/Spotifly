@@ -44,6 +44,7 @@ namespace Spotifly
                 string itemName = e.Item.Text;
                 string[] folderQueueArray = folderQueue.ToArray();
                 PlayFileInUnshuffled(itemName, folderQueueArray[e.ItemIndex], CheckMediaIndexWithSongQueueCheckBox.Checked);
+
                 string[] queueArray = queuedMedia.ToArray();
                 List<string> queueList = new List<string>(queueArray);
                 queueList.RemoveAt(e.ItemIndex);
