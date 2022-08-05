@@ -39,6 +39,22 @@ namespace Spotifly
                 PassButtonToFirstInQueue_Click(this, null);
                 UpdateQueuedMediaListView();
             }
+            else
+            {
+                string itemName = e.Item.Text;
+                string[] queueArray = queuedMedia.ToArray();
+                foreach (var queuedItemName in queueArray)
+                {
+                    if (UrlToName(queuedItemName) == queuedItemName)
+                    {
+                        e.Item.Text = queuedItemName;
+
+                    }
+                }
+                List<string> queueList = new List<string>(queueArray);
+                queueList.RemoveAt(e.ItemIndex);
+                queuedMedia = new Queue<string>(queueList);
+            }
         }
 
         private void ShuffleQueueButton_Click(object sender, EventArgs e)
