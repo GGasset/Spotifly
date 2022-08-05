@@ -45,7 +45,7 @@ namespace Spotifly
                 string[] queueArray = queuedMedia.ToArray();
                 foreach (var queuedItemName in queueArray)
                 {
-                    if (UrlToName(queuedItemName) == queuedItemName)
+                    if (UrlToName(queuedItemName) == itemName)
                     {
                         e.Item.Text = queuedItemName;
 
