@@ -10,7 +10,7 @@ namespace Spotifly
     public partial class Form1
     {
         private Queue<string> queuedMedia;
-        private Queue<string> folderPriorityQueue;
+        private Queue<string> folderQueue;
         private bool isPlaying = false;
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
@@ -120,7 +120,7 @@ namespace Spotifly
             if (queuedMedia.Count > 0 && positionsToAdvance == 1)
             {
                 isQueued = true;
-                Task.Run(() => PlayFileInUnshuffled(queuedMedia.Dequeue(), folderPriorityQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
+                Task.Run(() => PlayFileInUnshuffled(queuedMedia.Dequeue(), folderQueue.Dequeue(), CheckMediaIndexWithSongQueueCheckBox.Checked));
             }
             else
             {

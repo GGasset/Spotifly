@@ -42,18 +42,13 @@ namespace Spotifly
             else
             {
                 string itemName = e.Item.Text;
+                string[] folderQueueArray = folderQueue.ToArray();
+                PlayFileInUnshuffled(itemName, folderQueueArray[e.ItemIndex], CheckMediaIndexWithSongQueueCheckBox.Checked);
                 string[] queueArray = queuedMedia.ToArray();
-                foreach (var queuedItemName in queueArray)
-                {
-                    if (UrlToName(queuedItemName) == itemName)
-                    {
-                        e.Item.Text = queuedItemName;
-
-                    }
-                }
                 List<string> queueList = new List<string>(queueArray);
                 queueList.RemoveAt(e.ItemIndex);
                 queuedMedia = new Queue<string>(queueList);
+                UpdateQueuedMediaListView();
             }
         }
 
