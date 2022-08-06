@@ -65,12 +65,16 @@ namespace Spotifly
             string[] queueArray = queuedMedia.ToArray();
             string[] folderQueueArray = folderQueue.ToArray();
 
+            Random r = new Random(DateTime.Now.Millisecond + DateTime.Now.Day);
             for (int i = 0; i < queueArray.Length; i++)
             {
-
+                int randomI = r.Next(queueArray.Length);
+                (queueArray[i], queueArray[randomI]) = (queueArray[randomI], queueArray[i]);
+                (folderQueueArray[i], folderQueueArray[randomI]) = (folderQueueArray[randomI], folderQueueArray[i]);
             }
 
             queuedMedia = new Queue<string>(queueArray);
+            folderQueue = new Queue<string>(folderQueueArray);
             UpdateQueuedMediaListView();
         }
 
