@@ -20,16 +20,17 @@ namespace Spotifly
             if (deleteItemFromQueue)
             {
                 var queueArray = queuedMedia.ToArray();
+                var folderQueueArray = folderQueue.ToArray();
 
-                queuedMedia.Clear();
-                for (int i = 0; i < queueArray.Length; i++)
-                {
-                    if (e.ItemIndex != i)
-                        queuedMedia.Enqueue(queueArray[i]);
-                }
+                List<string> queueList = new List<string>(queueArray), folderQueueList = new List<string>(folderQueueArray);
+                queueList.RemoveAt(e.ItemIndex);
+                folderQueueList.RemoveAt(e.ItemIndex);
+
+                queuedMedia = new Queue<string>(queueList);
+                folderQueue = new Queue<string>(folderQueueList);
+
                 UpdateQueuedMediaListView();
                 //DeleteItemFromQueueButton_Click(this, null);
-                return;
             }
             else if (PassItemToFirstInQueue)
             {
@@ -45,10 +46,16 @@ namespace Spotifly
                 string[] folderQueueArray = folderQueue.ToArray();
                 PlayFileInUnshuffled(itemName, folderQueueArray[e.ItemIndex], CheckMediaIndexWithSongQueueCheckBox.Checked);
 
+                List<string> folderQueueList = new List<string>(folderQueueArray);
+                folderQueueList.RemoveAt(e.ItemIndex);
+
                 string[] queueArray = queuedMedia.ToArray();
                 List<string> queueList = new List<string>(queueArray);
                 queueList.RemoveAt(e.ItemIndex);
+
+                folderQueue = new Queue<string>(folderQueueList);
                 queuedMedia = new Queue<string>(queueList);
+                
                 UpdateQueuedMediaListView();
             }
         }
@@ -56,7 +63,13 @@ namespace Spotifly
         private void ShuffleQueueButton_Click(object sender, EventArgs e)
         {
             string[] queueArray = queuedMedia.ToArray();
-            queueArray = ShufflePlaylist(queueArray);
+            string[] folderQueueArray = folderQueue.ToArray();
+
+            for (int i = 0; i < queueArray.Length; i++)
+            {
+
+            }
+
             queuedMedia = new Queue<string>(queueArray);
             UpdateQueuedMediaListView();
         }
