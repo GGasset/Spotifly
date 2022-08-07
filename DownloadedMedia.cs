@@ -199,7 +199,7 @@ namespace Spotifly
                 mediaSettingsForm.SetInputMode(true, folderName);*/
 
             GetFilteredFilesAndFolders(this.folderPath, out string[] files, out string[] folders);
-            SetListViewItems(files, folders);
+            SetListViewItems(files, folders, SearchTxtBox.Text);
         }
 
         private void ChangeMedia(string mediaName)
