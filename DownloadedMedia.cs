@@ -413,7 +413,7 @@ namespace Spotifly
             for (int i = 0; i < folders.Length; i++)
             {
                 string[] filesInCurrentDirectory = Directory.GetFiles(folders[i]);
-                if (FilterFilesByFilter(filesInCurrentDirectory, fileFilter).Length > 0 || filesInCurrentDirectory.Length == 0)
+                if (FilterFilesByFilter(filesInCurrentDirectory, fileFilter).Length > 0 || (filesInCurrentDirectory.Length == 0 && fileFilter != string.Empty && fileFilter != null))
                     folderItems.Add(new ListViewItem(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0));
             }
 
