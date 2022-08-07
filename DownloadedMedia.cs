@@ -518,7 +518,7 @@ namespace Spotifly
             BackBttn.Visible = folderPath != initialFolderPath;
             //mediaSettingsForm.SetInputMode(true, UrlToName(folderPath));
             GetFilteredFilesAndFolders(folderPath, out string[] files, out string[] folders);
-            SetListViewItems(files, folders);
+            SetListViewItems(files, folders, SearchTxtBox.Text);
         }
 
         private void OpenCurrentFldrBttn_Click(object sender, EventArgs e)
