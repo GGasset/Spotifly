@@ -409,10 +409,12 @@ namespace Spotifly
             icons.Images.Add(Properties.Resources.FolderImage);
             icons.Images.Add(Properties.Resources.video_icon);
 
-            var folderItems = new ListViewItem[folders.Length];
+            var folderItems = new List<ListViewItem>();
             for (int i = 0; i < folders.Length; i++)
             {
-                folderItems[i] = new ListViewItem(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0);
+                string[] filesInCurrentDirectory = Directory.GetFiles(folders[i]);
+                if (FilterFilesByFilter(filesInCurrentDirectory, fileFilter).Length > 0)
+                    folderItems.Add(new ListViewItem(folders[i].Remove(0, folders[i].LastIndexOf('\\') + 1), 0));
             }
 
             string[] filteredFiles = FilterFilesByFilter(files, fileFilter);
@@ -432,12 +434,15 @@ namespace Spotifly
 
             MediaListView.SmallImageList = icons;
             MediaListView.Clear();
-            MediaListView.Items.AddRange(folderItems);
+            MediaListView.Items.AddRange(folderItems.ToArray());
             MediaListView.Items.AddRange(fileItems);
         }
 
         private string[] FilterFilesByFilter(string[] files, string filter)
         {
+            if (filter == string.Empty)
+                return new string[0];
+
             List<string> filteredFiles = new List<string>();
             filter = filter.ToLowerInvariant();
             string[] filterWords = filter.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
