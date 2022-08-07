@@ -440,8 +440,8 @@ namespace Spotifly
 
         private string[] FilterFilesByFilter(string[] files, string filter)
         {
-            if (filter == string.Empty)
-                return new string[0];
+            if (filter == string.Empty || filter == null)
+                return files;
 
             List<string> filteredFiles = new List<string>();
             filter = filter.ToLowerInvariant();

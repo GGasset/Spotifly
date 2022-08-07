@@ -181,7 +181,7 @@ namespace Spotifly
                 SetActivePanel(1);
             else if (MediaListView.Items.Count == 0)
             {
-                SetActivePanel(2);
+                SetActivePanel(3);
             }
             else
             {
