@@ -48,8 +48,8 @@ namespace Spotifly
             {
                 string filePath = GetFullPathForFile(folderPath, e.Item.Text);
                 mediaSettingsForm.optionPath = filePath;
-                mediaSettingsForm.SetInputMode(true, UrlToName(filePath));
-
+                mediaSettingsForm.SetInputMode(true, e.Item.Text);
+                mediaSettingsForm.SetItemTextBoxText(e.Item.Text);
                 mediaSettingsForm.BringToFront();
                 return;
             }

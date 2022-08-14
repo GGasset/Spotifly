@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MediaSettingsForm));
             this.MediaOptionsCheckBox = new System.Windows.Forms.CheckBox();
             this.MediaOptionsComboBox = new System.Windows.Forms.ComboBox();
-            this.ItemInfoTextBox = new System.Windows.Forms.TextBox();
+            this.ItemTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmRenameButton = new System.Windows.Forms.Button();
             this.PathToModifyLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -60,17 +60,17 @@
             this.MediaOptionsComboBox.TabIndex = 1;
             this.MediaOptionsComboBox.TextChanged += new System.EventHandler(this.MediaOptionsComboBox_TextChanged);
             // 
-            // ItemInfoTextBox
+            // ItemTextBox
             // 
-            this.ItemInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ItemTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ItemInfoTextBox.Location = new System.Drawing.Point(12, 39);
-            this.ItemInfoTextBox.Name = "ItemInfoTextBox";
-            this.ItemInfoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.ItemInfoTextBox.Size = new System.Drawing.Size(321, 20);
-            this.ItemInfoTextBox.TabIndex = 2;
-            this.ItemInfoTextBox.Visible = false;
-            this.ItemInfoTextBox.TextChanged += new System.EventHandler(this.FileRenameTextBox_TextChanged);
+            this.ItemTextBox.Location = new System.Drawing.Point(12, 39);
+            this.ItemTextBox.Name = "ItemInfoTextBox";
+            this.ItemTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.ItemTextBox.Size = new System.Drawing.Size(321, 20);
+            this.ItemTextBox.TabIndex = 2;
+            this.ItemTextBox.Visible = false;
+            this.ItemTextBox.TextChanged += new System.EventHandler(this.FileRenameTextBox_TextChanged);
             // 
             // ConfirmRenameButton
             // 
@@ -100,7 +100,7 @@
             this.ClientSize = new System.Drawing.Size(363, 94);
             this.Controls.Add(this.PathToModifyLabel);
             this.Controls.Add(this.ConfirmRenameButton);
-            this.Controls.Add(this.ItemInfoTextBox);
+            this.Controls.Add(this.ItemTextBox);
             this.Controls.Add(this.MediaOptionsComboBox);
             this.Controls.Add(this.MediaOptionsCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -119,7 +119,7 @@
 
         private System.Windows.Forms.CheckBox MediaOptionsCheckBox;
         private System.Windows.Forms.ComboBox MediaOptionsComboBox;
-        private System.Windows.Forms.TextBox ItemInfoTextBox;
+        private System.Windows.Forms.TextBox ItemTextBox;
         private System.Windows.Forms.Button ConfirmRenameButton;
         private System.Windows.Forms.Label PathToModifyLabel;
     }

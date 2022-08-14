@@ -83,9 +83,12 @@ namespace Spotifly
                 fileToRenameName = string.Empty;
             }
 
-            PathToModifyLabel.Visible = ItemInfoTextBox.Visible = ConfirmRenameButton.Visible = textBoxMode = v;
+            PathToModifyLabel.Visible = ItemTextBox.Visible = ConfirmRenameButton.Visible = textBoxMode = v;
             PathToModifyLabel.Text = fileToRenameName;
+            ItemTextBox.Text = string.Empty;
         }
+
+        internal void SetItemTextBoxText(string text) => ItemTextBox.Text = text;
 
         private void ChangeCurrentOption(string option)
         {
@@ -105,7 +108,7 @@ namespace Spotifly
 
         private void ConfirmRenameButton_Click(object sender, EventArgs e)
         {
-            if (ItemInfoTextBox.Text.Replace(" ", "") == "")
+            if (ItemTextBox.Text.Replace(" ", "") == "")
             {
                 MessageBox.Show("Cannot do anything with empty text", "Error", MessageBoxButtons.OK);
                 return;
@@ -122,7 +125,7 @@ namespace Spotifly
 
         private void CreateFolder()
         {
-            string path = $@"{PrincipalForm.folderPath}\{ItemInfoTextBox.Text}\";
+            string path = $@"{PrincipalForm.folderPath}\{ItemTextBox.Text}\";
             Directory.CreateDirectory(path);
         }
 
@@ -137,7 +140,7 @@ namespace Spotifly
                 string folderPath = optionPath.Remove(optionPath.LastIndexOf(@"\") + 1);
                 //string fileName = PrincipalForm.UrlToName(fileToRename);
                 string extension = optionPath.Remove(0, optionPath.LastIndexOf("."));
-                File.Move(optionPath, $@"{folderPath}{ItemInfoTextBox.Text}{extension}");
+                File.Move(optionPath, $@"{folderPath}{ItemTextBox.Text}{extension}");
             }
 
             SetMediaOptionsCheckBox(false);
@@ -145,7 +148,7 @@ namespace Spotifly
 
         private void FileRenameTextBox_TextChanged(object sender, EventArgs e)
         {
-            ItemInfoTextBox.Text = ItemInfoTextBox.Text.Replace("\\", "").Replace("\"", " ").Replace("<", " ").Replace(">", " ").Replace("|", " ").Replace("...", " ").Replace("*", " ").Replace("/", " ")
+            ItemTextBox.Text = ItemTextBox.Text.Replace("\\", "").Replace("\"", " ").Replace("<", " ").Replace(">", " ").Replace("|", " ").Replace("...", " ").Replace("*", " ").Replace("/", " ")
                     .Replace("?", "").Replace("¿", "");
         }
     }
