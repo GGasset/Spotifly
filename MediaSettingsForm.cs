@@ -68,6 +68,7 @@ namespace Spotifly
         {
             if (textBoxMode)
                 SetInputMode(false);
+            SetMediaOptionsCheckBox(false);
             optionPath = string.Empty;
         }
 
