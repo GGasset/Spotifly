@@ -208,7 +208,12 @@ namespace Spotifly
 
             isQueued = false;
             if (shuffle)
+            {
+                bool needsShuffle = folderPath != currentUrlFolder;
                 PlayFileInUnshuffled(mediaName, folderPath);
+                if (needsShuffle)
+                    urlPlaylist = ShufflePlaylist(urlPlaylist);
+            }
             else
                 //PlayFile(e.ItemIndex - playlistIndex - foldersMemory.Length, true);
                 PlayFile(mediaName, true);
