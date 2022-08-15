@@ -50,6 +50,7 @@ namespace Spotifly
                 mediaSettingsForm.optionPath = filePath;
                 mediaSettingsForm.SetInputMode(true, e.Item.Text);
                 mediaSettingsForm.SetItemTextBoxText(e.Item.Text);
+                System.Threading.Thread.Sleep(500);
                 mediaSettingsForm.BringToFront();
                 return;
             }
