@@ -41,6 +41,7 @@
             this.ElapsedTimeLabel = new System.Windows.Forms.Label();
             this.PlayBttn = new System.Windows.Forms.Button();
             this.SettingsPanel = new System.Windows.Forms.Panel();
+            this.ShowTutorialBttn = new System.Windows.Forms.Button();
             this.ToggleAddToQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.ChangeInitialFolderBttn = new System.Windows.Forms.Button();
             this.CurrentInitialFolderLabel = new System.Windows.Forms.Label();
@@ -96,7 +97,6 @@
             this.ShuffleQueueButton = new System.Windows.Forms.Button();
             this.DeleteItemFromQueueButton = new System.Windows.Forms.Button();
             this.QueuedMediaListView = new System.Windows.Forms.ListView();
-            this.ShowTutorialBttn = new System.Windows.Forms.Button();
             this.ControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ElapsedTimeBarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
@@ -299,6 +299,17 @@
             this.SettingsPanel.Size = new System.Drawing.Size(564, 356);
             this.SettingsPanel.TabIndex = 3;
             this.SettingsPanel.Visible = false;
+            // 
+            // ShowTutorialBttn
+            // 
+            this.ShowTutorialBttn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ShowTutorialBttn.Location = new System.Drawing.Point(94, 321);
+            this.ShowTutorialBttn.Name = "ShowTutorialBttn";
+            this.ShowTutorialBttn.Size = new System.Drawing.Size(75, 23);
+            this.ShowTutorialBttn.TabIndex = 9;
+            this.ShowTutorialBttn.Text = "Tutorial";
+            this.ShowTutorialBttn.UseVisualStyleBackColor = true;
+            this.ShowTutorialBttn.Click += new System.EventHandler(this.ShowTutorialBttn_Click);
             // 
             // ToggleAddToQueueCheckBox
             // 
@@ -1052,16 +1063,6 @@
             this.QueuedMediaListView.UseCompatibleStateImageBehavior = false;
             this.QueuedMediaListView.View = System.Windows.Forms.View.List;
             this.QueuedMediaListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.QueuedMediaListView_ItemSelectionChanged);
-            // 
-            // ShowTutorialBttn
-            // 
-            this.ShowTutorialBttn.Location = new System.Drawing.Point(94, 321);
-            this.ShowTutorialBttn.Name = "ShowTutorialBttn";
-            this.ShowTutorialBttn.Size = new System.Drawing.Size(75, 23);
-            this.ShowTutorialBttn.TabIndex = 9;
-            this.ShowTutorialBttn.Text = "Tutorial";
-            this.ShowTutorialBttn.UseVisualStyleBackColor = true;
-            this.ShowTutorialBttn.Click += new System.EventHandler(this.ShowTutorialBttn_Click);
             // 
             // Form1
             // 
