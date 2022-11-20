@@ -93,6 +93,8 @@ namespace Spotifly
             string tutorialHeaderTxt = "Tutorial";
             DialogResult dialogResult;
             dialogResult = MessageBox.Show("After clicking media player, you can press Q or E (q, e) so you can rewind or advance 10 seconds.", tutorialHeaderTxt, MessageBoxButtons.OKCancel);
+            if (dialogResult == DialogResult.Cancel)
+                return;
         }
 
         private void ThemeSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
