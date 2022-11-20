@@ -210,7 +210,15 @@ namespace Spotifly
 
         private void AxWindowsMediaPlayer_DoubleClickEvent(object sender, AxWMPLib._WMPOCXEvents_DoubleClickEvent e)
         {
-            axWindowsMediaPlayer.fullScreen = false;
+            FullScreenBttn_Click(null, null);
+        }
+
+        private void axWindowsMediaPlayer_KeyDownEvent(object sender, AxWMPLib._WMPOCXEvents_KeyDownEvent e)
+        {
+            if (e.nKeyCode == 81)
+                axWindowsMediaPlayer.Ctlcontrols.currentPosition = Math.Max(0, Math.Min(axWindowsMediaPlayer.currentMedia.duration, axWindowsMediaPlayer.Ctlcontrols.currentPosition - 10));
+            else if (e.nKeyCode == 69)
+                axWindowsMediaPlayer.Ctlcontrols.currentPosition = Math.Max(0, Math.Min(axWindowsMediaPlayer.currentMedia.duration, axWindowsMediaPlayer.Ctlcontrols.currentPosition + 10));
         }
     }
 }
