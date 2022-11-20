@@ -83,6 +83,18 @@ namespace Spotifly
             }
         }
 
+        private void ShowTutorialBttn_Click(object sender, EventArgs e)
+        {
+            ShowTutorial();
+        }
+
+        private void ShowTutorial()
+        {
+            string tutorialHeaderTxt = "Tutorial";
+            DialogResult dialogResult;
+            dialogResult = MessageBox.Show("After clicking media player, you can press Q or E (q, e) so you can rewind or advance 10 seconds.", tutorialHeaderTxt, MessageBoxButtons.OKCancel);
+        }
+
         private void ThemeSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ChangeTheme(ThemeSelectionComboBox.SelectedItem.ToString());
