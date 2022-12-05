@@ -97,7 +97,10 @@ namespace Spotifly
             if (value)
                 urlPlaylist = ShufflePlaylist(urlPlaylist);
             else
-                MediaListView_DrawMedia(null, true);
+            {
+                GetFilteredFilesAndFolders(currentUrlFolder, out urlPlaylist, out _);
+                CheckPlaylistIndex();
+            }
         }
 
         private string[] ShufflePlaylist(string[] playlist)
