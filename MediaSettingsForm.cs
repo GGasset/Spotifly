@@ -72,7 +72,7 @@ namespace Spotifly
             optionPath = string.Empty;
         }
 
-        public void SetInputMode(bool v, string fileToRenameName = "")
+        public void SetInputMode(bool v, string textToModify = "")
         {
             if (v)
             {
@@ -81,11 +81,11 @@ namespace Spotifly
             else
             {
                 this.Size = StartingSize;
-                fileToRenameName = string.Empty;
+                textToModify = string.Empty;
             }
 
             PathToModifyLabel.Visible = ItemTextBox.Visible = ConfirmRenameButton.Visible = textBoxMode = v;
-            PathToModifyLabel.Text = fileToRenameName;
+            PathToModifyLabel.Text = textToModify;
             ItemTextBox.Text = string.Empty;
         }
 
