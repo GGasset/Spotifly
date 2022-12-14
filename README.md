@@ -153,6 +153,74 @@ This file mostly declares functionality and adds some events
 * ClearFileFilter_Click()
 * GetFolderFromURL(mediaURL)
 
+Downloader.cs:
+* GetVideo(url)
+    // saves the url and creates a video object instance to later be able to download it.
+* DownloadVideo(link, onlyAudio = false)
+* VideoDownloadButton_Click()
+* AudioDownloadButton_Click()
+
+MediaPlayer.cs:
+* WindowsMediaPlayer_PlayStateChange()
+    // Plays next file on playlist
+* WindowsMediaPlayer_MediaChange()
+* AdvanceIndexesOnPlaylist(currentIndex, positionsToAdvance, playlistLength)
+* PlayFileInUn-shuffled(name, mediaFolderPath, updateMediaIndex = true)
+* PlayFileInUn-shuffled(index, folderPath = "", updateMediaIndex = true)
+* PlayFile(string URL, bool isName = false, bool checkPlaylistIndex = true)
+* PlayFile(int positionsToAdvance)
+* SetURL(string URL)
+    // Changes media
+* URLToName(url)
+* AxWindowsMediaPlayer_DoubleClickEvent()
+    // Toggles full screen
+* axWindowsMediaPlayer_KeyDownEvent()
+    // E advances 10 seconds, Q goes back 10 seconds
+
+QueuedMedia.cs:
+* QueuedMediaListView_ItemSelectionChanged()
+    // if there isn't a selected button it will play the selected media and delete it from queue
+* ShuffleQueueButton_Click()
+* PassButtonToFirstInQueue_Click()
+* DeleteItemFromQueueButton()
+* UpdateQueuedMediaListView()
+
+Settings.cs:
+* About_Click()
+* ChangeInitialFolderButton_Click()
+    // users can choose whether to copy or move all his files to another directory
+* MoveFiles()
+* ShowTutorialButton_Click()
+* ShowTutorial()
+* ThemeSelectionComboBox_SelectedIndexChanged()
+
+Theme.cs
+* DarkTheme Class
+* LightTheme Class
+* GetThemes()
+* ChangeThemes()
+* SubstituteNotBlankFromImage()
+* GetColorsForTheme()
+* ChangeFormAndControlsColor()
+* ChangeControlAndAllChildControlsColor()
+
+Update.cs:
+* UpdateStart()
+* Update()
+    * GetUpdateTier()
+* FastUpdate()
+* MidUpdate()
+* SlowUpdate()
+
+YoutubeBrowser.cs:
+* WebBrowser_AddressChanged()
+    * SetDownloadGroupBox()
+* WebVideoDownloadButton_Click()
+* WebAudioDownloadButton_Click()
+* BrowserBackButton_Click()
+* IsBrowserOnVideo()
+* IsBrowserOnHomePage()
+
 
 If you enter "Browser" page you will see Youtube open up, after you agree their terms,
 you may enter any Youtube video inside playlist or not and a box will appear, there are 2 buttons on the box that declares a Download Status label and the status itself,
