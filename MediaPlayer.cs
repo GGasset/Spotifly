@@ -15,18 +15,34 @@ namespace Spotifly
 
         private void WindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
-            //Media Ended
-            if (e.newState == 8)
+            bool fScreen = axWindowsMediaPlayer.fullScreen;
+            switch (e.newState)
             {
-                bool fScreen = axWindowsMediaPlayer.fullScreen;
-                PlayFile(1);
-                if (fScreen)
-                {
-                    axWindowsMediaPlayer.uiMode = "mini";
-                    axWindowsMediaPlayer.fullScreen = true;
-                }
+                // Paused
+                case 2:
+                    if (fScreen)
+                        isPlaying = false;
+                    break;
 
+                // Playing
+                case 3:
+                    if (fScreen)
+                        isPlaying = true;
+                    break;
+
+                // Media Ended
+                case 8:
+                    PlayFile(1);
+                    if (fScreen)
+                    {
+                        axWindowsMediaPlayer.uiMode = "mini";
+                        axWindowsMediaPlayer.fullScreen = true;
+                    }
+                    break;
+                default:
+                    break;
             }
+
         }
 
         private void WindowsMediaPlayer_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)
