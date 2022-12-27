@@ -499,23 +499,6 @@ namespace Spotifly
 
         private bool willDelete = false;
 
-        private void DeleteFileBttn_Click(object sender, EventArgs e)
-        {
-            if (willDelete)
-            {
-                willDelete = false;
-                DeleteFileBttn.Text = "Delete";
-                return;
-            }
-
-            var pressedButton = MessageBox.Show("Are you sure you want to delete a File?", "Alert", MessageBoxButtons.YesNoCancel);
-            if (pressedButton == DialogResult.Yes)
-            {
-                willDelete = true;
-                DeleteFileBttn.Text = "Will Delete";
-            }
-        }
-
         private void BackBttn_Click(object sender, EventArgs e)
         {
             folderPath = folderPath.Remove(folderPath.LastIndexOf(@"\", StringComparison.InvariantCulture));

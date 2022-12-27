@@ -61,6 +61,7 @@ namespace Spotifly
             mediaSettingsForm.Dispose();*/
         }
 
+        #region Events
         private async void Form1_Load(object sender, EventArgs e)
         {
             //Settings.Default.Reset();
@@ -169,6 +170,8 @@ namespace Spotifly
             queuedMedia = new System.Collections.Generic.Queue<string>();
             folderQueue = new System.Collections.Generic.Queue<string>();
 
+            AddKeyUpEvents();
+
             watch.Stop();
             Settings.Default.AverageLoadingTime = Convert.ToInt32((watch.Elapsed.Milliseconds + Settings.Default.AverageLoadingTime) / 2);
             table.Add("about", $"Developed by Germán Gasset Martí\nYoutubeExplode was used to download youtube videos\naverageLoadingTime: {Settings.Default.AverageLoadingTime}ms, currentLoadingTime: {watch.Elapsed.Milliseconds}ms" +
@@ -240,13 +243,56 @@ namespace Spotifly
             WebBrowser.Dispose();
         }
 
-        private void SetFolderPathFromSettings()
+
+        private void AddKeyUpEvents()
         {
-            if (Settings.Default.InitialFolderPath == "None")
-                Settings.Default.InitialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
-            folderPath = Settings.Default.InitialFolderPath;
-            initialFolderPath = folderPath;
+            foreach (Control control in Controls)
+            {
+                AddKeyUpEventForControlAndChilds(control);
+            }
         }
+
+        private void AddKeyUpEventForControlAndChilds(Control control)
+        {
+            try
+            {
+                object a;
+                a = (TextBox)control;
+                a = (ListView)control;
+                a = (ChromiumWebBrowser)control;
+            }
+            catch (Exception)
+            {
+                control.KeyUp += SpotiflyKeyUp;
+            }
+
+            foreach (Control child in control.Controls)
+            {
+                AddKeyUpEventForControlAndChilds(child);
+            }
+        }
+
+        private void SpotiflyKeyUp(object sender, KeyEventArgs e)
+        {
+            if (loading)
+                return;
+
+            switch (e.KeyData)
+            {
+                case Keys.Q:
+                    axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition - 10;
+                    break;
+                case Keys.E:
+                    axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition + 10;
+                    break;
+                case Keys.F:
+                    EnqueueBttn_Click(null, null);
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         private void PowerModeChange(object sender, PowerModeChangedEventArgs e)
         {
@@ -263,6 +309,17 @@ namespace Spotifly
                 default:
                     break;
             }
+        }
+
+        #endregion Events
+
+
+        private void SetFolderPathFromSettings()
+        {
+            if (Settings.Default.InitialFolderPath == "None")
+                Settings.Default.InitialFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + $@"\{AppName}";
+            folderPath = Settings.Default.InitialFolderPath;
+            initialFolderPath = folderPath;
         }
 
         #region panelControl
@@ -439,24 +496,11 @@ namespace Spotifly
             EnqueueBttn.ForeColor = color;
         }
 
-        private void DeleteFileBttn_MouseEnter(object sender, EventArgs e)
-        {
-            GetColorsForTheme(currentTheme, out _, out _, out Color hightlightColor, out _, out _);
-            DeleteFileBttn.ForeColor = hightlightColor;
-        }
-
-        private void DeleteFileBttn_MouseLeave(object sender, EventArgs e)
-        {
-            GetColorsForTheme(currentTheme, out _, out Color foreColor, out _, out _, out _);
-            DeleteFileBttn.ForeColor = foreColor;
-        }
-
         private void SettingsBttn_MouseEnter(object sender, EventArgs e)
         {
             GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);
             SettingsBttn.ForeColor = color;
         }
-
         private void BackBttn_MouseEnter(object sender, EventArgs e)
         {
             GetColorsForTheme(currentTheme, out _, out _, out Color color, out _, out _);
