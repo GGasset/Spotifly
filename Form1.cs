@@ -170,6 +170,7 @@ namespace Spotifly
             queuedMedia = new System.Collections.Generic.Queue<string>();
             folderQueue = new System.Collections.Generic.Queue<string>();
 
+            // Set events
             AddKeyUpEvents();
 
             watch.Stop();
