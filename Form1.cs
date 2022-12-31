@@ -285,7 +285,7 @@ namespace Spotifly
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition - 10;
                     break;
                 case Keys.F3:
-                    axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition + 10;
+                    axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition + 9.5;
                     break;
                 case Keys.F1:
                     EnqueueBttn_Click(null, null);
