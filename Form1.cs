@@ -255,17 +255,18 @@ namespace Spotifly
 
         private void AddKeyUpEventForControlAndChilds(Control control)
         {
-            try
-            {
-                object a;
-                a = (TextBox)control;
-                a = (ListView)control;
-                a = (ChromiumWebBrowser)control;
-            }
-            catch (Exception)
-            {
-                control.KeyUp += SpotiflyKeyUp;
-            }
+            control.KeyUp += SpotiflyKeyUp;
+            //try
+            //{
+            //    object a;
+            //    a = (TextBox)control;
+            //    a = (ListView)control;
+            //    a = (ChromiumWebBrowser)control;
+            //}
+            //catch (Exception)
+            //{
+            //    control.KeyUp += SpotiflyKeyUp;
+            //}
 
             foreach (Control child in control.Controls)
             {
@@ -280,13 +281,13 @@ namespace Spotifly
 
             switch (e.KeyData)
             {
-                case Keys.Q:
+                case Keys.F2:
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition - 10;
                     break;
-                case Keys.E:
+                case Keys.F3:
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = axWindowsMediaPlayer.Ctlcontrols.currentPosition + 10;
                     break;
-                case Keys.F:
+                case Keys.F1:
                     EnqueueBttn_Click(null, null);
                     break;
                 default:

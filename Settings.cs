@@ -94,11 +94,11 @@ namespace Spotifly
 
             DialogResult dialogResult;
 
-            dialogResult = MessageBox.Show("You may press Q or E (q, e) so you rewind or advance 10 seconds respectively.", tutorialHeaderTxt, MessageBoxButtons.OKCancel);
+            dialogResult = MessageBox.Show("You may press F2 or F3 so you rewind or advance 10 seconds respectively.", tutorialHeaderTxt, MessageBoxButtons.OKCancel);
             if (dialogResult == DialogResult.Cancel)
                 return;
 
-            dialogResult = MessageBox.Show("You may press F (f) so you toggle \"Add to Queue\" button", tutorialHeaderTxt, MessageBoxButtons.OKCancel);
+            dialogResult = MessageBox.Show("You may press F1 so you toggle \"Add to Queue\" button", tutorialHeaderTxt, MessageBoxButtons.OKCancel);
             if (dialogResult == DialogResult.Cancel)
                 return;
         }
