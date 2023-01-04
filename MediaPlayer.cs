@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.IO;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Spotifly
 {
@@ -149,13 +151,25 @@ namespace Spotifly
             UpdateQueuedMediaListView();
         }
 
-        private void SetURL(string URL)
+        private void SetURL(string URL, bool isTargetOfShortcut = false)
         {
             try
             {
                 if (URL != axWindowsMediaPlayer.URL)
                 {
-                    currentUrlFolder = URL.Remove(URL.LastIndexOf(@"\"));
+                    if (!isTargetOfShortcut)
+                        currentUrlFolder = URL.Remove(URL.LastIndexOf(@"\"));
+
+                    if (URL.EndsWith(".lnk"))
+                    {
+                        IWshRuntimeLibrary.IWshShell shell = new IWshRuntimeLibrary.WshShell();
+                        IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(URL);
+                        SetURL(shortcut.TargetPath, true);
+
+                        return;
+                    }
+
+
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
                     CurrentMediaTxtBox.Text = UrlToName(URL);

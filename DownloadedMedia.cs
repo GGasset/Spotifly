@@ -13,7 +13,7 @@ namespace Spotifly
         private string initialFolderPath;
         private string[] filteredFilesMemory = Array.Empty<string>(), foldersMemory = Array.Empty<string>(), urlPlaylist;
         private string fileFilterMemory = "";
-        internal string[] SupportedExtensions = ".WEBM .MP4 .WAV".ToLower(System.Globalization.CultureInfo.InvariantCulture).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+        internal string[] SupportedExtensions = ".WEBM .MP4 .WAV .MP3 .LNK".ToLower(System.Globalization.CultureInfo.InvariantCulture).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
         private void MediaListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
