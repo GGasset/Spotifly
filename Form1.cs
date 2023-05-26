@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using Spotifly.Properties;
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.Drawing;
 using System.IO;
@@ -64,6 +65,9 @@ namespace Spotifly
         #region Events
         private async void Form1_Load(object sender, EventArgs e)
         {
+            // Assign Priority
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.AboveNormal;
+
             //Settings.Default.Reset();
             panels = new Panel[6];
             panels[0] = MediaPlayerPanel;
@@ -89,7 +93,7 @@ namespace Spotifly
 
             #region prepareForm
 
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
 
             SetActivePanel(5);
 
