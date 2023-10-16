@@ -66,7 +66,7 @@ namespace Spotifly
         private async void Form1_Load(object sender, EventArgs e)
         {
             // Assign Priority
-            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.AboveNormal;
+            //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.AboveNormal;
 
             //Settings.Default.Reset();
             panels = new Panel[6];
