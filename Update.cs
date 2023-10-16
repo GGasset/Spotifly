@@ -120,6 +120,7 @@ namespace Spotifly
         private void SlowUpdate()
         {
             MediaListView_DrawMedia(fileFilterMemory);
+            Update(null, null);
         }
     }
 }
