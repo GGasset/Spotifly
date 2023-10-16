@@ -169,7 +169,7 @@ namespace Spotifly
                         return;
                     }
 
-
+                    Update(null, null);
                     axWindowsMediaPlayer.URL = URL;
                     axWindowsMediaPlayer.Ctlcontrols.currentPosition = 0;
                     CurrentMediaTxtBox.Text = UrlToName(URL);
@@ -178,6 +178,7 @@ namespace Spotifly
                         Thread.Sleep(10);
                     } while (axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsTransitioning);
                     axWindowsMediaPlayer.Ctlcontrols.play();
+                    Update(null, null);
                     /*Thread.Sleep(50);
                     axWindowsMediaPlayer.Ctlcontrols.pause();*/
                     /*if (startPlaying)
