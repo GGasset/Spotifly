@@ -231,6 +231,7 @@ one button is used to download the media in a video file with a max quality of 1
 #### To install:
 
 ##### - right click on Solution > Restore NuGet packages
+##### - Enter to NugetPackages window > Updates > Update all
 
 ##### - At just below the top of the Visual Studio window click start and enjoy!
 ---
